@@ -1,0 +1,10 @@
+<form [formGroup]="onboardingForm" (ngSubmit)="onSubmit(onboardingForm)">
+    <div class="form-control">
+        <mat-button-toggle-group name="userType" formControlName="userType" aria-label="Pick Your Account Type" class="onboarding-toggle">
+            <mat-button-toggle value="breeder">Breeder</mat-button-toggle>
+            <mat-button-toggle value="owner">Owner</mat-button-toggle>
+            <mat-button-toggle value="vet">Vet</mat-button-toggle>
+        </mat-button-toggle-group>
+        <input type="submit" value="Submit">
+    </div>
+</form>

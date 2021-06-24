@@ -1,0 +1,17 @@
+@use '~@angular/material' as mat;
+
+$my-palette: mat.$indigo-palette;
+
+.onboarding-toggle{
+    width:100%;
+    justify-content: space-evenly;
+}
+
+.onboarding-toggle mat-button-toggle{
+    display:block;
+    width:33.33%;
+}
+
+.mat-button-toggle-checked{
+    background-color:mat.get-color-from-palette($my-palette, 'darker');
+}

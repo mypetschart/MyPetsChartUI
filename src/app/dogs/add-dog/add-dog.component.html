@@ -1,0 +1,7 @@
+<form>
+    <div class="form-control">
+        <label for="add-dog">Add dog</label>
+        <input type="text" name="add-dog" [formControl]="name">
+    </div>
+</form>
+<p>Value: {{ name.value }}</p>
