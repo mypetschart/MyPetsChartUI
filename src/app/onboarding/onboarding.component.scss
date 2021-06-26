@@ -1,6 +1,8 @@
 @use '~@angular/material' as mat;
 
-$my-palette: mat.$indigo-palette;
+@import '../../palette.scss';
+
+// $my-theme: mat-palette($mat-green);
 
 .onboarding-toggle{
     width:100%;
@@ -9,9 +11,11 @@ $my-palette: mat.$indigo-palette;
 
 .onboarding-toggle mat-button-toggle{
     display:block;
+    min-width:20vw;
     width:33.33%;
 }
 
 .mat-button-toggle-checked{
-    background-color:mat.get-color-from-palette($my-palette, 'darker');
+    background-color:mat.get-color-from-palette($my-palette, 600);
+    color:mat.get-color-from-palette($my-palette, 50);
 }

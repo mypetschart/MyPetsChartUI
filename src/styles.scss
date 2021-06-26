@@ -1,7 +1,16 @@
+@use '~@angular/material' as mat;
+
+/* Color themes */
+@import 'palette.scss';
+
 /* You can add global styles to this file, and also import other style files */
 @import url("bootstrap/dist/css/bootstrap.min.css");
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+div.main{
+    background-color: mat.get-color-from-palette($my-palette, 100);
+ }
 
 /*
  * Form Styles
