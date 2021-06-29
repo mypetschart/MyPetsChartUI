@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { OnboardingService } from '../onboarding.service';
 
 // The interface that describes the breeder user type
@@ -17,6 +17,9 @@ export class BreederComponent implements OnInit {
   /*
    * Form configuration
    */
+  firstFormGroup = new FormGroup({});
+  secondFormGroup = new FormGroup({});
+  
   breederOnboardingForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl(''),
@@ -46,9 +49,15 @@ export class BreederComponent implements OnInit {
    * END form configuration
    */
 
-  constructor(private onboardService: OnboardingService) { }
+  constructor(private onboardService: OnboardingService, private _formBuilder: FormBuilder) {  }
 
   ngOnInit(): void {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
   onSubmit(form: FormGroup): void{

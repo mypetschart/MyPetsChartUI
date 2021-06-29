@@ -1,20 +1,70 @@
 @use '~@angular/material' as mat;
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-/* Color themes */
+
+/*
+ * Color Palettes
+ */
 @import 'palette.scss';
 
-/* You can add global styles to this file, and also import other style files */
-@import url("bootstrap/dist/css/bootstrap.min.css");
+$my-primary: mat.define-palette($my-palette, 600);
+$my-accent: mat.define-palette($my-accent-palette, 50);
+
+
+
+/*
+ * Typography
+ */
+$my-custom-typography: mat.define-typography-config(
+  $display-4: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em, $font-family: "Poppins"),
+  $display-3: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em, $font-family: "Poppins"),
+  $display-2: mat.define-typography-level(42px, 48px, 700, $letter-spacing: -0.005em, $font-family: "Poppins"),
+  $display-1: mat.define-typography-level(34px, 40px, 500, $font-family: "Poppins"),
+  $headline:  mat.define-typography-level(24px, 32px, 400, $font-family: "Poppins"),
+  $title:  mat.define-typography-level(20px, 28px, 400, $font-family: "Poppins"),
+  $subheading-2:  mat.define-typography-level(16px, 22px, 400, $font-family: "Poppins"),
+  $subheading-1:  mat.define-typography-level(10px, 12px, 400, $font-family: "Poppins"),
+  $body-1:  mat.define-typography-level(16px, 24px, 400, $font-family: "Poppins"),
+  $body-2:  mat.define-typography-level(12px, 16px, 400, $font-family: "Poppins"),
+  $caption:  mat.define-typography-level(14px, 18px, 300, $font-family: "Poppins"),
+  $button:  mat.define-typography-level(14px, 1, 300, $font-family: "Poppins"),
+  $input:  mat.define-typography-level(14px, 1, 300, $font-family: "Poppins"),
+);
+
+// Define theme
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ ),
+ typography: $my-custom-typography,
+));
+
+@include mat.all-component-themes($my-theme);
+@include mat.core($my-custom-typography);
+
+.mat-button-toggle{font-family: "Poppins"}
+
+/*
+ * General CSS
+ */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }
 
 div.main{
-    background-color: mat.get-color-from-palette($my-palette, 100);
+    background-color: mat.get-color-from-palette($my-palette, 50);
+    min-height: 100vh;
  }
+
+
 
 /*
  * Form Styles
  */
 .mat-form-field{
     display:block !important;
+}
+
+span.mat-button-toggle-focus-overlay{
+  display:none;
 }

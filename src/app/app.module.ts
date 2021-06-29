@@ -18,7 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material/stepper';
 
 // App components
 import { OnboardingComponent } from './onboarding/onboarding.component';
@@ -66,6 +67,7 @@ import { VetComponent } from './onboarding/vet/vet.component';
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
+    MatStepperModule,
     ReactiveFormsModule,
     MatSelectModule,
     HttpClientModule

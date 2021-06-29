@@ -2,7 +2,11 @@
 
 @import '../../palette.scss';
 
-// $my-theme: mat-palette($mat-green);
+// Required
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/mixins/breakpoints";
 
 .onboarding-toggle{
     width:100%;
@@ -11,11 +15,45 @@
 
 .onboarding-toggle mat-button-toggle{
     display:block;
-    min-width:20vw;
-    width:33.33%;
+    min-width:50vw;
+    width:100%;
+    border:1px solid mat.get-color-from-palette($my-palette, 900);
+    border-radius:3px;
+    margin:12px 0px;
+}
+
+.mat-button-toggle-standalone, .mat-button-toggle-group{
+    flex-direction: column;
 }
 
 .mat-button-toggle-checked{
     background-color:mat.get-color-from-palette($my-palette, 600);
     color:mat.get-color-from-palette($my-palette, 50);
+}
+
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard, .mat-button-toggle-group-appearance-standard{
+    border:none;
+}
+
+.mat-icon{
+    display:block;
+    padding:16px;
+    height:80px;
+    width:80px;
+}
+
+// Desktop media query
+@include media-breakpoint-up(sm) {
+    .onboarding-toggle mat-button-toggle{
+        min-width: 20vw;
+    }
+
+    .mat-button-toggle-standalone, .mat-button-toggle-group{
+        flex-direction: row;
+    }
+
+    
+    .onboarding-toggle mat-button-toggle:nth-child(2){
+        margin:12px 16px;
+    }
 }
