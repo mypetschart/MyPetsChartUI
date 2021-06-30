@@ -2,7 +2,9 @@
   <!-- <div class="row image-overlay"></div> -->
   <!-- <app-header></app-header> -->
   <div class="container d-flex align-items-center justify-content-center">
-    <router-outlet></router-outlet>
+    <div class="flex-fill">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
   </div>
   <!-- <app-footer></app-footer> -->
 </div><!-- container -->

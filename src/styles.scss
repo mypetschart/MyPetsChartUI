@@ -43,7 +43,10 @@ $my-theme: mat.define-light-theme((
 @include mat.all-component-themes($my-theme);
 @include mat.core($my-custom-typography);
 
-.mat-button-toggle{font-family: "Poppins"}
+.mat-button-toggle,
+.mat-stepper-vertical, .mat-stepper-horizontal{
+  font-family: "Poppins"
+}
 
 /*
  * General CSS

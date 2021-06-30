@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { OnboardingService } from '../onboarding.service';
+import { fadeIn } from 'src/app/transition-animations';
 
 // The interface that describes the breeder user type
 export interface Breeder {
@@ -11,22 +12,25 @@ export interface Breeder {
 @Component({
   selector: 'app-breeder',
   templateUrl: './breeder.component.html',
-  styleUrls: ['./breeder.component.scss']
+  styleUrls: ['./breeder.component.scss'],
+  animations: [
+   fadeIn
+  ]
 })
 export class BreederComponent implements OnInit {
   /*
    * Form configuration
    */
-  firstFormGroup = new FormGroup({});
-  secondFormGroup = new FormGroup({});
-  
-  breederOnboardingForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl(''),
-    password: new FormControl(''),
+  breederOnboardingFormGroup1 = new FormGroup({
     fullName: new FormControl(''),
     businessName: new FormControl(''),
     handle: new FormControl(''),
+  });
+
+  breederOnboardingFormGroup2 = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl(''),
+    password: new FormControl(''),
     address: new FormGroup({
       street: new FormControl(''),
       city: new FormControl(''),
@@ -39,11 +43,11 @@ export class BreederComponent implements OnInit {
   passwordHide = true;
 
   emailErrorMessage(): string {
-    if (this.breederOnboardingForm.hasError('required')) {
+    if (this.breederOnboardingFormGroup2.hasError('required')) {
       return 'You must enter a value';
     }
 
-    return this.breederOnboardingForm.hasError('email') ? 'Not a valid email' : '';
+    return this.breederOnboardingFormGroup2.hasError('email') ? 'Not a valid email' : '';
   }
   /*
    * END form configuration
@@ -52,17 +56,17 @@ export class BreederComponent implements OnInit {
   constructor(private onboardService: OnboardingService, private _formBuilder: FormBuilder) {  }
 
   ngOnInit(): void {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    // this.breederOnboardingFormGroup1 = this._formBuilder.group({
+    //   firstCtrl: ['', Validators.required]
+    // });
+    // this.breederOnboardingFormGroup2 = this._formBuilder.group({
+    //   secondCtrl: ['', Validators.required]
+    // });
   }
 
-  onSubmit(form: FormGroup): void{
+  onSubmit(formStep1: FormGroup, formStep2: FormGroup): void{
     console.log('submitted');
-    if (this.validateForm(form)) {
+    if (this.validateForm(formStep1)) {
 
       const breederForm = {
         id: 0,

@@ -18,7 +18,7 @@
     min-width:50vw;
     width:100%;
     border:1px solid mat.get-color-from-palette($my-palette, 900);
-    border-radius:3px;
+    border-radius:4px;
     margin:12px 0px;
 }
 
@@ -28,7 +28,7 @@
 
 .mat-button-toggle-checked{
     background-color:mat.get-color-from-palette($my-palette, 600);
-    color:mat.get-color-from-palette($my-palette, 50);
+    color:mat.get-color-from-palette($my-palette, 25);
 }
 
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard, .mat-button-toggle-group-appearance-standard{

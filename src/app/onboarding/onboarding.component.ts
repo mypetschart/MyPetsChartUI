@@ -3,12 +3,16 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
+import { fadeIn } from 'src/app/transition-animations';
 
 
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.component.html',
-  styleUrls: ['./onboarding.component.scss']
+  styleUrls: ['./onboarding.component.scss'],
+  animations: [
+    fadeIn
+  ]
 })
 export class OnboardingComponent implements OnInit {
 
