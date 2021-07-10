@@ -5,7 +5,7 @@ import { fadeIn } from 'src/app/transition-animations';
 
 // The interface that describes the breeder user type
 export interface Breeder {
-  id?: number;
+  id: number;
   name: string;
 }
 
@@ -21,68 +21,59 @@ export class BreederComponent implements OnInit {
   /*
    * Form configuration
    */
+  fullName = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(120)]);
+  businessName = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(120)]);
+  handle = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(18)]);
+
+  email = new FormControl('', [Validators.required, Validators.email]);
+  phone = new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(7), Validators.maxLength(11)]);
+  password = new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(120)]);
+
+  street = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(120)]);
+  city = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(120)]);
+  state = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(120)]);
+  zip = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(18)]);
+
   breederOnboardingFormGroup1 = new FormGroup({
-    fullName: new FormControl(''),
-    businessName: new FormControl(''),
-    handle: new FormControl(''),
+    fullName: this.fullName,
+    businessName: this.businessName,
+    handle: this.handle,
   });
 
   breederOnboardingFormGroup2 = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl(''),
-    password: new FormControl(''),
+    email: this.email,
+    phone: this.phone,
+    password: this.password,
     address: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl('')
+      street: this.street,
+      city: this.city,
+      state: this.state,
+      zip: this.zip
     })
   });
 
   // TODO the password hide stuff submits for the form for some reason
   passwordHide = true;
 
-  emailErrorMessage(): string {
-    if (this.breederOnboardingFormGroup2.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.breederOnboardingFormGroup2.hasError('email') ? 'Not a valid email' : '';
-  }
   /*
    * END form configuration
    */
 
   constructor(private onboardService: OnboardingService, private _formBuilder: FormBuilder) {  }
 
-  ngOnInit(): void {
-    // this.breederOnboardingFormGroup1 = this._formBuilder.group({
-    //   firstCtrl: ['', Validators.required]
-    // });
-    // this.breederOnboardingFormGroup2 = this._formBuilder.group({
-    //   secondCtrl: ['', Validators.required]
-    // });
-  }
+  ngOnInit(): void { }
 
   onSubmit(formStep1: FormGroup, formStep2: FormGroup): void{
     console.log('submitted');
-    if (this.validateForm(formStep1)) {
 
-      const breederForm = {
-        id: 0,
-        name: 'hi',
-        test: 'test'
-      };
+    const breederForm = {
+      id: 0,
+      name: 'hi',
+      test: 'test'
+    };
 
-      this.onboardService.onboardBreeder(breederForm).subscribe(
+    this.onboardService.onboardBreeder(breederForm).subscribe(
 
-      );
-    }
+    );
   }
-
-  // TODO validate form
-  validateForm(form: FormGroup): boolean{
-   return true;
-  }
-
 }

@@ -1,25 +1,36 @@
  <div class="breeder-onboarding" @fadeIn>
+  <h1 class="mat-display-2">Breeder Onboarding</h1>
+  <p>Fill out the form to register as a breeder</p>
   <mat-stepper classs="flex-fill" orientation="vertical" [linear]="false" #stepper>
     <mat-step [stepControl]="breederOnboardingFormGroup1">
       <form [formGroup]="breederOnboardingFormGroup1">
-        <ng-template matStepLabel>Fill out your name</ng-template>
+        <ng-template matStepLabel>Business Details</ng-template>
         <!-- full name -->
         <mat-form-field appearance="fill">
-          <mat-label>Full name</mat-label>
+          <mat-label>Your Full Name</mat-label>
           <input matInput formControlName="fullName">
+          <mat-error matErrorMessages fieldLabel='Full name'></mat-error>
         </mat-form-field>
         <!-- business name -->
         <mat-form-field appearance="fill">
-          <mat-label>Business name</mat-label>
+          <mat-label>Your Business Name</mat-label>
           <input matInput formControlName="businessName">
+          <mat-error matErrorMessages fieldLabel='Business name'></mat-error>
         </mat-form-field>
         <!-- handle -->
         <mat-form-field appearance="fill">
-          <mat-label>Handle</mat-label>
+          <mat-label>Handle (your unique identifier)</mat-label>
           <input matInput formControlName="handle">
+          <span matPrefix>@&nbsp;</span>
+          <mat-error *ngIf="handle.errors?.required">
+            Handle is required
+          </mat-error>
+          <mat-error *ngIf="handle.errors?.minlength || handle.errors?.maxlength">
+            Handle length must be between 5 and 28 characters.
+          </mat-error>
         </mat-form-field>
         <div>
-          <button mat-flat-button color="primary" matStepperNext>Next</button>
+          <button mat-flat-button color="primary" matStepperNext>Next →</button>
         </div>
       </form>
     </mat-step>
@@ -33,6 +44,12 @@
             <mat-form-field appearance="fill">
               <mat-label>Street</mat-label>
               <input matInput formControlName="street">
+              <mat-error *ngIf="handle.errors?.required">
+                Handle is required
+              </mat-error>
+              <mat-error *ngIf="handle.errors?.minlength || handle.errors?.maxlength">
+                Handle length must be between 5 and 28 characters.
+              </mat-error>
             </mat-form-field>
             <div class="row">
               <!-- city -->
@@ -40,6 +57,12 @@
                 <mat-form-field appearance="fill">
                   <mat-label>City</mat-label>
                   <input matInput formControlName="city">
+                  <mat-error *ngIf="handle.errors?.required">
+                    Handle is required
+                  </mat-error>
+                  <mat-error *ngIf="handle.errors?.minlength || handle.errors?.maxlength">
+                    Handle length must be between 5 and 28 characters.
+                  </mat-error>
                 </mat-form-field>
               </div>
               <!-- state -->
@@ -47,6 +70,12 @@
                 <mat-form-field appearance="fill">
                   <mat-label>State</mat-label>
                   <input matInput formControlName="state">
+                  <mat-error *ngIf="handle.errors?.required">
+                    Handle is required
+                  </mat-error>
+                  <mat-error *ngIf="handle.errors?.minlength || handle.errors?.maxlength">
+                    Handle length must be between 5 and 28 characters.
+                  </mat-error>
                 </mat-form-field>
               </div>
               <!-- zip -->
@@ -54,6 +83,12 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Zip</mat-label>
                   <input matInput formControlName="zip">
+                  <mat-error *ngIf="handle.errors?.required">
+                    Handle is required
+                  </mat-error>
+                  <mat-error *ngIf="handle.errors?.minlength || handle.errors?.maxlength">
+                    Handle length must be between 5 and 28 characters.
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -61,14 +96,24 @@
         <!-- email -->
         <mat-form-field appearance="fill">
           <mat-label>Enter your email</mat-label>
-          <input matInput formControlName="email" placeholder="pat@example.com" required>
-          <mat-error *ngIf="breederOnboardingFormGroup2.invalid">{{emailErrorMessage()}}</mat-error>
+          <input matInput formControlName="email" placeholder="pat@example.com">
+          <mat-error *ngIf="handle.errors?.required">
+            Handle is required
+          </mat-error>
+          <mat-error *ngIf="handle.errors?.minlength || handle.errors?.maxlength">
+            Handle length must be between 5 and 28 characters.
+          </mat-error>
         </mat-form-field>
         <!-- phone -->
         <mat-form-field appearance="fill">
           <mat-label>Phone</mat-label>
-          <input matInput formControlName="phone" placeholder="pat@example.com" required>
-          <mat-error *ngIf="breederOnboardingFormGroup2.invalid">{{emailErrorMessage()}}</mat-error>
+          <input matInput formControlName="phone" placeholder="pat@example.com">
+          <mat-error *ngIf="handle.errors?.required">
+            Handle is required
+          </mat-error>
+          <mat-error *ngIf="handle.errors?.minlength || handle.errors?.maxlength">
+            Handle length must be between 5 and 28 characters.
+          </mat-error>
         </mat-form-field>
         <!-- password -->
         <mat-form-field appearance="fill">
@@ -77,10 +122,16 @@
           <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
             <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+          <mat-error *ngIf="handle.errors?.required">
+            Handle is required
+          </mat-error>
+          <mat-error *ngIf="handle.errors?.minlength || handle.errors?.maxlength">
+            Handle length must be between 5 and 28 characters.
+          </mat-error>
         </mat-form-field>  
         <div>
-          <button mat-flat-button color="primary" class="me-2" matStepperPrevious>Back</button>
-          <button mat-flat-button color="primary" matStepperNext>Next</button>
+          <button mat-flat-button color="primary" class="me-2" matStepperPrevious>← Back</button>
+          <button mat-flat-button color="primary" matStepperNext>Next →</button>
         </div>
       </form>
     </mat-step>
@@ -88,7 +139,7 @@
       <ng-template matStepLabel>Done</ng-template>
       <p>You are now done.</p>
       <div>
-        <button mat-flat-button color="primary" class="me-2" matStepperPrevious>Back</button>
+        <button mat-flat-button color="primary" class="me-2" matStepperPrevious>← Back</button>
         <button mat-flat-button color="primary" class="me-2" (click)="stepper.reset()">Reset</button>
         <button mat-flat-button color="primary" type="Submit">Submit</button>
       </div>

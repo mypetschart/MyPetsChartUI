@@ -36,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BreederComponent } from './onboarding/breeder/breeder.component';
 import { OwnerComponent } from './onboarding/owner/owner.component';
 import { VetComponent } from './onboarding/vet/vet.component';
+import { MatErrorDirective } from './mat-error.directive';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { VetComponent } from './onboarding/vet/vet.component';
     FooterComponent,
     BreederComponent,
     OwnerComponent,
-    VetComponent
+    VetComponent,
+    MatErrorDirective
   ],
   imports: [
     BrowserModule,
