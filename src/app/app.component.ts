@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, Event, NavigationStart } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +10,21 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  displayHeader = true;
+
   title = 'my-pets-chart';
 
-  constructor() {
-    console.log(environment.jwt);
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    this.router.events.subscribe( (e) => {
+      if (e instanceof NavigationStart) {
+        if (e.url.includes('/onboarding')) {
+            this.displayHeader = false;
+        } else {
+            this.displayHeader = true;
+        }
+      }
+    });
   }
 }

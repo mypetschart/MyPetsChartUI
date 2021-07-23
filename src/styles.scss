@@ -1,6 +1,4 @@
 @use '~@angular/material' as mat;
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
 
 /*
  * Color Palettes
@@ -10,7 +8,11 @@
 $my-primary: mat.define-palette($my-palette, 600);
 $my-accent: mat.define-palette($my-accent-palette, 50);
 
+// Bootstrap variables
+$primary: map-get($my-palette, 600);
+$secondary: map-get($my-accent-palette, 600);
 
+@import '~bootstrap/scss/bootstrap';
 
 /*
  * Typography
@@ -62,7 +64,7 @@ div.main{
 
 
 /*
- * Form Styles
+ * Material Form Styles
  */
 .mat-form-field{
     display:block !important;
@@ -74,10 +76,6 @@ span.mat-button-toggle-focus-overlay{
 
 .mat-form-field-wrapper{
   margin-bottom:1em;
-}
-
-.mat-form-field-appearance-fill .mat-form-field-subscript-wrapper{
-  padding-left:0 !important;
 }
 
 .mat-step-label-selected{
@@ -95,4 +93,29 @@ span.mat-button-toggle-focus-overlay{
 
 .mat-vertical-content-container{
   margin-top:16px;
+}
+
+// Mat error underline
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple, .mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent{
+  height:1px;
+}
+
+// mat-icon.mat-icon.notranslate.mat-icon-no-color{
+//   vertical-align: baseline;
+// }
+
+.cdk-overlay-pane{
+  min-width:55%;
+}
+
+// Close button on mat-dialog
+.mat-dialog-content{
+  position:relative
+}
+
+button.close-dialog{
+  position:absolute;
+  right:10px;
+  top:0;
+  color:rgba(0,0,0,0.8);
 }

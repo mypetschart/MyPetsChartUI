@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 // Material modules
@@ -21,6 +22,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 // App components
 import { OnboardingComponent } from './onboarding/onboarding.component';
@@ -37,6 +42,12 @@ import { BreederComponent } from './onboarding/breeder/breeder.component';
 import { OwnerComponent } from './onboarding/owner/owner.component';
 import { VetComponent } from './onboarding/vet/vet.component';
 import { MatErrorDirective } from './mat-error.directive';
+import { TasksComponent } from './tasks/tasks.component';
+import { WormingRecordComponent } from './dogs/worming-record/worming-record.component';
+import { VaccinationRecordComponent } from './dogs/vaccination-record/vaccination-record.component';
+import { MedicationRecordComponent } from './dogs/medication-record/medication-record.component';
+import { LittersComponent } from './litters/litters.component';
+import { AddLitterComponent } from './litters/add-litter/add-litter.component';
 
 
 @NgModule({
@@ -55,7 +66,13 @@ import { MatErrorDirective } from './mat-error.directive';
     BreederComponent,
     OwnerComponent,
     VetComponent,
-    MatErrorDirective
+    MatErrorDirective,
+    TasksComponent,
+    WormingRecordComponent,
+    VaccinationRecordComponent,
+    MedicationRecordComponent,
+    LittersComponent,
+    AddLitterComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +90,11 @@ import { MatErrorDirective } from './mat-error.directive';
     MatStepperModule,
     ReactiveFormsModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
+    MatDialogModule,
+    NgxMatSelectSearchModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

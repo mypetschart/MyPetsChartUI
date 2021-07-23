@@ -1,2 +1,8 @@
-<p *ngFor="let dog of dogs">{{ dog.name }}</p>
-<app-add-dog></app-add-dog>
+<div class="dashboard" @fadeIn>
+    <!-- <app-header></app-header> -->
+    <h1 class="mt-3 mat-display-2">My Pets Chart Dashboard</h1>
+    <app-dogs *ngFor="let dog of dogs" [dogs]="dog"></app-dogs>
+    <button mat-fab color="primary" aria-label="Add dog icon" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

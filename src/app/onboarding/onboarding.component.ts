@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { fadeIn } from 'src/app/transition-animations';
 
 
@@ -16,10 +17,13 @@ import { fadeIn } from 'src/app/transition-animations';
 })
 export class OnboardingComponent implements OnInit {
 
+  userType = new FormControl('');
+
   onboardingForm = new FormGroup({
-    userType: new FormControl(''),
+    userType: this. userType
   });
 
+  faAngleDoubleRight = faAngleDoubleRight;
 
   constructor(private router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     // Icons
@@ -29,10 +33,10 @@ export class OnboardingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userType.setValue("owner");
   }
 
   onSubmit(form: FormGroup){
     this.router.navigate(['/onboarding/' + form.value.userType]);
   }
-
 }

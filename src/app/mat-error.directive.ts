@@ -33,8 +33,6 @@ export class MatErrorDirective implements AfterViewInit {
     if (state === 'INVALID') {
       const controlErrors = this.inputRef.ngControl?.errors;
       const firstError = Object.keys(controlErrors || {})[0];
-      // const firstError = controlErrors;
-      console.log(controlErrors);
 
       if (firstError === 'required') {
         this.error = `${this.fieldLabel} is required.`;
@@ -46,6 +44,10 @@ export class MatErrorDirective implements AfterViewInit {
 
       if (firstError === 'maxlength') {
         this.error = `${this.fieldLabel} is too long.`;
+      }
+
+      if (firstError === 'date') {
+        this.error = `${this.fieldLabel} must be a date`;
       }
 
       if (firstError === 'pattern') {

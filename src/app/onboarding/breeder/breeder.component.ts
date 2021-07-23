@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { OnboardingService } from '../onboarding.service';
 import { fadeIn } from 'src/app/transition-animations';
+import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+
 
 // The interface that describes the breeder user type
 export interface Breeder {
@@ -34,13 +37,10 @@ export class BreederComponent implements OnInit {
   state = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(120)]);
   zip = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(18)]);
 
-  breederOnboardingFormGroup1 = new FormGroup({
+  breederOnboardingForm = new FormGroup({
     fullName: this.fullName,
     businessName: this.businessName,
     handle: this.handle,
-  });
-
-  breederOnboardingFormGroup2 = new FormGroup({
     email: this.email,
     phone: this.phone,
     password: this.password,
@@ -52,12 +52,33 @@ export class BreederComponent implements OnInit {
     })
   });
 
+  // breederOnboardingFormGroup1 = new FormGroup({
+  //   fullName: this.fullName,
+  //   businessName: this.businessName,
+  //   handle: this.handle,
+  // });
+
+  // breederOnboardingFormGroup2 = new FormGroup({
+  //   email: this.email,
+  //   phone: this.phone,
+  //   password: this.password,
+  //   address: new FormGroup({
+  //     street: this.street,
+  //     city: this.city,
+  //     state: this.state,
+  //     zip: this.zip
+  //   })
+  // });
+
   // TODO the password hide stuff submits for the form for some reason
   passwordHide = true;
 
   /*
    * END form configuration
    */
+
+  faAngleDoubleLeft = faAngleDoubleLeft;
+  faAngleDoubleRight = faAngleDoubleRight;
 
   constructor(private onboardService: OnboardingService, private _formBuilder: FormBuilder) {  }
 

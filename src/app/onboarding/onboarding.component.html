@@ -6,7 +6,7 @@
                 <mat-icon svgIcon="breeder" aria-hidden="false" aria-label="Breeder icon"></mat-icon>
                     Breeder
                 </mat-button-toggle>
-            <mat-button-toggle value="owner">
+            <mat-button-toggle value="owner" aria-pressed="true">
                 <mat-icon svgIcon="owner" aria-hidden="false" aria-label="Owner icon"></mat-icon>
                 Owner
             </mat-button-toggle>
@@ -15,6 +15,6 @@
                 Vet
             </mat-button-toggle>
         </mat-button-toggle-group>
-        <button mat-flat-button color="primary" type="submit" class="mt-2 float-end">Next →</button>
+        <button mat-flat-button color="primary" type="submit" class="mt-2 float-end">Next <fa-icon [icon]="faAngleDoubleRight"></fa-icon></button>
     </form>
 </div>
