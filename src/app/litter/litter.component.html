@@ -1,0 +1,14 @@
+<div class="litter" *ngFor="let litter of litters">
+    <h3>{{ litter?.name }}</h3>
+    <p>Dam: {{ litter?.damID }}</p>
+    <p>Sire: {{ litter?.sireID }}</p>
+    <p>{{ litter?.breed }}</p>
+    <p>{{ litter?.generation }}</p>
+    <p>{{ litter?.dob }}</p>
+    <p>{{ litter?.photos }}</p>
+    <p>{{ litter?.notes }}</p>
+    <p>{{ litter?.tasks }}</p>
+</div>
+<button mat-fab color="primary" aria-label="Add litter icon" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+</button>

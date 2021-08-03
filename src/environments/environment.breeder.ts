@@ -1,4 +1,5 @@
 export const environment = {
     production: false,
-    jwt: "Breeder environment"
+    apiUrl: 'http://localhost:5000',
+    jwt: 'Breeder environment',
   };

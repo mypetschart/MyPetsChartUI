@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  jwt: "Default environment",
+  apiUrl: 'http://localhost:5000',
+  jwt: 'Default environment',
 };
 
 /*

@@ -1,4 +1,5 @@
 export const environment = {
     production: false,
-    jwt: "Vet environment"
+    apiUrl: 'http://localhost:5000',
+    jwt: 'Vet environment',
   };

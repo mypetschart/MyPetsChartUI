@@ -1,10 +1,6 @@
 <app-header *ngIf="displayHeader"></app-header>
-<div class="container-fluid main d-flex">
-  <!-- <div class="row image-overlay"></div> -->
-  <div class="container d-flex align-items-center justify-content-center">
-    <div class="flex-fill">
-      <router-outlet #outlet="outlet"></router-outlet>
-    </div>
-  </div>
+<div class="container-fluid main">
+    <app-sidenav></app-sidenav><!-- router outlet is contained in app-sidenav -->
   <!-- <app-footer></app-footer> -->
 </div><!-- container -->
+<app-notification-bell></app-notification-bell>

@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:prod": "cross-env NODE_ENV=production ng build --configuration production"
+    "build:prod": "cross-env NODE_ENV=production ng build --configuration production",
+    "server": "json-server --watch db.json --port 5000"
   },
   "private": true,
   "dependencies": {
@@ -30,8 +31,10 @@
     "@ngneat/until-destroy": "^8.1.1",
     "angular-material-fileupload": "^2.0.0",
     "bootstrap": "^5.0.2",
+    "json-server": "^0.16.3",
     "mdb-angular-ui-kit": "^1.0.0-beta6",
     "ngx-mat-select-search": "^3.3.0",
+    "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"

@@ -1,0 +1,14 @@
+<mat-card class="canine dog">
+    <mat-card-title>
+        <a routerLink="/dogs/{{ litter?.name | lowercase }}">{{ litter?.name | titlecase }}</a>
+    </mat-card-title>
+    <mat-card-subtitle>
+        <p>
+            Dam: {{ litter?.damID }} |
+            Sire: {{ litter?.sireID }}
+        </p>
+    </mat-card-subtitle>
+    <p>{{ litter?.breed }}</p>
+    <p>{{ litter?.generation }}</p>
+    <p>{{ litter?.dob }}</p>
+</mat-card>

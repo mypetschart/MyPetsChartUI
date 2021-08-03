@@ -1,0 +1,56 @@
+<button mat-fab class="sidenav-expand" color="primary" aria-label="Expand side navigation icon" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+</button>
+<div class="row">
+    <mat-sidenav-container class="sidenav">
+        <mat-sidenav #sidenav [mode]="$any(mode)" [opened]="opened" fixedInViewport>
+            <a class="sidenav-nav-item" routerLink="/dashboard" routerLinkActive="is-active">
+                <mat-icon>dashboard</mat-icon>
+                Dashboard
+            </a>
+            <a class="sidenav-nav-item" routerLink="/litters" routerLinkActive="is-active">
+                <mat-icon>pets</mat-icon>
+                Litters
+            </a>
+            <a class="sidenav-nav-item" routerLink="/dogs" routerLinkActive="is-active">
+                <mat-icon svgIcon="dogs" aria-hidden="false" aria-label="Dogs navigation icon"></mat-icon>
+                Dogs
+            </a>
+            <a class="sidenav-nav-item" routerLink="/tasks" routerLinkActive="is-active">
+                <mat-icon>task_alt</mat-icon>
+                Tasks
+            </a>
+            <a class="sidenav-nav-item" routerLink="/contacts" routerLinkActive="is-active">
+                <mat-icon>contacts</mat-icon>
+                Contacts
+            </a>
+            <a class="sidenav-nav-item" routerLink="/reports" routerLinkActive="is-active">
+                <mat-icon>insights</mat-icon>
+                Reports
+            </a>
+            <a class="sidenav-nav-item" routerLink="/messages" routerLinkActive="is-active">
+                <mat-icon>message</mat-icon>
+                Messages
+            </a>
+            <a class="sidenav-nav-item" routerLink="/settings" routerLinkActive="is-active">
+                <mat-icon>settings</mat-icon>
+                Settings
+            </a>
+            <!-- <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Litters
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+            </mat-accordion> -->
+        </mat-sidenav>
+        <section>
+        <!-- <img src="../../assets/hero.jpg" style="width:100%;"> -->
+        <div class="container-fluid">
+            <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+        </section>
+    </mat-sidenav-container>
+</div>

@@ -1,11 +1,25 @@
-header{
-    margin-bottom:10vh;
-}
+@use '~@angular/material' as mat;
 
-.example-spacer {
-    flex: 1 1 auto;
+/*
+ * Color Palettes
+ */
+@import '../../palette.scss';
+
+nav{
+    position:fixed;
+    width:100%;
+    z-index:3;
 }
 
 a.mat-flat-button{
     margin:0 0 0 16px;
 }
+
+.navbar-brand{
+    margin-left:75px;
+}
+
+ .navbar{
+    border-bottom:1px solid mat.get-color-from-palette($my-palette, 700);
+    min-height:7vh;
+  }

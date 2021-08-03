@@ -1,0 +1,149 @@
+{
+  "dogs": [
+    {
+      "id": 1,
+      "type": "sire",
+      "name": "rockefeller",
+      "sex": "male",
+      "breed": "goldendoodle",
+      "generation": "f1",
+      "dob": "date",
+      "color": "white",
+      "weight": 28,
+      "microchip": "hello",
+      "photos": "photo"
+    },
+    {
+      "id": 4,
+      "type": "dam",
+      "name": "Maggie",
+      "sex": "",
+      "breed": "",
+      "generation": "",
+      "dob": "2021-07-24T13:33:04.821Z",
+      "color": "",
+      "weight": 0,
+      "microchip": "",
+      "photos": ""
+    },
+    {
+      "id": 5,
+      "type": "dam",
+      "name": "asdasd",
+      "sex": "",
+      "breed": "bernedoodle",
+      "generation": "dsa",
+      "dob": "2021-07-09T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": ""
+    },
+    {
+      "id": 6,
+      "type": "sire",
+      "name": "aadD",
+      "sex": "",
+      "breed": "bernedoodle",
+      "generation": "GFG",
+      "dob": "2021-08-11T04:00:00.000Z",
+      "color": "ASD",
+      "weight": "ASD",
+      "microchip": "",
+      "photos": ""
+    }
+  ],
+  "litters": [
+    {
+      "id": 1,
+      "name": "Test",
+      "damID": "Maggie",
+      "sireID": "rockefeller",
+      "breed": "bernedoodle",
+      "generation": "asd",
+      "dob": "2021-08-12T04:00:00.000Z",
+      "photos": "",
+      "notes": "",
+      "tasks": []
+    },
+    {
+      "id": 2,
+      "name": "Test Litter 2",
+      "damID": "asdasd",
+      "sireID": "rockefeller",
+      "breed": "sheepadoodle",
+      "generation": "f1",
+      "dob": "2021-08-01T04:00:00.000Z",
+      "photos": "",
+      "notes": "Notes right here",
+      "tasks": []
+    }
+  ],
+  "tasks": [
+    {
+      "id": 0,
+      "dogID": 4,
+      "title": "Vaccination task",
+      "type": "vac",
+      "recur": {
+        "dateCreated": "07/27/2021",
+        "regularity": "bi-annual",
+        "nextDate": "01/27/2021"
+      },
+      "note": "Notes!!!",
+      "meta": "huh?",
+      "vacType": "pfizer",
+      "date": "Date",
+      "lot": "string",
+      "administeredBy": "string"
+    },
+    {
+      "id": 1,
+      "dogID": 4,
+      "title": "Worming task",
+      "type": "worm",
+      "recur": {
+        "dateCreated": "07/27/2021",
+        "regularity": "bi-annual",
+        "nextDate": "01/27/2022"
+      },
+      "note": "Notes!!!",
+      "meta": "huh?",
+      "wormType": "pfizer",
+      "date": "Date",
+      "duration": "string",
+      "dose": "string",
+      "administeredBy": "string"
+    },
+    {
+      "id": 2,
+      "dogID": 4,
+      "title": "Heat task",
+      "type": "heat",
+      "recur": {
+        "dateCreated": "08/01/2021",
+        "regularity": "weekly",
+        "nextDate": "08/06/2021"
+      },
+      "note": "Notes!!!",
+      "meta": "huh?",
+      "wormType": "pfizer",
+      "date": "Date",
+      "duration": "string",
+      "dose": "string",
+      "administeredBy": "string"
+    },
+    {
+      "id": 3,
+      "dogID": "rockefeller",
+      "title": "asd",
+      "type": "worm",
+      "recur": {
+        "dateCreated": "2021-08-06T04:00:00.000Z",
+        "regularity": "hourly",
+        "nextDate": "2021-08-06T04:00:00.000Z"
+      },
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+<mat-dialog-content>
+    <div class="add-dog" @fadeIn>
+        <div class="add-dog-form">
+            <h1 class="headline">Add a new litter</h1>
+            <p>Enter the details of the new litter you want to add</p>
+            <form [formGroup]="addLitterForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <mat-label>Litter Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error matErrorMessages fieldLabel='Litter name'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select [formControl]="dam" placeholder="Dam" #singleSelect>
+                  <mat-option>
+                    <ngx-mat-select-search [formControl]="dam" placeholderLabel="Search for dam..." noEntriesFoundLabel="'no matching dams'"></ngx-mat-select-search>
+                  </mat-option>
+                  <span *ngFor="let dog of dogs">
+                    <mat-option *ngIf="(dog.type == 'dam')" [value]="dog.name">
+                        {{ dog.name | titlecase }}
+                    </mat-option>
+                </span>
+                </mat-select>
+                <mat-error matErrorMessages fieldLabel='Dam'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select [formControl]="sire" placeholder="Sire" #singleSelect>
+                  <mat-option>
+                    <ngx-mat-select-search [formControl]="sire" placeholderLabel="Search for sire..." noEntriesFoundLabel="'no matching sires'"></ngx-mat-select-search>
+                  </mat-option>
+                  <span *ngFor="let dog of dogs">
+                    <mat-option *ngIf="(dog.type == 'sire')" [value]="dog.name">
+                        {{ dog.name | titlecase }}
+                    </mat-option>
+                </span>
+                </mat-select>
+                <mat-error matErrorMessages fieldLabel='Sire'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Breed</mat-label>
+                <mat-select formControlName="breed">
+                    <mat-option *ngFor="let breedValue of breeds" [value]="breedValue">
+                    {{ breedValue | titlecase }}
+                    </mat-option>
+                </mat-select>
+                <mat-error matErrorMessages fieldLabel='Breed'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Generation</mat-label>
+                <input matInput formControlName="generation">
+                <mat-error matErrorMessages fieldLabel='Generation'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Date of birth</mat-label>
+                <input matInput formControlName="dob" [matDatepicker]="dob">
+                <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                <mat-datepicker #dob></mat-datepicker>
+                <mat-error matErrorMessages fieldLabel='Date of birth'></mat-error>
+            </mat-form-field>
+            <div class="mb-4">
+                Is this litter expected?<br />
+                <mat-slide-toggle color="primary" formControlName="isLitterExpected">
+                    {{ isLitterExpected.value?'Yes':'No' }}
+                </mat-slide-toggle>
+            </div> 
+            <mat-form-field appearance="fill">
+                <mat-label>Notes</mat-label>
+                <textarea matInput formControlName="notes" rows="4" placeholder="Ex. This puppy needed emergency care during delivery..."></textarea>
+                <mat-error matErrorMessages fieldLabel='Notes'></mat-error>
+            </mat-form-field>
+            <div class="mb-2">
+                <label>Photos</label><br />
+                <button mat-raised-button color="primary" (click)="uploadFile.click()"><fa-icon [icon]="faUpload" class="me-2"></fa-icon> Choose File</button>
+                <input #uploadFile (change)="uploadPhotos($event)" type='file' style="display:none" />
+            </div>
+            <div>
+                <button mat-stroked-button color="basic" mat-dialog-close>Cancel</button>
+                <button mat-flat-button type="submit" color="primary" class="float-end" [disabled]="!addLitterForm.valid"><fa-icon [icon]="faPlus" class="me-2"></fa-icon> Add New Dog</button>
+            </div>
+            </form>
+        </div>
+        <button class="close-dialog" mat-icon-button aria-label="close dialog" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</mat-dialog-content>

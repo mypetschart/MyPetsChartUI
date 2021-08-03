@@ -25,40 +25,51 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 // App components
 import { OnboardingComponent } from './onboarding/onboarding.component';
-import { DogsComponent } from './dogs/dogs.component';
-import { MotherComponent } from './dogs/mother/mother.component';
-import { FatherComponent } from './dogs/father/father.component';
-import { LitterComponent } from './dogs/litter/litter.component';
-import { PuppyComponent } from './dogs/litter/puppy/puppy.component';
+import { DogComponent } from './dog/dog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddDogComponent } from './dogs/add-dog/add-dog.component';
+import { AddDogComponent } from './dog/add-dog/add-dog.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BreederComponent } from './onboarding/breeder/breeder.component';
 import { OwnerComponent } from './onboarding/owner/owner.component';
 import { VetComponent } from './onboarding/vet/vet.component';
 import { MatErrorDirective } from './mat-error.directive';
-import { TasksComponent } from './tasks/tasks.component';
-import { WormingRecordComponent } from './dogs/worming-record/worming-record.component';
-import { VaccinationRecordComponent } from './dogs/vaccination-record/vaccination-record.component';
-import { MedicationRecordComponent } from './dogs/medication-record/medication-record.component';
-import { LittersComponent } from './litters/litters.component';
-import { AddLitterComponent } from './litters/add-litter/add-litter.component';
+import { WormingRecordComponent } from './dog/worming-record/worming-record.component';
+import { VaccinationRecordComponent } from './dog/vaccination-record/vaccination-record.component';
+import { MedicationRecordComponent } from './dog/medication-record/medication-record.component';
+import { LitterComponent } from './litter/litter.component';
+import { AddLitterComponent } from './litter/add-litter/add-litter.component';
+import { SingleDogComponent } from './dog/single-dog/single-dog.component';
+import { SingleLitterComponent } from './litter/single-litter/single-litter.component';
+import { TaskComponent } from './dog/task/task.component';
+import { SingleTaskComponent } from './dog/task/single-task/single-task.component';
+import { AddTaskComponent } from './dog/task/add-task/add-task.component';
+import { AllDogsComponent } from './dog/all-dogs/all-dogs.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { BellComponent } from './notifications/bell/bell.component';
+import { SettingsComponent } from './settings/settings.component';
+import { AllLittersComponent } from './litter/all-litters/all-litters.component';
+import { AllTasksComponent } from './dog/task/all-tasks/all-tasks.component';
+import { ContactComponent } from './contact/contact.component';
+import { ReportComponent } from './report/report.component';
+import { MessageComponent } from './message/message.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     OnboardingComponent,
-    DogsComponent,
-    MotherComponent,
-    FatherComponent,
+    DogComponent,
     LitterComponent,
-    PuppyComponent,
     DashboardComponent,
     AddDogComponent,
     HeaderComponent,
@@ -67,12 +78,25 @@ import { AddLitterComponent } from './litters/add-litter/add-litter.component';
     OwnerComponent,
     VetComponent,
     MatErrorDirective,
-    TasksComponent,
     WormingRecordComponent,
     VaccinationRecordComponent,
     MedicationRecordComponent,
-    LittersComponent,
-    AddLitterComponent
+    AddLitterComponent,
+    SingleDogComponent,
+    SingleLitterComponent,
+    TaskComponent,
+    SingleTaskComponent,
+    AddTaskComponent,
+    AllDogsComponent,
+    SidenavComponent,
+    NotificationsComponent,
+    BellComponent,
+    SettingsComponent,
+    AllLittersComponent,
+    AllTasksComponent,
+    ContactComponent,
+    ReportComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +118,11 @@ import { AddLitterComponent } from './litters/add-litter/add-litter.component';
     FontAwesomeModule,
     MatDialogModule,
     NgxMatSelectSearchModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

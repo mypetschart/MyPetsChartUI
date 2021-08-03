@@ -3,6 +3,7 @@ import { Router, Event, NavigationStart } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',

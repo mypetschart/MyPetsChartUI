@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  jwt: "Prod environment",
+  apiUrl: 'http://localhost:5000',
+  jwt: 'Prod environment',
 };
