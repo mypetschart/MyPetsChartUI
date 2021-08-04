@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Litter } from '../models/interfaces';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import {
+  EntityCollectionServiceBase,
+  EntityCollectionServiceElementsFactory
+} from '@ngrx/data';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LitterService {
+export class LitterService extends EntityCollectionServiceBase<Litter> {
 
-  private apiUrl = environment.apiUrl + '/litters';
-
-  constructor(private http: HttpClient) { }
-
-  getLitters(): Observable<Litter[]> {
-    return this.http.get<Litter[]>(this.apiUrl);
-  }
-
-  addLitter(litter: Litter): Observable<Litter> {
-    return this.http.post<Litter>(this.apiUrl, litter);
+  constructor(
+    serviceElementsFactory: EntityCollectionServiceElementsFactory,
+    private http: HttpClient
+    ) {
+    super('Litter', serviceElementsFactory);
   }
 }

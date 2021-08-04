@@ -1,26 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Task } from '../models/interfaces';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import {
+  EntityCollectionServiceBase,
+  EntityCollectionServiceElementsFactory
+} from '@ngrx/data';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService {
-  private apiUrl = environment.apiUrl + '/tasks';
+export class TaskService extends EntityCollectionServiceBase<Task> {
 
-  constructor(private http: HttpClient) { }
-
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
-  }
-
-  getTasksByName(name: string): Observable<Task> {
-    return this.http.get<Task>(this.apiUrl + '/' + name);
-  }
-
-  addTask(task: Task): Observable<Task> {
-    return this.http.post<Task>(this.apiUrl, task);
+  constructor(
+    serviceElementsFactory: EntityCollectionServiceElementsFactory,
+    private http: HttpClient
+    ) {
+    super('Task', serviceElementsFactory);
   }
 }

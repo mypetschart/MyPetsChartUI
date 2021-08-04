@@ -62,6 +62,10 @@ import { AllTasksComponent } from './dog/task/all-tasks/all-tasks.component';
 import { ContactComponent } from './contact/contact.component';
 import { ReportComponent } from './report/report.component';
 import { MessageComponent } from './message/message.component';
+import { StoreModule } from '@ngrx/store';
+import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
+import { entityConfig, defaultDataServiceConfig } from './state/entities';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -122,9 +126,12 @@ import { MessageComponent } from './message/message.component';
     MatMenuModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    EntityDataModule.forRoot(entityConfig),
   ],
-  providers: [],
+  providers: [{ provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

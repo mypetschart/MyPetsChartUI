@@ -9,7 +9,7 @@
                     <mat-option>
                     <ngx-mat-select-search [formControl]="dog" placeholderLabel="Search for dog..." noEntriesFoundLabel="'no matching dogs'"></ngx-mat-select-search>
                     </mat-option>
-                    <span *ngFor="let dog of dogs">
+                    <span *ngFor="let dog of (dogs$ | async)">
                     <mat-option [value]="dog.name">
                         {{ dog.name | titlecase }}
                     </mat-option>

@@ -9,6 +9,7 @@ import { AddLitterComponent } from '../litter/add-litter/add-litter.component';
 import { TaskService } from '../services/task.service';
 import { AddTaskComponent } from '../dog/task/add-task/add-task.component';
 import { LitterService } from '../services/litter.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -20,64 +21,60 @@ import { LitterService } from '../services/litter.service';
    ]
 })
 export class DashboardComponent implements OnInit {
-  dogs: Dog[] = [];
-  litters: Litter[] = [];
-  tasks: Task[] = [];
   noDams = true;
   noSires = true;
   noPuppies = true;
-  noTasks = true;
-  noLitters = true;
+
+  litters$: Observable<Litter[]>;
+  loadingLitters$: Observable<boolean>;
+
+  dogs$: Observable<Dog[]>;
+  loadingDogs$: Observable<boolean>;
+
+  tasks$: Observable<Task[]>;
+  loadingTasks$: Observable<boolean>;
 
   constructor(
     public dialog: MatDialog,
     private dogService: DogService,
     private taskService: TaskService,
     private litterService: LitterService,
-    ) { }
+    ) {
+      this.litters$ = litterService.entities$;
+      this.loadingLitters$ = litterService.loading$;
+
+      this.dogs$ = dogService.entities$;
+      this.loadingDogs$ = dogService.loading$;
+
+      this.tasks$ = taskService.entities$;
+      this.loadingTasks$ = taskService.loading$;
+    }
 
   ngOnInit(): void {
-    // Get the current dogs for the dashboard
-    this.dogService.getDogs().subscribe(
+    // Get necessary entities using Ngrx Data via the services
+    this.litterService.getAll();
+    this.dogService.getAll();
+    this.taskService.getAll();
+
+    this.dogs$.subscribe(
       (dogs) => {
-        this.dogs = dogs;
-
-        // honestly probably a naive way of checking if dog of types exist but oh whale
-        for (const dog of dogs) {
-          if (dog.type === 'dam'){
-            this.noDams = false;
-          }
-
-          if (dog.type === 'sire'){
-            this.noSires = false;
-          }
-
-          if (dog.type === 'puppy'){
-            this.noPuppies = false;
-          }
-
-          if (this.noDams && this.noSires && this.noPuppies){
-            break;
-          }
+      // honestly probably a naive way of checking if dog of types exist but oh whale
+      for (const dog of dogs) {
+        if (dog.type === 'dam'){
+          this.noDams = false;
         }
-      }
-    );
 
-    // Get the current tasks for the dashboard
-    this.taskService.getTasks().subscribe((tasks) => {
-      tasks.sort((a, b) => (Date.parse(a.recur.nextDate.toString()) > Date.parse(b.recur.nextDate.toString())) ? 1 : -1);
-      this.tasks = tasks;
-      if (tasks.length > 0){
-        this.noTasks = false;
-      }
-    });
+        if (dog.type === 'sire'){
+          this.noSires = false;
+        }
 
-    // Get the current litters
-    this.litterService.getLitters().subscribe((litters) => {
-      // tasks.sort((a, b) => (Date.parse(a.recur.nextDate.toString()) > Date.parse(b.recur.nextDate.toString())) ? 1 : -1);
-      this.litters = litters;
-      if (litters.length > 0){
-        this.noLitters = false;
+        if (dog.type === 'puppy'){
+          this.noPuppies = false;
+        }
+
+        if (this.noDams && this.noSires && this.noPuppies){
+          break;
+        }
       }
     });
   }
@@ -86,33 +83,18 @@ export class DashboardComponent implements OnInit {
     const dialogRef = this.dialog.open(AddDogComponent);
 
     dialogRef.disableClose = true;
-
-    dialogRef.afterClosed().subscribe(dog => {
-      console.log(dog);
-      this.dogs.push(dog);
-    });
   }
   
   addTaskDialog(){
     const dialogRef = this.dialog.open(AddTaskComponent);
 
     dialogRef.disableClose = true;
-
-    dialogRef.afterClosed().subscribe(task => {
-      console.log(task);
-      this.tasks.push(task);
-    });
   }
 
   addLitterDialog() {
     const dialogRef = this.dialog.open(AddLitterComponent);
 
     dialogRef.disableClose = true;
-
-    dialogRef.afterClosed().subscribe(litter => {
-      console.log(litter);
-      this.litters.push(litter);
-    });
   }
   
 

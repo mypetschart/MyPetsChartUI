@@ -14,7 +14,7 @@
                   <mat-option>
                     <ngx-mat-select-search [formControl]="dam" placeholderLabel="Search for dam..." noEntriesFoundLabel="'no matching dams'"></ngx-mat-select-search>
                   </mat-option>
-                  <span *ngFor="let dog of dogs">
+                  <span *ngFor="let dog of (dogs$ | async)">
                     <mat-option *ngIf="(dog.type == 'dam')" [value]="dog.name">
                         {{ dog.name | titlecase }}
                     </mat-option>
@@ -27,7 +27,7 @@
                   <mat-option>
                     <ngx-mat-select-search [formControl]="sire" placeholderLabel="Search for sire..." noEntriesFoundLabel="'no matching sires'"></ngx-mat-select-search>
                   </mat-option>
-                  <span *ngFor="let dog of dogs">
+                  <span *ngFor="let dog of (dogs$ | async)">
                     <mat-option *ngIf="(dog.type == 'sire')" [value]="dog.name">
                         {{ dog.name | titlecase }}
                     </mat-option>

@@ -8,6 +8,7 @@ import { Dog, Litter } from 'src/app/models/interfaces';
 import { LitterBuilder } from 'src/app/models/builders/litter.builder';
 import { LitterService } from 'src/app/services/litter.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -21,8 +22,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AddLitterComponent implements OnInit {
   faPlus = faPlus;
   faUpload = faUpload;
-  dogs: Dog[] = [];
   breeds = Breeds;
+
+  dogs$: Observable<Dog[]>;
+  loadingDogs$: Observable<boolean>;
 
   /*
    * Form configuration
@@ -57,12 +60,13 @@ export class AddLitterComponent implements OnInit {
     private litterService: LitterService,
     private dogService: DogService,
     public dialogRef: MatDialogRef<AddLitterComponent>,
-    ) { }
+    ) {
+      this.dogs$ = dogService.entities$;
+      this.loadingDogs$ = dogService.loading$;
+    }
 
   ngOnInit(): void {
-    this.dogService.getDogs().subscribe(
-      (dogs) => this.dogs = dogs
-    );
+    this.dogService.getAll();
 
     this.onChanges();
   }
@@ -91,17 +95,13 @@ export class AddLitterComponent implements OnInit {
       // .tasks(this.tasks.value) TODO
       .build();
 
-    this.litterService.addLitter(litter).subscribe(
-      result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.litterService.add(litter);
 
-    // Close the dialog and push dog to frontend
-    this.dialogRef.close(litter);
+    // Close the dialog
+    this.dialogRef.close();
   }
 
   uploadPhotos(file:any){
-    console.log(file)
+    console.log(file);
   }
-
 }

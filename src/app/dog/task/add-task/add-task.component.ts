@@ -8,6 +8,7 @@ import { Dog, Task, RecurringDate } from 'src/app/models/interfaces';
 import { DogService } from 'src/app/services/dog.service';
 import { Frequency, TaskTypes } from 'src/app/options';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-task',
@@ -17,9 +18,11 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class AddTaskComponent implements OnInit {
   faPlus = faPlus;
-  dogs: Dog[] = [];
   taskTypes = TaskTypes;
   frequencyOptions = Frequency;
+
+  dogs$: Observable<Dog[]>;
+  loadingDogs$: Observable<boolean>;
  
   /*
    * Form configuration
@@ -53,12 +56,13 @@ export class AddTaskComponent implements OnInit {
     public dialogRef: MatDialogRef<AddTaskComponent>,
     private taskService: TaskService,
     private dogService: DogService
-    ) { }
+    ) {
+      this.dogs$ = dogService.entities$;
+      this.loadingDogs$ = dogService.loading$;
+    }
 
   ngOnInit(): void {
-    this.dogService.getDogs().subscribe(
-      (dogs) => this.dogs = dogs
-    );
+    this.dogService.getAll();
 
     this.onChanges();
   }
@@ -113,13 +117,10 @@ export class AddTaskComponent implements OnInit {
       .notes(this.notes.value)
       .build();
 
-    this.taskService.addTask(task).subscribe(
-      result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.taskService.add(task);
 
     // Close the dialog and push dog to frontend
-    this.dialogRef.close(task);
+    this.dialogRef.close();
   }
 
 }

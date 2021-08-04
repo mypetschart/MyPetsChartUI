@@ -1,5 +1,22 @@
 {
-  "dogs": [
+  "user": [
+    {
+      "id": 1,
+      "role": "breeder",
+      "handle": "connorpeters",
+      "fullName": "Connor Peters",
+      "businessName": "Peters' Puppies",
+      "email": "design@mainsailstudio.com",
+      "password": "",
+      "phone": "(585) 478-2678",
+      "street": "542 Merchants Rd",
+      "city": "Rochester",
+      "state": "NY",
+      "zip": "27609",
+      "profilePhoto": "./assets/users/connorpeters/profile-pic.jpg"
+    }
+  ],
+  "dog": [
     {
       "id": 1,
       "type": "sire",
@@ -53,7 +70,7 @@
       "photos": ""
     }
   ],
-  "litters": [
+  "litter": [
     {
       "id": 1,
       "name": "Test",
@@ -77,9 +94,45 @@
       "photos": "",
       "notes": "Notes right here",
       "tasks": []
+    },
+    {
+      "id": 3,
+      "name": "A",
+      "damID": "asdasd",
+      "sireID": "rockefeller",
+      "breed": "sheepadoodle",
+      "generation": "asd",
+      "dob": "2010-04-10T04:00:00.000Z",
+      "photos": "",
+      "notes": "",
+      "tasks": []
+    },
+    {
+      "id": 4,
+      "name": "Z",
+      "damID": "asdasd",
+      "sireID": "aadD",
+      "breed": "sheepadoodle",
+      "generation": "asd",
+      "dob": "2021-08-17T04:00:00.000Z",
+      "photos": "",
+      "notes": "",
+      "tasks": []
+    },
+    {
+      "id": 5,
+      "name": "B",
+      "damID": "asdasd",
+      "sireID": "rockefeller",
+      "breed": "sheepadoodle",
+      "generation": "asd",
+      "dob": "2021-08-14T04:00:00.000Z",
+      "photos": "",
+      "notes": "",
+      "tasks": []
     }
   ],
-  "tasks": [
+  "task": [
     {
       "id": 0,
       "dogID": 4,

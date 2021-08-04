@@ -7,6 +7,7 @@ import { Dog } from 'src/app/models/interfaces';
 import { DogBuilder } from 'src/app/models/builders/dog.builder';
 import { DogService } from 'src/app/services/dog.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -26,6 +27,9 @@ export class AddDogComponent implements OnInit {
   faUpload = faUpload;
   faMars = faMars;
   faVenus = faVenus;
+
+  dogs$: Observable<Dog[]>;
+  loadingDogs$: Observable<boolean>;
 
   /*
    * Form configuration
@@ -60,7 +64,10 @@ export class AddDogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddDogComponent>,
     private dogService: DogService
-  ) { }
+  ) {
+    this.dogs$ = dogService.entities$;
+    this.loadingDogs$ = dogService.loading$;
+  }
 
   ngOnInit(): void {
   }
@@ -79,13 +86,10 @@ export class AddDogComponent implements OnInit {
       .photos(this.photos.value)
       .build();
 
-    this.dogService.addDog(dog).subscribe(
-      result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dogService.add(dog);
 
     // Close the dialog and push dog to frontend
-    this.dialogRef.close(dog);
+    this.dialogRef.close();
   }
 
   uploadPhotos(file:any){

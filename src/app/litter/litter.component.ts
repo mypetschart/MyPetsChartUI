@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddLitterComponent } from './add-litter/add-litter.component';
 import { Litter } from '../models/interfaces';
+import { Observable } from 'rxjs';
+import { LitterService } from '../services/litter.service';
 
 @Component({
   selector: 'app-litter',
@@ -10,11 +12,25 @@ import { Litter } from '../models/interfaces';
 })
 export class LitterComponent implements OnInit {
   // @Input() litters: Litter | undefined;
-  litters: Litter[] = [];
+  // litters: Litter[] = [];
+  loading$: Observable<boolean>;
+  litters$: Observable<Litter[]>;
+  // litters$ = this.store.select(fromCounter.selectCounter);
 
-  constructor(public  dialog: MatDialog) { }
+
+  constructor(
+    public  dialog: MatDialog,
+    private litterService: LitterService) {
+    this.litters$ = litterService.entities$;
+    this.loading$ = litterService.loading$;
+  }
 
   ngOnInit(): void {
+    this.getLitters();
+  }
+
+  getLitters() {
+    this.litterService.getAll();
   }
 
   openDialog() {
