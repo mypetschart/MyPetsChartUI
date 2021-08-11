@@ -1,16 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { DogBuilder } from '../models/builders/dog.builder';
-import { Dog } from '../models/interfaces';
-import { DogService } from '../services/dog.service';
-import { fadeInAndOut } from '../transition-animations';
+import { Dog } from '../_models/interfaces';
+import { DogService } from '../_services/dog.service';
+import { fadeIn } from '../transition-animations';
 
 @Component({
   selector: 'app-dog',
   templateUrl: './dog.component.html',
   styleUrls: ['./dog.component.scss'],
-  animations: [fadeInAndOut]
+  animations: [fadeIn]
 })
 export class DogComponent implements OnInit {
   // @Input() dogs: Dog | undefined;

@@ -1,0 +1,16 @@
+@use '~@angular/material' as mat;
+
+/*
+ * Color Palettes
+ */
+@import '../../../palette.scss';
+
+.dashboard-widget-number{
+    font-size:3rem;
+    line-height:3.1rem;
+    color:mat.get-color-from-palette($my-palette, 600);
+}
+
+a{
+    text-decoration: none;
+}

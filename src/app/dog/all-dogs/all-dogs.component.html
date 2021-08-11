@@ -1,1 +1,32 @@
-<p>all-dogs works!</p>
+<div class="all-dogs mt-5" @fadeIn>
+    <h1 class="mat-display-1">Puppies</h1>
+    <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+    <p *ngIf="(dogs$ | async)?.length === 0" class="mb-5">No Puppies added yet... <a>add one</a></p>
+    <div class="row">
+        <span *ngFor="let dog of (dogs$ | async)">
+            <div class="col-md-6">
+                <app-single-dog *ngIf="(dog.type == 'puppy')" [dog]="dog"></app-single-dog>
+            </div>
+        </span>
+    </div>
+    <h1 class="mat-display-1">Dams</h1>
+    <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+    <p *ngIf="(dogs$ | async)?.length === 0" class="mb-5">No Dams added yet... <a>add one</a></p>
+    <div class="row">
+        <span *ngFor="let dog of (dogs$ | async)">
+            <div class="col-md-6">
+                <app-single-dog *ngIf="(dog.type == 'dam')" [dog]="dog"></app-single-dog>
+            </div>
+        </span>
+    </div>
+    <h1 class="mat-display-1">Sires</h1>
+    <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+    <p *ngIf="(dogs$ | async)?.length === 0" class="mb-5">No Sires added yet... <a>add one</a></p>
+    <div class="row">
+        <span *ngFor="let dog of (dogs$ | async)">
+            <div class="col-md-6">
+                <app-single-dog *ngIf="(dog.type == 'sire')" [dog]="dog"></app-single-dog>
+            </div>
+        </span>
+    </div>
+</div>

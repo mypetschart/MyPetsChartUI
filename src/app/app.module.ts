@@ -8,6 +8,12 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+
+// State
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import * as userProfile from './_state/user/user.reducers';
+
 
 
 // Material modules
@@ -29,6 +35,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 // App components
@@ -49,23 +57,29 @@ import { LitterComponent } from './litter/litter.component';
 import { AddLitterComponent } from './litter/add-litter/add-litter.component';
 import { SingleDogComponent } from './dog/single-dog/single-dog.component';
 import { SingleLitterComponent } from './litter/single-litter/single-litter.component';
-import { TaskComponent } from './dog/task/task.component';
-import { SingleTaskComponent } from './dog/task/single-task/single-task.component';
-import { AddTaskComponent } from './dog/task/add-task/add-task.component';
+import { TaskComponent } from './task/task.component';
+import { SingleTaskComponent } from './task/single-task/single-task.component';
+import { AddTaskComponent } from './task/add-task/add-task.component';
 import { AllDogsComponent } from './dog/all-dogs/all-dogs.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { BellComponent } from './notifications/bell/bell.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AllLittersComponent } from './litter/all-litters/all-litters.component';
-import { AllTasksComponent } from './dog/task/all-tasks/all-tasks.component';
+import { AllTasksComponent } from './task/all-tasks/all-tasks.component';
 import { ContactComponent } from './contact/contact.component';
 import { ReportComponent } from './report/report.component';
 import { MessageComponent } from './message/message.component';
 import { StoreModule } from '@ngrx/store';
 import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
-import { entityConfig, defaultDataServiceConfig } from './state/entities';
+import { entityConfig, defaultDataServiceConfig } from './_state/entities';
 import { EffectsModule } from '@ngrx/effects';
+import { WidgetsComponent } from './dashboard/widgets/widgets.component';
+import { ProfileComponent } from './sidenav/profile/profile.component';
+import { UserEffects } from './_state/user/user.effects';
+import { AllContactsComponent } from './contact/all-contacts/all-contacts.component';
+import { SingleContactComponent } from './contact/single-contact/single-contact.component';
+import { DeleteLitterComponent } from './litter/delete-litter/delete-litter.component';
 
 
 @NgModule({
@@ -100,7 +114,12 @@ import { EffectsModule } from '@ngrx/effects';
     AllTasksComponent,
     ContactComponent,
     ReportComponent,
-    MessageComponent
+    MessageComponent,
+    WidgetsComponent,
+    ProfileComponent,
+    AllContactsComponent,
+    SingleContactComponent,
+    DeleteLitterComponent
   ],
   imports: [
     BrowserModule,
@@ -127,9 +146,13 @@ import { EffectsModule } from '@ngrx/effects';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatExpansionModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    MatSnackBarModule,
+    IvyCarouselModule,
+    MatChipsModule,
+    StoreModule.forRoot({user: userProfile.reducer}),
+    EffectsModule.forRoot([UserEffects]),
     EntityDataModule.forRoot(entityConfig),
+    StoreDevtoolsModule.instrument({ }),
   ],
   providers: [{ provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }],
   bootstrap: [AppComponent]

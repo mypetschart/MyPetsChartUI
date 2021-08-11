@@ -64,6 +64,10 @@ h2.headline-2{
 html, body { height: 100%; }
 body { margin: 0; }
 
+a{
+  cursor: pointer;
+}
+
 div.main{
     background-color: mat.get-color-from-palette($my-palette, 50);
     padding-top:7vh;
@@ -80,7 +84,7 @@ div.main{
   border-bottom:12px solid rgba(0,0,0,0.1);
 }
 
-.panel::-webkit-scrollbar {
+.panel::-webkit-scrollbar{
   width: 6px;
   border-radius: 3px;
   overflow-y: scroll;
@@ -94,6 +98,24 @@ div.main{
   box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
 }
 
+.mat-drawer-inner-container::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 3px;
+  overflow-y: scroll;
+  background: rgba(255,255,255,0.25);
+  box-shadow: inset 0 0 4px rgba(255,255,255,0.2);
+}
+
+.mat-drawer-inner-container::-webkit-scrollbar-thumb {
+  background: mat.get-color-from-palette($my-palette, 600);
+  border-radius: 3px;
+  box-shadow: inset 0 0 4px rgba(255,255,255,0.2);
+}
+
+.mat-drawer-inner-container{
+  height:auto;
+  padding-top:3.1rem;
+}
 
 
 
@@ -101,6 +123,12 @@ div.main{
 /*
  * Material Form Styles
  */
+
+// material form value text font weight increase
+.mat-form-field-appearance-legacy .mat-form-field-infix{
+  font-weight:400;
+}
+
 .mat-form-field{
     display:block !important;
 }
@@ -126,8 +154,8 @@ span.mat-button-toggle-focus-overlay{
   height:1px;
 }
 
-.cdk-overlay-pane{
-  min-width:55%;
+.mat-dialog-container .large-dialog{
+  min-width:60vw;
 }
 
 // Close button on mat-dialog

@@ -10,6 +10,16 @@ export const Breeds = [
     'sheepadoodle',
 ];
 
+export const Generations = [
+    'F1',
+    'F1b',
+    'F1bb',
+    'F2',
+    'F2b',
+    'F3',
+    'Multi-gen',
+];
+
 export const TaskTypes = [
     ['Vaccination', 'vac'],
     ['Worming', 'worm'],

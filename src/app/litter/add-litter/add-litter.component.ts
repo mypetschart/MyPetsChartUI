@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { fadeIn } from 'src/app/transition-animations';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
-import { Breeds } from 'src/app/options';
-import { DogService } from 'src/app/services/dog.service';
-import { Dog, Litter } from 'src/app/models/interfaces';
-import { LitterBuilder } from 'src/app/models/builders/litter.builder';
-import { LitterService } from 'src/app/services/litter.service';
+import { Breeds, Generations } from 'src/app/options';
+import { DogService } from 'src/app/_services/dog.service';
+import { Dog, Litter } from 'src/app/_models/interfaces';
+import { LitterBuilder } from 'src/app/_models/builders/litter.builder';
+import { LitterService } from 'src/app/_services/litter.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
@@ -23,6 +23,9 @@ export class AddLitterComponent implements OnInit {
   faPlus = faPlus;
   faUpload = faUpload;
   breeds = Breeds;
+  generations = Generations;
+  damName = '';
+  sireName = '';
 
   dogs$: Observable<Dog[]>;
   loadingDogs$: Observable<boolean>;
@@ -36,8 +39,9 @@ export class AddLitterComponent implements OnInit {
   breed = new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(120)]);
   generation = new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(120)]);
   dob = new FormControl('', [Validators.required]);
-  isLitterExpected = new FormControl(false);
+  // isLitterExpected = new FormControl(false);
   photos = new FormControl('');
+  // namingScheme = new FormControl('');
   notes = new FormControl('', [Validators.maxLength(1000)]);
 
   addLitterForm = new FormGroup({
@@ -47,8 +51,8 @@ export class AddLitterComponent implements OnInit {
     breed: this.breed,
     generation: this.generation,
     dob: this.dob,
-    isLitterExpected: this.isLitterExpected,
     photos: this.photos,
+    // namingScheme: this.namingScheme,
     notes: this.notes,
   });
 
@@ -68,31 +72,35 @@ export class AddLitterComponent implements OnInit {
   ngOnInit(): void {
     this.dogService.getAll();
 
-    this.onChanges();
+    // Auto set the expecting litter switch depending on dob
+    // this.autoSetExpectingLitter();
+
+    // Auto set litter name based on dam and sire name
+    this.autoSetLitterName();
   }
 
-  onChanges(): void {
-    // Watch if the date of birth is in the future and set the expected litter switch accordingly
-    this.dob.valueChanges.subscribe(val => {
-      if (this.dob.value > Date.now()){
-        this.isLitterExpected.setValue(true);
-      } else {
-        this.isLitterExpected.setValue(false);
-      }
-    });
-  }
+  // autoSetExpectingLitter(): void {
+  //   // Watch if the date of birth is in the future and set the expected litter switch accordingly
+  //   this.dob.valueChanges.subscribe(val => {
+  //     if (this.dob.value > Date.now()){
+  //       this.isLitterExpected.setValue(true);
+  //     } else {
+  //       this.isLitterExpected.setValue(false);
+  //     }
+  //   });
+  // }
 
-  onSubmit(){
+  onSubmit(): void {
     const litter: Litter = new LitterBuilder()
       .name(this.name.value)
-      .damID(this.dam.value)
-      .sireID(this.sire.value)
+      .dam(this.dam.value)
+      .sire(this.sire.value)
       .breed(this.breed.value)
       .generation(this.generation.value)
       .dob(this.dob.value)
       .photos(this.photos.value)
+      // .namingScheme(this.namingScheme.value)
       .notes(this.notes.value)
-      // .tasks(this.tasks.value) TODO
       .build();
 
     this.litterService.add(litter);
@@ -101,7 +109,32 @@ export class AddLitterComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  uploadPhotos(file:any){
+  uploadPhotos(file: any): void {
     console.log(file);
+  }
+
+  // Automatically set the litter name to be 'DamName and SireName' if the litter name is pristine
+  autoSetLitterName(): void {
+    this.dam.valueChanges.subscribe(val => {
+      if (this.name.pristine) {
+        this.dogService.getByKey(this.dam.value).subscribe(
+          (dam) => {
+            this.damName = dam.name;
+            this.name.setValue(`${this.damName} and ${this.sireName}`);
+          }
+        );
+      }
+    });
+
+    this.sire.valueChanges.subscribe(val => {
+      if (this.name.pristine) {
+        this.dogService.getByKey(this.sire.value).subscribe(
+          (sire) => {
+            this.sireName = sire.name;
+            this.name.setValue(`${this.damName} and ${this.sireName}`);
+          }
+        );
+      }
+    });
   }
 }

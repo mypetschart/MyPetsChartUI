@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Dog } from '../../models/interfaces';
+import { Dog } from '../../_models/interfaces';
 
 @Component({
   selector: 'app-single-dog',

@@ -1,14 +1,29 @@
-<div class="litter" *ngFor="let litter of (litters$ | async)">
-    <h3>{{ litter?.name }}</h3>
-    <p>Dam: {{ litter?.damID }}</p>
-    <p>Sire: {{ litter?.sireID }}</p>
-    <p>{{ litter?.breed }}</p>
-    <p>{{ litter?.generation }}</p>
-    <p>{{ litter?.dob }}</p>
-    <p>{{ litter?.photos }}</p>
-    <p>{{ litter?.notes }}</p>
-    <p>{{ litter?.tasks }}</p>
+<div class="litter" @fadeIn>
+    <h1 class="mat-display-1 mt-5">
+        {{ (litter$ | async)?.name }}
+    </h1>
+    <small>{{ (litter$ | async)?.breed }}</small>
+    <p>Dam: {{ (dam$ | async)?.name }}</p>
+    <p>Sire: {{ (sire$ | async)?.name }}</p>
+    <p>Generation: {{ (litter$ | async)?.generation }}</p>
+    <p>Date of birth: {{ (litter$ | async)?.dob }}</p>
+    <p>Notes: {{ (litter$ | async)?.notes }}</p>
+    <div class="col-md-5">
+        <carousel [cellWidth]="'100%'" [autoplay]="true" [loop]="true" [dots]="true">
+            <div class="carousel-cell" *ngFor="let photo of (litter$ | async)?.photos">
+                <img src="{{ photo }}">
+            </div>
+        </carousel>
+    </div>
+    <div class="puppies">
+        <p *ngFor="let puppy of (puppies$ | async)">
+            {{ puppy.name }}
+        </p>
+    </div>
 </div>
-<!-- <button mat-fab color="primary" aria-label="Add litter icon" (click)="openDialog()">
+<button mat-fab color="primary" aria-label="Add litter icon" (click)="addLitter()">
     <mat-icon>add</mat-icon>
-</button> -->
+</button>
+<button mat-fab color="primary" aria-label="Delete litter icon" (click)="deleteLitter()">
+    <mat-icon>delete</mat-icon>
+</button>

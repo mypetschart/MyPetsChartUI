@@ -1,24 +1,25 @@
 <div class="dashboard" @fadeIn>
     <h1 class="mt-5 mat-display-2">Dashboard</h1>
+    <div class="dashboard-widgets">
+        <app-widgets></app-widgets>
+    </div>
     <div class="row"><!-- dashboard section for litters -->
         <div class="col-lg-6 col-9 dashboard-litters">
             <h2 class="headline-2">Current Litters</h2>
             <mat-spinner diameter="50" *ngIf="(loadingLitters$ | async) === true"></mat-spinner>
             <p *ngIf="(litters$ | async)?.length === 0" class="mb-5">No Litters added yet... <a (click)="addLitterDialog()">add one</a></p>
-            <div class="panel">
-                <app-single-litter *ngFor="let litter of (litters$ | async)" [litter]="litter"></app-single-litter>
-            </div>
+            <app-single-litter *ngFor="let litter of (litters$ | async) | slice:0:3; let i=index" [litter]="litter"></app-single-litter>
         </div>
         <div class="col-lg-1 col-3">
             <button mat-fab color="primary" aria-label="Add litter icon" (click)="addLitterDialog()">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <div class="col-lg-4 col-9 dashboard-tasks panel">
+        <div class="col-lg-4 col-9 dashboard-tasks">
             <h2 class="headline-2">Tasks</h2>
             <mat-spinner diameter="50" *ngIf="(loadingTasks$ | async) === true"></mat-spinner>
             <p *ngIf="(tasks$ | async)?.length === 0" class="mb-5">No Tasks added yet... <a (click)="addTaskDialog()">add one</a></p>
-            <span *ngFor="let task of (tasks$ | async)">
+            <span *ngFor="let task of (tasks$ | async) | slice:0:3; let i=index">
                 <app-single-task [task]="task"></app-single-task>
             </span>
         </div>
@@ -29,7 +30,7 @@
         </div>
     </div>
     <div class="row"><!-- dashboard section for dogs -->
-        <div class="col-lg-6 col-9 dashboard-dogs panel">
+        <div class="col-lg-6 col-9 dashboard-dogs">
             <h2 class="headline-2">Dams</h2>
             <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
             <p *ngIf="noDams" class="mb-5">No Dams added yet... <a (click)="addDogDialog()">add one</a></p>

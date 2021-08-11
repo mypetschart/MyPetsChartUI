@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Dog, Litter, Task } from '../models/interfaces';
-import { DogService } from '../services/dog.service';
+import { Store, select } from '@ngrx/store';
+import { Dog, Litter, Task } from '../_models/interfaces';
+import { DogService } from '../_services/dog.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDogComponent } from '../dog/add-dog/add-dog.component';
 import { fadeIn } from '../transition-animations';
-import { DogBuilder } from '../models/builders/dog.builder';
+import { DogBuilder } from '../_models/builders/dog.builder';
 import { AddLitterComponent } from '../litter/add-litter/add-litter.component';
-import { TaskService } from '../services/task.service';
-import { AddTaskComponent } from '../dog/task/add-task/add-task.component';
-import { LitterService } from '../services/litter.service';
+import { TaskService } from '../_services/task.service';
+import { AddTaskComponent } from '../task/add-task/add-task.component';
+import { LitterService } from '../_services/litter.service';
 import { Observable } from 'rxjs';
 
 
@@ -39,6 +40,7 @@ export class DashboardComponent implements OnInit {
     private dogService: DogService,
     private taskService: TaskService,
     private litterService: LitterService,
+    private store: Store
     ) {
       this.litters$ = litterService.entities$;
       this.loadingLitters$ = litterService.loading$;
@@ -51,7 +53,6 @@ export class DashboardComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    // Get necessary entities using Ngrx Data via the services
     this.litterService.getAll();
     this.dogService.getAll();
     this.taskService.getAll();
@@ -80,7 +81,9 @@ export class DashboardComponent implements OnInit {
   }
 
   addDogDialog() {
-    const dialogRef = this.dialog.open(AddDogComponent);
+    const dialogRef = this.dialog.open(AddDogComponent, {
+      data: {type: 'puppy'}
+    });
 
     dialogRef.disableClose = true;
   }

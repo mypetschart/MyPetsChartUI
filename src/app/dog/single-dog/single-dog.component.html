@@ -1,11 +1,10 @@
 <mat-card class="canine dog">
     <mat-card-title>
-        <a routerLink="/dogs/{{ dog?.name | lowercase }}">{{ dog?.name | titlecase }}</a>
+        <a routerLink="/dogs/{{ dog?.id }}">{{ dog?.name | titlecase }}</a>
     </mat-card-title>
     <mat-card-subtitle>
         <p>{{ dog?.type | titlecase }}</p>
     </mat-card-subtitle>
-    <p>{{ dog?.sex }}</p>
     <p>{{ dog?.breed }}</p>
     <p>{{ dog?.generation }}</p>
     <p>{{ dog?.dob }}</p>

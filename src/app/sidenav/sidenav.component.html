@@ -4,6 +4,7 @@
 <div class="row">
     <mat-sidenav-container class="sidenav">
         <mat-sidenav #sidenav [mode]="$any(mode)" [opened]="opened" fixedInViewport>
+            <app-profile></app-profile>
             <a class="sidenav-nav-item" routerLink="/dashboard" routerLinkActive="is-active">
                 <mat-icon>dashboard</mat-icon>
                 Dashboard

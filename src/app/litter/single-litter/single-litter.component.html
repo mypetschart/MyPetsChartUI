@@ -1,11 +1,11 @@
 <mat-card class="canine dog" @fadeIn>
     <mat-card-title>
-        <a routerLink="/litters/{{ litter?.name | lowercase }}">{{ litter?.name | titlecase }}</a>
+        <a routerLink="/litters/{{ litter?.id }}">{{ litter?.name | titlecase }}</a>
     </mat-card-title>
     <mat-card-subtitle>
         <p>
-            Dam: {{ litter?.damID }} |
-            Sire: {{ litter?.sireID }}
+            Dam: {{ litter?.dam }} |
+            Sire: {{ litter?.sire }}
         </p>
     </mat-card-subtitle>
     <p>{{ litter?.breed }}</p>

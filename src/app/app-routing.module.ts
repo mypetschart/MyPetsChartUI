@@ -8,10 +8,10 @@ import { OwnerComponent } from './onboarding/owner/owner.component';
 import { LitterComponent } from './litter/litter.component';
 import { DogComponent } from './dog/dog.component';
 import { AllDogsComponent } from './dog/all-dogs/all-dogs.component';
-import { TaskComponent } from './dog/task/task.component';
+import { TaskComponent } from './task/task.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AllLittersComponent } from './litter/all-litters/all-litters.component';
-import { AllTasksComponent } from './dog/task/all-tasks/all-tasks.component';
+import { AllTasksComponent } from './task/all-tasks/all-tasks.component';
 import { MessageComponent } from './message/message.component';
 import { ReportComponent } from './report/report.component';
 import { ContactComponent } from './contact/contact.component';
@@ -27,11 +27,11 @@ const routes: Routes = [
 
   // Sub pages and children
   { path: 'dogs', component: AllDogsComponent },
-  { path: 'dogs/:dog', component: DogComponent },
+  { path: 'dogs/:id', component: DogComponent },
   { path: 'litters', component: AllLittersComponent },
-  { path: 'litters/:litter', component: LitterComponent },
+  { path: 'litters/:id', component: LitterComponent },
   { path: 'tasks', component: AllTasksComponent },
-  { path: 'tasks/:task', component: TaskComponent },
+  { path: 'tasks/:id', component: TaskComponent },
 
   // Onboarding
   { path: 'onboarding', component: OnboardingComponent },

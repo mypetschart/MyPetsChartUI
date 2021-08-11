@@ -1,4 +1,4 @@
-<mat-dialog-content>
+<mat-dialog-content class="large-dialog">
     <div class="add-dog" @fadeIn>
         <div class="add-dog-form">
             <h1 class="headline">Add a new litter</h1>
@@ -7,15 +7,16 @@
             <mat-form-field>
                 <mat-label>Litter Name</mat-label>
                 <input matInput formControlName="name">
+                <mat-hint>If left empty, will automatically be set from the dam and sire names</mat-hint>
                 <mat-error matErrorMessages fieldLabel='Litter name'></mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-select [formControl]="dam" placeholder="Dam" #singleSelect>
+                <mat-select cdkFocusInitial [formControl]="dam" placeholder="Dam" #singleSelect>
                   <mat-option>
-                    <ngx-mat-select-search [formControl]="dam" placeholderLabel="Search for dam..." noEntriesFoundLabel="'no matching dams'"></ngx-mat-select-search>
+                    <ngx-mat-select-search placeholderLabel="Search for dam..." noEntriesFoundLabel="'no matching dams'"></ngx-mat-select-search>
                   </mat-option>
                   <span *ngFor="let dog of (dogs$ | async)">
-                    <mat-option *ngIf="(dog.type == 'dam')" [value]="dog.name">
+                    <mat-option *ngIf="(dog.type == 'dam')" [value]="dog.id">
                         {{ dog.name | titlecase }}
                     </mat-option>
                 </span>
@@ -25,10 +26,10 @@
             <mat-form-field>
                 <mat-select [formControl]="sire" placeholder="Sire" #singleSelect>
                   <mat-option>
-                    <ngx-mat-select-search [formControl]="sire" placeholderLabel="Search for sire..." noEntriesFoundLabel="'no matching sires'"></ngx-mat-select-search>
+                    <ngx-mat-select-search placeholderLabel="Search for sire..." noEntriesFoundLabel="'no matching sires'"></ngx-mat-select-search>
                   </mat-option>
                   <span *ngFor="let dog of (dogs$ | async)">
-                    <mat-option *ngIf="(dog.type == 'sire')" [value]="dog.name">
+                    <mat-option *ngIf="(dog.type == 'sire')" [value]="dog.id">
                         {{ dog.name | titlecase }}
                     </mat-option>
                 </span>
@@ -46,7 +47,11 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Generation</mat-label>
-                <input matInput formControlName="generation">
+                <mat-select formControlName="generation">
+                    <mat-option *ngFor="let generationValue of generations" [value]="generationValue">
+                    {{ generationValue | titlecase }}
+                    </mat-option>
+                </mat-select>
                 <mat-error matErrorMessages fieldLabel='Generation'></mat-error>
             </mat-form-field>
             <mat-form-field>
@@ -56,12 +61,12 @@
                 <mat-datepicker #dob></mat-datepicker>
                 <mat-error matErrorMessages fieldLabel='Date of birth'></mat-error>
             </mat-form-field>
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 Is this litter expected?<br />
                 <mat-slide-toggle color="primary" formControlName="isLitterExpected">
                     {{ isLitterExpected.value?'Yes':'No' }}
                 </mat-slide-toggle>
-            </div> 
+            </div>  -->
             <mat-form-field appearance="fill">
                 <mat-label>Notes</mat-label>
                 <textarea matInput formControlName="notes" rows="4" placeholder="Ex. This puppy needed emergency care during delivery..."></textarea>
@@ -70,11 +75,11 @@
             <div class="mb-2">
                 <label>Photos</label><br />
                 <button mat-raised-button color="primary" (click)="uploadFile.click()"><fa-icon [icon]="faUpload" class="me-2"></fa-icon> Choose File</button>
-                <input #uploadFile (change)="uploadPhotos($event)" type='file' style="display:none" />
+                <input formControlName="photos" #uploadFile (change)="uploadPhotos($event)" type='file' style="display:none" />
             </div>
             <div>
                 <button mat-stroked-button color="basic" mat-dialog-close>Cancel</button>
-                <button mat-flat-button type="submit" color="primary" class="float-end" [disabled]="!addLitterForm.valid"><fa-icon [icon]="faPlus" class="me-2"></fa-icon> Add New Dog</button>
+                <button mat-flat-button type="submit" color="primary" class="float-end" [disabled]="!addLitterForm.valid"><fa-icon [icon]="faPlus" class="me-2"></fa-icon> Add New Litter</button>
             </div>
             </form>
         </div>

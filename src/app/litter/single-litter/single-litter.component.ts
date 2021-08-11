@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Litter } from 'src/app/models/interfaces';
+import { Litter } from 'src/app/_models/interfaces';
 import { fadeIn } from 'src/app/transition-animations';
 
 @Component({

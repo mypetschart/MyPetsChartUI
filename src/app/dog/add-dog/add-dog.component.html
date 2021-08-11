@@ -1,4 +1,4 @@
-<mat-dialog-content>
+<mat-dialog-content class="large-dialog">
     <div class="add-dog" @fadeIn>
         <div class="add-dog-form">
             <h1 class="headline">Add a new dog</h1>
@@ -18,14 +18,67 @@
                 <input matInput formControlName="name">
                 <mat-error matErrorMessages fieldLabel='Name'></mat-error>
             </mat-form-field>
-            <mat-form-field *ngIf="type.value === 'puppy'">
-                <mat-label>Sex</mat-label>
-                <mat-select formControlName="sex">
-                    <mat-option value="male"><fa-icon [icon]="faMars" class="me-2"></fa-icon>Male</mat-option>
-                    <mat-option value="female"><fa-icon [icon]="faVenus" class="me-2"></fa-icon>Female</mat-option>
-                </mat-select>
-                <mat-error matErrorMessages fieldLabel='Sex'></mat-error>
-            </mat-form-field>
+            <div *ngIf="type.value === 'dam'" formGroupName="damFields" class="mb-3">
+                <h3>Dam Fields:</h3>
+                <mat-form-field appearance="fill">
+                    <mat-label>Last heat date</mat-label>
+                    <input matInput formControlName="lastHeatDate" [matDatepicker]="lastHeatDate">
+                    <mat-datepicker-toggle matSuffix [for]="lastHeatDate"></mat-datepicker-toggle>
+                    <mat-datepicker #lastHeatDate></mat-datepicker>
+                    <mat-error matErrorMessages fieldLabel='Last heat date'></mat-error>
+                    <mat-hint>Just guesstimate if you don't know for sure!</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Last heat length in days</mat-label>
+                    <input matInput type="number" formControlName="lastHeatLength">
+                    <mat-error matErrorMessages fieldLabel='Last heat length'></mat-error>
+                </mat-form-field>
+            </div><!-- /dam fields -->
+            <div *ngIf="type.value === 'sire'" formGroupName="sireFields" class="mb-3">
+                <h3>Sire Fields:</h3>
+                <mat-form-field appearance="fill">
+                    <mat-chip-list #chipList aria-label="Choose future stud appointments"
+                      (click)="picker.open()">
+                      <mat-chip
+                        *ngFor="let value of dates"
+                        [selectable]="false"
+                        [removable]="true"
+                        (removed)="remove(value)">
+                        {{ value | date }}
+                        <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                      </mat-chip>
+                      <input [value]="resetModel" matInput [matDatepicker]="picker" placeholder="Choose future stud appointments"
+                             (dateChange)="dateChanged($event)"
+                             [matChipInputFor]="chipList" hidden />
+                    </mat-chip-list>
+                    <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker [startAt]="init" [dateClass]="dateClass"></mat-datepicker>
+                  </mat-form-field>
+            </div><!-- /sire fields -->
+            <div *ngIf="type.value === 'puppy'" formGroupName="puppyFields" class="mb-3">
+                <h3>Puppy Fields:</h3>
+                <mat-form-field appearance="fill">
+                    <mat-select [formControl]="litter" placeholder="Litter" #singleSelect (selectionChange)="setLitterFields()">
+                      <mat-option>
+                        <ngx-mat-select-search placeholderLabel="Search for litter..." noEntriesFoundLabel="'no matching litters'"></ngx-mat-select-search>
+                      </mat-option>
+                      <span *ngFor="let litter of (litters$ | async)">
+                        <mat-option [value]="litter.id">
+                            {{ litter.name | titlecase }}
+                        </mat-option>
+                    </span>
+                    </mat-select>
+                    <mat-error matErrorMessages fieldLabel='Litter'></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Sex</mat-label>
+                    <mat-select formControlName="sex">
+                        <mat-option value="male"><fa-icon [icon]="faMars" class="me-2"></fa-icon>Male</mat-option>
+                        <mat-option value="female"><fa-icon [icon]="faVenus" class="me-2"></fa-icon>Female</mat-option>
+                    </mat-select>
+                    <mat-error matErrorMessages fieldLabel='Sex'></mat-error>
+                </mat-form-field>
+            </div><!-- /puppy fields -->
             <mat-form-field>
                 <mat-label>Breed</mat-label>
                 <mat-select formControlName="breed">
@@ -37,7 +90,11 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Generation</mat-label>
-                <input matInput formControlName="generation">
+                <mat-select formControlName="generation">
+                    <mat-option *ngFor="let generationValue of generations" [value]="generationValue">
+                    {{ generationValue | titlecase }}
+                    </mat-option>
+                </mat-select>
                 <mat-error matErrorMessages fieldLabel='Generation'></mat-error>
             </mat-form-field>
             <mat-form-field>

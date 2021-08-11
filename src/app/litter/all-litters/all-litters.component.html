@@ -1,1 +1,6 @@
-<p>all-litters works!</p>
+<div class="all-litters col-12 mt-5" @fadeIn>
+    <h2 class="headline-2">Current Litters</h2>
+    <mat-spinner diameter="50" *ngIf="(loadingLitters$ | async) === true"></mat-spinner>
+    <p *ngIf="(litters$ | async)?.length === 0" class="mb-5">No Litters added yet... <a>add one</a></p>
+    <app-single-litter *ngFor="let litter of (litters$ | async)" [litter]="litter"></app-single-litter>
+</div>
