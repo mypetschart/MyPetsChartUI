@@ -1,0 +1,19 @@
+
+<small>{{ (litter$ | async)?.breed }}</small>
+<p>Dam: {{ (dam$ | async)?.name }}</p>
+<p>Sire: {{ (sire$ | async)?.name }}</p>
+<p>Generation: {{ puppy?.generation }}</p>
+<p>Date of birth: {{ puppy?.dob }}</p>
+<div class="col-md-5">
+    <carousel [cellWidth]="'100%'" [autoplay]="true" [loop]="true" [dots]="true">
+        <div class="carousel-cell" *ngFor="let photo of puppy?.photos">
+            <img src="{{ photo }}">
+        </div>
+    </carousel>
+</div>
+<!-- <button mat-fab color="primary" aria-label="Add litter icon" (click)="addLitter()">
+    <mat-icon>add</mat-icon>
+</button>
+<button mat-fab color="primary" aria-label="Delete litter icon" (click)="deleteLitter()">
+    <mat-icon>delete</mat-icon>
+</button> -->

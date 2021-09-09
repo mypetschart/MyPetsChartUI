@@ -1,54 +1,22 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/dashboard">My Pets Chart</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button mat-fab class="sidenav-expand mat-elevation-z0" color="primary" aria-label="Expand side navigation icon" (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
     </button>
+    <a class="navbar-brand d-sm-none d-md-block" routerLink="/dashboard">My Pets Chart</a>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="https://www.tlcpetfood.com/default.asp?" target="_blank">TLC Pet Food</a>
+      </li>
+    </ul> 
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <!-- <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#">Dogs</a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="/dogs#dams">Dams</a></li>
-            <li><a class="dropdown-item" href="/dogs#sires">Sires</a></li>
-            <li><a class="dropdown-item" href="/dogs#puppies">Puppies</a></li>
-          </ul>
-          <button mat-flat-button color="basic" [matMenuTriggerFor]="menu">Dogs</button>
-          <a class="nav-link" [matMenuTriggerFor]="menu">Dogs</a>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/dogs">Dams</button>
-            <button mat-menu-item routerLink="/dogs">Sires</button>
-            <button mat-menu-item routerLink="/dogs">Puppies</button>
-          </mat-menu>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/current-litters">Current Litters</a>
-        </li>
-        <li class="nav-item float-end">
-          <a class="nav-link" routerLink="/onboarding">Onboarding</a>
-        </li>
-      </ul> -->
     </div>
+    <app-search></app-search>
+    <span class="d-flex">
+      <app-notifications></app-notifications>
+    </span>
   </div>
 </nav>
-<!-- 
-<header>
-    <mat-toolbar color="primary">
-      <span>My Pets Chart</span>
-      <nav>
-        <a mat-flat-button color="primary" routerLink="/dashboard">Dashboard</a>
-        <a mat-flat-button color="primary" routerLink="/tasks">Tasks</a>
-        <a mat-flat-button color="primary" routerLink="/onboarding">Onboarding</a>
-      </nav>
-      <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-      </button>
-    </mat-toolbar>
-</header> -->

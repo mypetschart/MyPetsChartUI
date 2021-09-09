@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BellComponent } from './bell.component';
+import { SingleNotificationComponent } from './single-notification.component';
 
-describe('BellComponent', () => {
-  let component: BellComponent;
-  let fixture: ComponentFixture<BellComponent>;
+describe('SingleNotificationComponent', () => {
+  let component: SingleNotificationComponent;
+  let fixture: ComponentFixture<SingleNotificationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BellComponent ]
+      declarations: [ SingleNotificationComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BellComponent);
+    fixture = TestBed.createComponent(SingleNotificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

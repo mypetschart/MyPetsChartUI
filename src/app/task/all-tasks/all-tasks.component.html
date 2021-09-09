@@ -1,1 +1,5 @@
-<p>all-tasks works!</p>
+<div class="all-tasks mt-5" @fadeIn>
+    <h1 class="mat-display-2">All tasks</h1>
+    <p *ngIf="(tasks$ | async)?.length === 0" class="mb-5">No Tasks added yet... <a>add one</a></p>
+    <app-single-task *ngFor="let task of (tasks$ | async)" [task]="task"></app-single-task>
+</div>

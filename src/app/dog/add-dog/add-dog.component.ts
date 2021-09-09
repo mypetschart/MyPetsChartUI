@@ -142,7 +142,7 @@ export class AddDogComponent implements OnInit {
         break;
       case 'sire':
         const sire: Sire = new SireBuilder(dog)
-          .studAppointments(this.dates)
+          // .studAppointments(this.dates)
           .build();
         this.dogService.add(sire);
         break;

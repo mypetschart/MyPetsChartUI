@@ -14,6 +14,9 @@ export interface User {
     profilePhoto: string;
 }
 
+/*
+*   Dog related interfaces
+*/
 export interface Dog {
     id: number;
     type: string;
@@ -37,14 +40,18 @@ export interface Dam extends Dog {
 }
 
 export interface Sire extends Dog {
-    studAppointments: Date[];
+    // studAppointments: Date[];
 }
 
 export interface Puppy extends Dog {
+    identifier: string;
     sex: string;
     litter: number; // litter id
 }
 
+/*
+*   Litter interface
+*/
 export interface Litter {
     id: number;
     name: string;
@@ -54,11 +61,13 @@ export interface Litter {
     generation: string;
     dob: Date;
     photos: string[];
-    namingScheme: string;
+    identificationMethod: string;
     notes: string;
 }
 
-// Task is the overarching task structure that determines when something is due
+/*
+*   Task related interfaces
+*/
 export interface Task {
     id: number;
     name: string;
@@ -94,4 +103,30 @@ export interface Worming extends Task {
 export interface TempReading extends Task {
     date: Date;
     temp: number;
+}
+
+export interface StudAppointment extends Task {
+    breeder: number;
+    dam: number;
+    cost: number; // in cents
+    time: string;
+    location: string;
+    success: boolean; // TODO auto remind to mark as success or failure at some point
+}
+
+/*
+*   Notification related interfaces
+*/
+export interface Notification {
+    id: number;
+    dateCreated: Date;
+    title: string;
+    body: string;
+}
+
+/*
+*   Contact related interfaces
+*/
+export interface Contact {
+
 }

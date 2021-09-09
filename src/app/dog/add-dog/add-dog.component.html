@@ -13,7 +13,7 @@
                 </mat-select>
                 <mat-error matErrorMessages fieldLabel='Dog type'></mat-error>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field cdkFocusInitial>
                 <mat-label>Name</mat-label>
                 <input matInput formControlName="name">
                 <mat-error matErrorMessages fieldLabel='Name'></mat-error>
@@ -22,7 +22,7 @@
                 <h3>Dam Fields:</h3>
                 <mat-form-field appearance="fill">
                     <mat-label>Last heat date</mat-label>
-                    <input matInput formControlName="lastHeatDate" [matDatepicker]="lastHeatDate">
+                    <input (focus)="lastHeatDate.open()" matInput formControlName="lastHeatDate" [matDatepicker]="lastHeatDate">
                     <mat-datepicker-toggle matSuffix [for]="lastHeatDate"></mat-datepicker-toggle>
                     <mat-datepicker #lastHeatDate></mat-datepicker>
                     <mat-error matErrorMessages fieldLabel='Last heat date'></mat-error>
@@ -34,8 +34,8 @@
                     <mat-error matErrorMessages fieldLabel='Last heat length'></mat-error>
                 </mat-form-field>
             </div><!-- /dam fields -->
-            <div *ngIf="type.value === 'sire'" formGroupName="sireFields" class="mb-3">
-                <h3>Sire Fields:</h3>
+            <!-- <div *ngIf="type.value === 'sire'" formGroupName="sireFields" class="mb-3">
+                <h3>Stud Appointments:</h3>
                 <mat-form-field appearance="fill">
                     <mat-chip-list #chipList aria-label="Choose future stud appointments"
                       (click)="picker.open()">
@@ -54,7 +54,7 @@
                     <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker [startAt]="init" [dateClass]="dateClass"></mat-datepicker>
                   </mat-form-field>
-            </div><!-- /sire fields -->
+            </div>/sire fields -->
             <div *ngIf="type.value === 'puppy'" formGroupName="puppyFields" class="mb-3">
                 <h3>Puppy Fields:</h3>
                 <mat-form-field appearance="fill">
@@ -99,7 +99,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Date of birth</mat-label>
-                <input matInput formControlName="dob" [matDatepicker]="dob">
+                <input (focus)="dob.open()" matInput formControlName="dob" [matDatepicker]="dob">
                 <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
                 <mat-datepicker #dob></mat-datepicker>
                 <mat-error matErrorMessages fieldLabel='Date of birth'></mat-error>

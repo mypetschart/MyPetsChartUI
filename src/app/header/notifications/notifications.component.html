@@ -1,0 +1,15 @@
+<div class="notifications" @fadeIn>
+   <button #notificationBell mat-fab class="mat-elevation-z0" color="primary" aria-label="Notification bell icon" (click)="onBellClick(); preventCloseOnClick()">
+        <mat-icon [matBadge]="(notificationBadgeNum$ | async)" matBadgeColor="warn" [matBadgeHidden]="hideBadge">notifications</mat-icon>
+    </button>
+    <mat-card #notificationDrawer class="notification-drawer" [hidden]="hideDrawer" (click)="preventCloseOnClick()">
+        <mat-card-title>Notifications</mat-card-title>
+        <mat-card-content>
+            <mat-spinner diameter="50" *ngIf="(loadingNotifications$ | async) === true"></mat-spinner>
+            <p *ngIf="(notifications$ | async)?.length === 0">No Notifications 😊</p>
+            <div *ngFor="let notification of (notifications$ | async)">
+                <app-single-notification [notification]="notification"></app-single-notification>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -15,10 +15,11 @@
             </div>
         </carousel>
     </div>
-    <div class="puppies">
-        <p *ngFor="let puppy of (puppies$ | async)">
-            {{ puppy.name }}
-        </p>
+    <h2 class="headline-2">Puppies from this litter</h2>
+    <div class="row puppies">
+        <div class="col-md-6" *ngFor="let puppy of (puppies$ | async)">
+            <app-single-dog [dog]="puppy"></app-single-dog>
+        </div>
     </div>
 </div>
 <button mat-fab color="primary" aria-label="Add litter icon" (click)="addLitter()">

@@ -5,13 +5,13 @@ export class SireBuilder {
 
     constructor(d: Dog) {
       this._sire = d as Sire;
-      this._sire.studAppointments = [];
+      // this._sire.studAppointments = [];
     }
 
-    studAppointments(studAppointments: Date[]): SireBuilder {
-      this._sire.studAppointments = studAppointments;
-      return this;
-    }
+    // studAppointments(studAppointments: Date[]): SireBuilder {
+    //   this._sire.studAppointments = studAppointments;
+    //   return this;
+    // }
 
     build(): Sire {
       return this._sire;

@@ -1,0 +1,17 @@
+<!-- <mat-form-field appearance="outline" color="primary" (click)="toggleDrawer(); preventCloseOnClick()">
+    <mat-label>Search</mat-label>
+    <input matInput [formControl]="search" placeholder="Search..." (ngModelChange)="onSearch();">
+    <mat-icon matSuffix>search</mat-icon>
+</mat-form-field> -->
+<input matInput class="search" [formControl]="search" placeholder="Search..." (click)="toggleDrawer(); preventCloseOnClick()">
+<mat-card #searchDrawer class="search-drawer" [hidden]="hideDrawer" (click)="preventCloseOnClick()">
+    <mat-card-title>Search Results</mat-card-title>
+    <mat-card-content>
+        <p *ngIf="(searchResults$ | async)?.length === 0 || (searchResultsLoading$ | async)">No Results 😞</p>
+        <p class="spacer" *ngIf="(searchResults$ | async)?.length !== 0"></p><!-- here to prevent the search from constantly clipping when typing due to No Results disappearing -->
+        <span>
+            <app-single-dog *ngFor="let dog of (searchResults$ | async) | slice:0:3" [dog]="dog">
+            </app-single-dog>
+        </span>
+    </mat-card-content>
+</mat-card>

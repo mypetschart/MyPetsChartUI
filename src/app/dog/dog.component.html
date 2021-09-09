@@ -1,10 +1,28 @@
 <div class="dog" @fadeIn>
-    <!-- <p>{{ dogs?.type }}</p>
-    <p>{{ dogs?.name }}</p>
-    <p>{{ dogs?.sex }}</p>
-    <p>{{ dogs?.breed }}</p>
-    <p>{{ dogs?.generation }}</p>
-    <p>{{ dogs?.dob }}</p>
-    <p>{{ dogs?.color }}</p> -->
-    {{ dogName }}
+    <h2 class="headline-2 mt-5">
+        {{ (dog$ | async)?.name }}'s Chart
+    </h2>
+    <app-puppy *ngIf="dogType === 'puppy'" [puppy]="(dog$ | async)!"></app-puppy>
+    <app-dam *ngIf="dogType === 'dam' && dog$" [dam]="(dog$ | async)!"></app-dam>
+    <app-sire *ngIf="dogType === 'sire'"></app-sire>
 </div>
+<ngx-charts-line-chart
+  [view]="view"
+  [scheme]="colorScheme"
+  [legend]="legend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxis]="xAxis"
+  [yAxis]="yAxis"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [timeline]="timeline"
+  [results]="multi"
+  >
+</ngx-charts-line-chart>
+<!-- <button mat-fab color="primary" aria-label="Add litter icon" (click)="addLitter()">
+    <mat-icon>add</mat-icon>
+</button>
+<button mat-fab color="primary" aria-label="Delete litter icon" (click)="deleteLitter()">
+    <mat-icon>delete</mat-icon>
+</button> -->

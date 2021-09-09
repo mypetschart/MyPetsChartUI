@@ -13,6 +13,9 @@ export const entityMetadata: EntityMetadataMap = {
     },
     Task: {
       sortComparer: sortByRecurNextDate
+    },
+    Notification: {
+      sortComparer: sortByDateCreated
     }
 };
 
@@ -42,11 +45,16 @@ function sortByRecurNextDate(a: { recur: { nextDate: Date } }, b: { recur: { nex
   return Date.parse(a.recur.nextDate.toString()) - Date.parse(b.recur.nextDate.toString());
 }
 
+function sortByDateCreated(a: { dateCreated: Date }, b: { dateCreated: Date }): number {
+  return Date.parse(a.dateCreated.toString()) - Date.parse(b.dateCreated.toString());
+}
+
 // Automatically pluralizing with no setting to turn off is stupid yo
 const pluralNames = {
   Dog: 'Dog',
   Litter: 'Litter',
   Task: 'Task',
+  Notification: 'Notification'
 };
 
 export const entityConfig = {

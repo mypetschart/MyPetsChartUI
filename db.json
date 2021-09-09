@@ -5,7 +5,7 @@
       "role": "breeder",
       "handle": "connorpeters",
       "fullName": "Connor Peters",
-      "businessName": "YaYa Peters' Puppies",
+      "businessName": "Peters' Puppies",
       "email": "design@mainsailstudio.com",
       "password": "",
       "phone": "(585) 478-2678",
@@ -60,27 +60,9 @@
       }
     },
     {
-      "id": 3,
-      "type": "puppy",
-      "name": "Rogen",
-      "slug": "rogen",
-      "breed": "bernedoodle",
-      "generation": "f1b",
-      "dob": "2021-07-09T04:00:00.000Z",
-      "color": "red",
-      "weight": 45,
-      "microchip": "hello",
-      "photos": [
-        "photoUrl",
-        "photoUrl2"
-      ],
-      "sex": "male",
-      "litterSlug": "test"
-    },
-    {
       "id": 4,
       "type": "dam",
-      "name": "Test",
+      "name": "Berkley",
       "slug": "",
       "breed": "bernedoodle",
       "generation": "41",
@@ -93,7 +75,7 @@
     {
       "id": 5,
       "type": "sire",
-      "name": "Teseta",
+      "name": "Jackson",
       "breed": "bernedoodle",
       "generation": "F1b",
       "dob": "2021-08-13T04:00:00.000Z",
@@ -106,7 +88,7 @@
     {
       "id": 6,
       "type": "sire",
-      "name": "Stud appointmeents",
+      "name": "Mason",
       "breed": "sheepadoodle",
       "generation": "F1bb",
       "dob": "2021-08-11T04:00:00.000Z",
@@ -122,92 +104,151 @@
     {
       "id": 7,
       "type": "puppy",
-      "name": "Rocky",
-      "breed": "bernedoodle",
+      "name": "Rogen",
+      "breed": "sheepadoodle",
       "generation": "F1b",
-      "dob": "2021-08-13T04:00:00.000Z",
+      "dob": "2021-08-18T04:00:00.000Z",
       "color": "",
       "weight": "",
       "microchip": "",
       "photos": "",
-      "sex": "female",
-      "litter": 1
+      "sex": "male",
+      "litter": 2
     },
     {
       "id": 8,
-      "type": "puppy",
-      "name": "dasdasdasd ",
-      "breed": "bernedoodle",
-      "generation": "F2",
-      "dob": "2021-08-14T04:00:00.000Z",
+      "type": "dam",
+      "name": "Reida",
+      "breed": "goldendoodle",
+      "generation": "F1bb",
+      "dob": "2021-04-01T04:00:00.000Z",
       "color": "",
       "weight": "",
       "microchip": "",
       "photos": "",
-      "sex": "female",
-      "litter": 1
+      "heat": {
+        "predicatedDate": "2021-05-01T04:00:00.000Z",
+        "actualDate": "2021-08-13T22:46:04.093Z",
+        "estFutureDate": "2021-11-01T04:00:00.000Z",
+        "lengthInDays": 7
+      }
+    },
+    {
+      "id": 9,
+      "type": "puppy",
+      "name": "Test Puppy",
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-08-18T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": "",
+      "identifier": "",
+      "sex": "male",
+      "litter": 2
     }
   ],
   "litter": [
     {
-      "id": 1,
-      "name": "Test and Rockefeller",
-      "dam": 4,
+      "id": 2,
+      "name": "Maggie and Rockefeller",
+      "dam": 2,
+      "sire": 1,
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-08-18T04:00:00.000Z",
+      "photos": "",
+      "namingScheme": "",
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "name": "Reida and Rockefeller",
+      "dam": 8,
       "sire": 1,
       "breed": "bernedoodle",
-      "generation": "F1bb",
-      "dob": "0123-01-01T04:56:02.000Z",
-      "photos": [
-        "./assets/hero.jpg",
-        "./assets/hero.jpg"
-      ],
+      "generation": "F1b",
+      "dob": "2021-08-09T04:00:00.000Z",
+      "photos": "",
       "namingScheme": "",
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "name": "Berkley and Jackson",
+      "dam": 4,
+      "sire": 5,
+      "breed": "bernedoodle",
+      "generation": "F1bb",
+      "dob": "2021-08-19T04:00:00.000Z",
+      "photos": "",
+      "identificationMethod": "",
+      "notes": "asdasdasd"
+    },
+    {
+      "id": 5,
+      "name": "Berkley and Jackson",
+      "dam": 4,
+      "sire": 5,
+      "breed": "sheepadoodle",
+      "generation": "F1bb",
+      "dob": "2021-09-24T04:00:00.000Z",
+      "photos": "",
+      "identificationMethod": "",
       "notes": ""
     }
   ],
   "task": [
     {
-      "id": 0,
-      "name": "Vaccination task",
-      "slug": "vaccination-task",
-      "referenceSlug": "rogen",
+      "id": 1,
+      "name": "Mason Vaccination",
+      "refId": "Mason",
       "type": "vac",
       "recur": {
-        "dateCreated": "07/27/2021",
-        "regularity": "bi-annual",
-        "nextDate": "01/27/2021"
+        "dateCreated": "2021-08-20T04:00:00.000Z",
+        "regularity": "bi-weekly",
+        "nextDate": "2021-08-27T04:00:00.000Z"
       },
-      "note": "Notes!!!",
-      "vacType": "pfizer",
-      "date": "Date",
-      "lot": "string",
-      "administeredBy": "string"
+      "notes": "Vaccination type: Pfizer"
     },
     {
       "id": 2,
-      "name": "asd",
-      "slug": "",
-      "refId": "Rogen",
-      "type": "worm",
+      "name": "Maggie 4th Breeding Heat",
+      "refId": "Maggie",
+      "type": "heat",
       "recur": {
-        "dateCreated": "2021-08-13T04:00:00.000Z",
-        "regularity": "bi-weekly",
-        "nextDate": "2021-08-20T04:00:00.000Z"
+        "dateCreated": "2021-08-17T04:00:00.000Z",
+        "regularity": "bi-annually",
+        "nextDate": "2022-02-17T05:00:00.000Z"
       },
       "notes": ""
     },
     {
       "id": 3,
-      "name": "asd",
-      "slug": "",
-      "refId": "Rogen",
+      "name": "Jackson Worming",
+      "refId": "Jackson",
       "type": "worm",
       "recur": {
-        "dateCreated": "2021-08-13T04:00:00.000Z",
-        "regularity": "weekly",
-        "nextDate": "2021-08-12T04:00:00.000Z"
+        "dateCreated": "2021-08-12T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-08-13T04:00:00.000Z"
       },
       "notes": ""
+    }
+  ],
+  "notification": [
+    {
+      "id": 1,
+      "dateCreated": "2021-08-13T04:00:00.000Z",
+      "title": "Test Notification",
+      "body": "Yooooooo"
+    },
+    {
+      "id": 2,
+      "dateCreated": "2021-08-13T04:00:00.000Z",
+      "title": "Notification 22",
+      "body": "Howdy this is telling you that your stuff is overdue"
     }
   ]
 }

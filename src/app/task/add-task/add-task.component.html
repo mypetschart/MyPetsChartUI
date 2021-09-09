@@ -1,8 +1,8 @@
 <mat-dialog-content class="large-dialog">
     <div class="add-task" @fadeIn>
         <div class="add-task-form">
-            <h1 class="headline">Add a new dog</h1>
-            <p>Enter the details of the new dog you want to add</p>
+            <h1 class="headline">Add a task</h1>
+            <p>Enter the details of the task you want to add</p>
             <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
             <mat-form-field>
                 <mat-select [formControl]="dog" placeholder="Dog" #singleSelect>
@@ -11,7 +11,7 @@
                     </mat-option>
                     <span *ngFor="let dog of (dogs$ | async)">
                     <mat-option [value]="dog.name">
-                        {{ dog.name | titlecase }}
+                        {{ dog.name | titlecase }} - {{ dog.type | titlecase }}, {{ dog.breed | titlecase }}
                     </mat-option>
                 </span>
                 </mat-select>
@@ -63,7 +63,7 @@
             </mat-form-field>
             <div>
                 <button mat-stroked-button color="basic" mat-dialog-close>Cancel</button>
-                <button mat-flat-button color="primary" class="float-end" type="submit" [disabled]="!addTaskForm.valid"><fa-icon [icon]="faPlus" class="me-2"></fa-icon> Add New Dog</button>
+                <button mat-flat-button color="primary" class="float-end" type="submit" [disabled]="!addTaskForm.valid"><fa-icon [icon]="faPlus" class="me-2"></fa-icon> Add New Task</button>
             </div>
             </form>
         </div>

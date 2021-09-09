@@ -1,5 +1,23 @@
-<div class="all-litters col-12 mt-5" @fadeIn>
-    <h2 class="headline-2">Current Litters</h2>
+
+<div class="all-litters mt-5" @fadeIn>
+    <div class="row">
+        <div class="col-10">
+            <h1 class="mat-display-2">All litters</h1>
+        </div>
+        <div class="col-2">
+            <button class="float-end" mat-fab color="primary" aria-label="Add dog icon" (click)="addLitterDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+    <!-- current litters -->
+    <h2 class="headline-2 mt-4">Current Litters</h2>
+    <mat-spinner diameter="50" *ngIf="(loadingLitters$ | async) === true"></mat-spinner>
+    <p *ngIf="(litters$ | async)?.length === 0" class="mb-5">No Litters added yet... <a>add one</a></p>
+    <app-single-litter *ngFor="let litter of (litters$ | async)" [litter]="litter"></app-single-litter>
+
+    <!-- past litters -->
+    <h2 class="headline-2 mt-5">Past Litters</h2>
     <mat-spinner diameter="50" *ngIf="(loadingLitters$ | async) === true"></mat-spinner>
     <p *ngIf="(litters$ | async)?.length === 0" class="mb-5">No Litters added yet... <a>add one</a></p>
     <app-single-litter *ngFor="let litter of (litters$ | async)" [litter]="litter"></app-single-litter>

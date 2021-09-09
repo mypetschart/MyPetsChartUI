@@ -1,9 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Dog } from '../_models/interfaces';
+import { Dam, Dog, Litter, Puppy, Sire } from '../_models/interfaces';
 import { DogService } from '../_services/dog.service';
 import { fadeIn } from '../transition-animations';
+import { LitterService } from '../_services/litter.service';
+import { DamBuilder } from '../_models/builders/dam.builder';
+import { SireBuilder } from '../_models/builders/sire.builder';
+import { PuppyBuilder } from '../_models/builders/puppy.builder';
+import { DogBuilder } from '../_models/builders/dog.builder';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { multi } from './data';
+
 
 @Component({
   selector: 'app-dog',
@@ -12,30 +20,52 @@ import { fadeIn } from '../transition-animations';
   animations: [fadeIn]
 })
 export class DogComponent implements OnInit {
-  // @Input() dogs: Dog | undefined;
-  dogName = '';
+  dogId = '';
+  dogType = '';
 
-  dogs$: Observable<Dog[]>;
-  loadingDogs$: Observable<boolean>;
+  dog$: Observable<Dog> = new Observable<Dog>();
+  dogAsync: Dog = new DogBuilder().build();
+
+  // CHART
+  // multi: any[];
+  view: any[] = [700, 300];
+
+  // options
+  legend: boolean = true;
+  showLabels: boolean = true;
+  animations: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  showYAxisLabel: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Year';
+  yAxisLabel: string = 'Population';
+  timeline: boolean = true;
+
+  colorScheme = {
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+  };
 
   constructor(
     private route: ActivatedRoute,
     private dogService: DogService
   ) {
-    this.dogs$ = dogService.entities$;
-    this.loadingDogs$ = dogService.loading$;
+    Object.assign(this, { multi });
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.dogName = params['dog'];
+      this.dogId = params['id'];
     });
 
-    const queryParams = {
-      name: this.dogName
-    };
+    this.dog$ = this.dogService.getByKey(this.dogId);
 
-    this.dogService.getWithQuery(queryParams);
+    this.dog$.subscribe(
+      dog => {
+        console.log('DOG!' + dog);
+        this.dogAsync = dog;
+        this.dogType = dog.type;
+      }
+    );
   }
-
 }

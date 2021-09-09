@@ -24,13 +24,41 @@
             </span>
         </div>
         <div class="col-lg-1 col-3">
-            <button mat-fab color="primary" aria-label="Add dog icon" (click)="addTaskDialog()">
+            <button mat-fab color="primary" aria-label="Add task icon" (click)="addTaskDialog()">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
     </div>
-    <div class="row"><!-- dashboard section for dogs -->
-        <div class="col-lg-6 col-9 dashboard-dogs">
+    <div class="row dashboard-dogs"><!-- dashboard section for dogs -->
+        <!-- dams -->
+        <div class="col-lg-5 col-9">
+            <h2 class="headline-2">Dams</h2>
+            <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+            <p *ngIf="noDams" class="mb-5">No Dams added yet... <a (click)="addDogDialog('dam')">add one</a></p>
+            <span *ngFor="let dog of (dogs$ | async)">
+                <app-single-dog *ngIf="(dog.type == 'dam')" [dog]="dog"></app-single-dog>
+            </span>
+        </div>
+        <div class="col-lg-1 col-3">
+            <button mat-fab color="primary" aria-label="Add dog icon" (click)="addDogDialog('dam')">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!-- sires -->
+        <div class="col-lg-5 col-9">
+            <h2 class="headline-2">Sires</h2>
+            <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+            <p *ngIf="noSires" class="mb-5">No Sires added yet... <a (click)="addDogDialog('sire')">add one</a></p>
+            <span *ngFor="let dog of (dogs$ | async)">
+                <app-single-dog *ngIf="(dog.type == 'sire')" [dog]="dog"></app-single-dog>
+            </span>
+        </div>
+        <div class="col-lg-1 col-3">
+            <button mat-fab color="primary" aria-label="Add dog icon" (click)="addDogDialog('sire')">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!-- <div class="col-lg-6 col-9 dashboard-dogs">
             <h2 class="headline-2">Dams</h2>
             <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
             <p *ngIf="noDams" class="mb-5">No Dams added yet... <a (click)="addDogDialog()">add one</a></p>
@@ -54,6 +82,6 @@
             <button mat-fab color="primary" aria-label="Add dog icon" (click)="addDogDialog()">
                 <mat-icon>add</mat-icon>
             </button>
-        </div>
+        </div> -->
     </div>
 </div>

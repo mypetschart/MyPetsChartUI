@@ -29,6 +29,7 @@ export const TaskTypes = [
 
 
 export const Frequency = [
+    'once',
     'hourly',
     'daily',
     'weekly',
@@ -37,5 +38,5 @@ export const Frequency = [
     'bi-monthly',
     'bi-annually',
     'annually',
-    'every other year',
+    'every other year'
 ];

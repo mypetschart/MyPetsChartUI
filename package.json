@@ -34,6 +34,7 @@
     "@ngrx/entity": "^12.3.0",
     "@ngrx/store": "^12.3.0",
     "@ngrx/store-devtools": "^12.3.0",
+    "@swimlane/ngx-charts": "^19.0.1",
     "angular-material-fileupload": "^2.0.0",
     "angular-responsive-carousel": "^2.1.2",
     "bootstrap": "^5.0.2",

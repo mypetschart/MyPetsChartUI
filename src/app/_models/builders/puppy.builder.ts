@@ -3,10 +3,16 @@ import { Dog, Puppy } from '../interfaces';
 export class PuppyBuilder {
     private readonly _puppy: Puppy;
 
-    constructor(d: Dog) {
+    constructor(d: Dog | null) {
       this._puppy = d as Puppy;
+      this._puppy.identifier = '';
       this._puppy.sex = '';
       this._puppy.litter = 0;
+    }
+
+    identifier(identifier: string): PuppyBuilder {
+      this._puppy.identifier = identifier;
+      return this;
     }
 
     sex(sex: string): PuppyBuilder {

@@ -37,6 +37,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatBadgeModule } from '@angular/material/badge';
+
+// Charts
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 // App components
@@ -62,8 +66,7 @@ import { SingleTaskComponent } from './task/single-task/single-task.component';
 import { AddTaskComponent } from './task/add-task/add-task.component';
 import { AllDogsComponent } from './dog/all-dogs/all-dogs.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { BellComponent } from './notifications/bell/bell.component';
+import { NotificationsComponent } from './header/notifications/notifications.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AllLittersComponent } from './litter/all-litters/all-litters.component';
 import { AllTasksComponent } from './task/all-tasks/all-tasks.component';
@@ -80,6 +83,12 @@ import { UserEffects } from './_state/user/user.effects';
 import { AllContactsComponent } from './contact/all-contacts/all-contacts.component';
 import { SingleContactComponent } from './contact/single-contact/single-contact.component';
 import { DeleteLitterComponent } from './litter/delete-litter/delete-litter.component';
+import { SingleNotificationComponent } from './header/notifications/single-notification/single-notification.component';
+import { SearchComponent } from './header/search/search.component';
+import { DamComponent } from './dog/dam/dam.component';
+import { SireComponent } from './dog/sire/sire.component';
+import { PuppyComponent } from './dog/puppy/puppy.component';
+import { SidenavService } from './_services/sidenav.service';
 
 
 @NgModule({
@@ -108,7 +117,6 @@ import { DeleteLitterComponent } from './litter/delete-litter/delete-litter.comp
     AllDogsComponent,
     SidenavComponent,
     NotificationsComponent,
-    BellComponent,
     SettingsComponent,
     AllLittersComponent,
     AllTasksComponent,
@@ -119,7 +127,12 @@ import { DeleteLitterComponent } from './litter/delete-litter/delete-litter.comp
     ProfileComponent,
     AllContactsComponent,
     SingleContactComponent,
-    DeleteLitterComponent
+    DeleteLitterComponent,
+    SingleNotificationComponent,
+    SearchComponent,
+    DamComponent,
+    SireComponent,
+    PuppyComponent
   ],
   imports: [
     BrowserModule,
@@ -149,12 +162,14 @@ import { DeleteLitterComponent } from './litter/delete-litter/delete-litter.comp
     MatSnackBarModule,
     IvyCarouselModule,
     MatChipsModule,
+    MatBadgeModule,
+    NgxChartsModule,
     StoreModule.forRoot({user: userProfile.reducer}),
     EffectsModule.forRoot([UserEffects]),
     EntityDataModule.forRoot(entityConfig),
     StoreDevtoolsModule.instrument({ }),
   ],
-  providers: [{ provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }],
+  providers: [SidenavService, { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

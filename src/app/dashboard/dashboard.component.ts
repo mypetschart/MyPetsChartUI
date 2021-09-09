@@ -80,9 +80,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  addDogDialog() {
+  addDogDialog(dogType: string) {
     const dialogRef = this.dialog.open(AddDogComponent, {
-      data: {type: 'puppy'}
+      data: {type: dogType}
     });
 
     dialogRef.disableClose = true;

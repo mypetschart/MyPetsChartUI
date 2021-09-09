@@ -1,14 +1,15 @@
 <mat-card class="canine dog" @fadeIn>
     <mat-card-title>
         <a routerLink="/litters/{{ litter?.id }}">{{ litter?.name | titlecase }}</a>
+        <small> - {{ litter?.breed | titlecase }}</small>
     </mat-card-title>
     <mat-card-subtitle>
         <p>
-            Dam: {{ litter?.dam }} |
-            Sire: {{ litter?.sire }}
+            Dam: <a routerLink="/dogs/{{ (dam$ | async)?.id }}">{{ (dam$ | async)?.name }}</a>
+            <span class="mb-2 me-2"></span>
+            Sire: <a routerLink="/dogs/{{ (sire$ | async)?.id }}">{{ (sire$ | async)?.name }}</a>
         </p>
     </mat-card-subtitle>
-    <p>{{ litter?.breed }}</p>
     <p>{{ litter?.generation }}</p>
     <p>{{ litter?.dob }}</p>
 </mat-card>

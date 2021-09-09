@@ -13,7 +13,7 @@ export class LitterBuilder {
         generation: '',
         dob: new Date(),
         photos: [],
-        namingScheme: '',
+        identificationMethod: '',
         notes: '',
       };
     }
@@ -58,8 +58,8 @@ export class LitterBuilder {
       return this;
     }
 
-    namingScheme(namingScheme: string): LitterBuilder {
-      this._litter.namingScheme = namingScheme;
+    identificationMethod(identificationMethod: string): LitterBuilder {
+      this._litter.identificationMethod = identificationMethod;
       return this;
     }
 
