@@ -119,7 +119,6 @@ export class AddTaskComponent implements OnInit {
 
     this.taskService.add(task);
 
-    // Close the dialog and push dog to frontend
     this.dialogRef.close();
   }
 

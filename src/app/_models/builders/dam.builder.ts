@@ -5,12 +5,12 @@ export class DamBuilder {
 
     constructor(d: Dog) {
       this._dam = d as Dam;
-      this._dam.heat = {
-        predicatedDate: new Date(),
-        actualDate: new Date(),
-        estFutureDate: new Date(),
-        lengthInDays: 0
-      };
+      // this._dam.heat = {
+      //   predicatedDate: new Date(),
+      //   actualDate: new Date(),
+      //   estFutureDate: new Date(),
+      //   lengthInDays: 0
+      // };
     }
 
     heat(heat: {

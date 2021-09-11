@@ -121,12 +121,11 @@
             </mat-form-field>
             <div class="mb-2">
                 <label>Photos</label><br />
-                <button mat-raised-button color="primary" (click)="uploadFile.click()"><fa-icon [icon]="faUpload" class="me-2"></fa-icon> Choose File</button>
-                <input #uploadFile (change)="uploadPhotos($event)" type='file' style="display:none" />
+                <app-file-upload (fileUploadEvent)="setPhotos($event)"></app-file-upload>
             </div>
             <div>
                 <button mat-stroked-button color="basic" mat-dialog-close>Cancel</button>
-                <button mat-flat-button color="primary" class="float-end" type="submit" [disabled]="!addDogForm.valid"><fa-icon [icon]="faPlus" class="me-2"></fa-icon> Add New Dog</button>
+                <button mat-flat-button color="primary" class="float-end" type="submit" [disabled]="!addDogForm.valid"><fa-icon [icon]="faPlus" class="me-2"></fa-icon> Add New {{ type.value }}</button>
             </div>
             </form>
         </div>

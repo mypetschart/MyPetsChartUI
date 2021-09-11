@@ -8,11 +8,13 @@ import { Dam, Dog, Litter, Puppy, Sire } from 'src/app/_models/interfaces';
 import { DogBuilder } from 'src/app/_models/builders/dog.builder';
 import { DogService } from 'src/app/_services/dog.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { PuppyBuilder } from 'src/app/_models/builders/puppy.builder';
 import { DamBuilder } from 'src/app/_models/builders/dam.builder';
 import { SireBuilder } from 'src/app/_models/builders/sire.builder';
 import { LitterService } from 'src/app/_services/litter.service';
+import { FileUploadService } from 'src/app/_services/file-upload.service';
+import { HttpEventType } from '@angular/common/http';
 
 
 @Component({
@@ -27,7 +29,6 @@ export class AddDogComponent implements OnInit {
   types = DogTypes;
   breeds = Breeds;
   faPlus = faPlus;
-  faUpload = faUpload;
   faMars = faMars;
   faVenus = faVenus;
   generations = Generations;
@@ -48,7 +49,7 @@ export class AddDogComponent implements OnInit {
   color = new FormControl('');
   weight = new FormControl('');
   microchip = new FormControl('');
-  photos = new FormControl('');
+  photos = new FormControl(['']);
 
   // puppy fields
   sex = new FormControl('');
@@ -100,6 +101,7 @@ export class AddDogComponent implements OnInit {
     public dialogRef: MatDialogRef<AddDogComponent>,
     private dogService: DogService,
     private litterService: LitterService,
+    private fileUploadService: FileUploadService,
     @Inject(MAT_DIALOG_DATA) public data: {type: string}
   ) {
     this.dogs$ = dogService.entities$;
@@ -111,6 +113,10 @@ export class AddDogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  setPhotos(event: string[]): void {
+    this.photos.setValue(event);
   }
 
   onSubmit(): void{
@@ -157,10 +163,6 @@ export class AddDogComponent implements OnInit {
 
     // Close the dialog
     this.dialogRef.close();
-  }
-
-  uploadPhotos(file: any): void{
-    console.log(file);
   }
 
   // Automatically set the other fields if the puppies litter is selected

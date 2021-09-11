@@ -38,6 +38,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 // Charts
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -89,6 +90,8 @@ import { DamComponent } from './dog/dam/dam.component';
 import { SireComponent } from './dog/sire/sire.component';
 import { PuppyComponent } from './dog/puppy/puppy.component';
 import { SidenavService } from './_services/sidenav.service';
+import { ChartComponent } from './chart/chart.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 @NgModule({
@@ -132,7 +135,9 @@ import { SidenavService } from './_services/sidenav.service';
     SearchComponent,
     DamComponent,
     SireComponent,
-    PuppyComponent
+    PuppyComponent,
+    ChartComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -164,6 +169,7 @@ import { SidenavService } from './_services/sidenav.service';
     MatChipsModule,
     MatBadgeModule,
     NgxChartsModule,
+    MatProgressBarModule,
     StoreModule.forRoot({user: userProfile.reducer}),
     EffectsModule.forRoot([UserEffects]),
     EntityDataModule.forRoot(entityConfig),

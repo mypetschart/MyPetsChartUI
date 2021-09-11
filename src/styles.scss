@@ -70,9 +70,9 @@ a{
 
 div.main{
     background-color: mat.get-color-from-palette($my-palette, 50);
-    padding-top:7vh;
+    padding-top:3vh;
     padding-bottom:3vh;
-    min-height:100vh;
+    min-height:91vh;
  }
 
  // Scroll bar for panels
@@ -117,7 +117,9 @@ div.main{
   padding-top:3.1rem;
 }
 
-
+.mat-drawer-content{
+  overflow:initial !important;
+}
 
 
 /*

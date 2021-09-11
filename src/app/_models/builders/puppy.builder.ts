@@ -5,9 +5,9 @@ export class PuppyBuilder {
 
     constructor(d: Dog | null) {
       this._puppy = d as Puppy;
-      this._puppy.identifier = '';
-      this._puppy.sex = '';
-      this._puppy.litter = 0;
+      // this._puppy.identifier = '';
+      // this._puppy.sex = '';
+      // this._puppy.litter = 0;
     }
 
     identifier(identifier: string): PuppyBuilder {

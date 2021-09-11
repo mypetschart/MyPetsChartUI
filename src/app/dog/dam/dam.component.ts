@@ -9,7 +9,16 @@ import { Dam, Dog } from 'src/app/_models/interfaces';
   styleUrls: ['./dam.component.scss']
 })
 export class DamComponent implements OnInit {
-  @Input() dam: Dog | undefined;
+  private _dam: Dog | undefined;
+  @Input() set dam(value: Dog | undefined) {
+    this._dam = value;
+  }
+
+  // get method for childdata (for *nfFor in template)
+  get dam() {
+    return this._dam;
+  }
+
   dammmm: Dam;
 
   constructor() {
