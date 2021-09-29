@@ -1,7 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
-import { DomSanitizer } from '@angular/platform-browser';
 import { SidenavService } from '../_services/sidenav.service';
 
 @Component({
@@ -15,13 +13,7 @@ export class SidenavComponent implements OnInit {
   mode = 'over';
   opened = true;
 
-  constructor(
-    iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer,
-    private sidenavService: SidenavService
-    ) {
-    iconRegistry.addSvgIcon('dogs', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/dogs-sidebar-icon.svg'));
-  }
+  constructor(private sidenavService: SidenavService) { }
 
   ngOnInit(): void {
     // Set the sidenav type based on the screen size

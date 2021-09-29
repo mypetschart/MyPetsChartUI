@@ -92,6 +92,10 @@ import { PuppyComponent } from './dog/puppy/puppy.component';
 import { SidenavService } from './_services/sidenav.service';
 import { ChartComponent } from './chart/chart.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarHeaderComponent } from './calendar/calendar-header/calendar-header.component';
 
 
 @NgModule({
@@ -137,7 +141,9 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     SireComponent,
     PuppyComponent,
     ChartComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    CalendarComponent,
+    CalendarHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -170,6 +176,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     MatBadgeModule,
     NgxChartsModule,
     MatProgressBarModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     StoreModule.forRoot({user: userProfile.reducer}),
     EffectsModule.forRoot([UserEffects]),
     EntityDataModule.forRoot(entityConfig),

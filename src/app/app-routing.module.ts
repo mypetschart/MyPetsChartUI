@@ -15,12 +15,12 @@ import { AllTasksComponent } from './task/all-tasks/all-tasks.component';
 import { MessageComponent } from './message/message.component';
 import { ReportComponent } from './report/report.component';
 import { ContactComponent } from './contact/contact.component';
+import { AllContactsComponent } from './contact/all-contacts/all-contacts.component';
 
 const routes: Routes = [
   // Top level pages
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'contacts', component: ContactComponent },
   { path: 'reports', component: ReportComponent },
   { path: 'messages', component: MessageComponent },
   { path: 'settings', component: SettingsComponent },
@@ -32,6 +32,9 @@ const routes: Routes = [
   { path: 'litters/:id', component: LitterComponent },
   { path: 'tasks', component: AllTasksComponent },
   { path: 'tasks/:id', component: TaskComponent },
+  { path: 'contacts', component: AllContactsComponent },
+  { path: 'contacts/:id', component: ContactComponent },
+
 
   // Onboarding
   { path: 'onboarding', component: OnboardingComponent },
@@ -40,7 +43,7 @@ const routes: Routes = [
   { path: 'onboarding/vet', component: VetComponent },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

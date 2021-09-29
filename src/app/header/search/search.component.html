@@ -3,7 +3,8 @@
     <input matInput [formControl]="search" placeholder="Search..." (ngModelChange)="onSearch();">
     <mat-icon matSuffix>search</mat-icon>
 </mat-form-field> -->
-<input matInput class="search" [formControl]="search" placeholder="Search..." (click)="toggleDrawer(); preventCloseOnClick()">
+<mat-icon class="search-icon" (click)="toggleInput()">search</mat-icon>
+<input #searchInput matInput class="search" [formControl]="search" placeholder="Search..." (click)="toggleDrawer(); preventCloseOnClick()" *ngIf="showSearchInput">
 <mat-card #searchDrawer class="search-drawer" [hidden]="hideDrawer" (click)="preventCloseOnClick()">
     <mat-card-title>Search Results</mat-card-title>
     <mat-card-content>

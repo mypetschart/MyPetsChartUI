@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Dam, Dog, Litter, Puppy, Sire, Task } from '../_models/interfaces';
 import { DogService } from '../_services/dog.service';
@@ -20,7 +20,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./dog.component.scss'],
   animations: [fadeIn]
 })
-export class DogComponent implements OnInit {
+export class DogComponent implements OnInit, OnDestroy {
   dogId = '';
   dogType = '';
 
@@ -35,8 +35,11 @@ export class DogComponent implements OnInit {
 
   imagePath: SafeResourceUrl = '';
 
+  navigationSubscription;
+
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private dogService: DogService,
     private taskService: TaskService,
     private _sanitizer: DomSanitizer,
@@ -50,7 +53,7 @@ export class DogComponent implements OnInit {
     this.dog$.subscribe(
       dog => {
         this.dogType = dog.type;
-        const imageBase64 = dog.photos[1];
+        const imageBase64 = dog.photos[0];
         this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + imageBase64);
 
         switch(dog.type){
@@ -66,6 +69,22 @@ export class DogComponent implements OnInit {
         }
       }
     );
+
+    // subscribe to the router events. Store the subscription so we can
+    // unsubscribe later.
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        // this.router.navigate([], {
+        //   skipLocationChange: true,
+        //   queryParamsHandling: 'merge' //== if you need to keep queryParams
+        // });
+        // this.route.params.subscribe(params => {
+        //   this.dogId = params['id'];
+        //   this.dog$ = this.dogService.getByKey(this.dogId);
+        // });
+      }
+    });
   }
 
   ngOnInit(): void { }
@@ -78,5 +97,11 @@ export class DogComponent implements OnInit {
     };
 
     this.tasks$ = this.taskService.getWithQuery(queryParams);
+  }
+
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 }

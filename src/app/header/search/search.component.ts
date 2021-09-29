@@ -1,5 +1,6 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Dog } from 'src/app/_models/interfaces';
 import { DogService } from 'src/app/_services/dog.service';
@@ -10,16 +11,29 @@ import { DogService } from 'src/app/_services/dog.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  private searchInput: ElementRef | undefined;
+
+ @ViewChild('searchInput') set content(content: ElementRef) {
+    if (content) { // initially setter gets called with undefined
+        this.searchInput = content;
+        if (window.screen.width <= 600) {
+          this.searchInput.nativeElement.focus();
+        }
+    }
+ }
+
   search = new FormControl('');
 
   searchResults$: Observable<Dog[]>;
   searchResultsLoading$: Observable<boolean>;
   hideDrawer = true;
   activeSearch = false;
+  showSearchInput = false;
 
   constructor(
     private dogService: DogService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private router: Router
     ) {
     this.searchResults$ = this.dogService.entities$;
     this.searchResultsLoading$ = this.dogService.loading$;
@@ -31,6 +45,11 @@ export class SearchComponent implements OnInit {
       }
       this.activeSearch = false;
     });
+
+    // Watch for route changes to close drawer
+    router.events.subscribe(() => {
+      this.hideDrawer = true;
+    });
   }
 
   ngOnInit(): void {
@@ -38,6 +57,26 @@ export class SearchComponent implements OnInit {
 
     // Start listening for updates to search field
     this.onSearch();
+
+    // Set the search input visibility based on the screen size
+    if (window.screen.width <= 600) {
+      this.showSearchInput = false;
+    } else {
+      this.showSearchInput = true;
+    }
+  }
+
+  // Toggles the search input field for mobile
+  toggleInput(): void {
+    if (window.screen.width <= 600) {
+      this.showSearchInput = !this.showSearchInput;
+    }
+
+    if (this.showSearchInput){
+      this.toggleDrawer();
+      this.preventCloseOnClick();
+      this.searchInput?.nativeElement.focus();
+    }
   }
 
   toggleDrawer(): void {
@@ -68,4 +107,17 @@ export class SearchComponent implements OnInit {
     const last = value.substr(1).toLowerCase();
     return first + last;
   }
+
+  /*
+  * To hide or show search on mobile
+  */
+ // Then add a listener to be able to change sidenav type dynamically is someone resizes a window or tilts a phone or such
+ @HostListener('window:resize', [])
+ onResize(): void {
+   if (window.innerWidth <= 600) {
+     this.showSearchInput = false;
+   } else {
+    this.showSearchInput = true;
+   }
+ }
 }

@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
     private litterService: LitterService,
     private store: Store
     ) {
+
       this.litters$ = litterService.entities$;
       this.loadingLitters$ = litterService.loading$;
 
