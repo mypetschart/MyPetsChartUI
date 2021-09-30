@@ -13,7 +13,7 @@ import { PuppyBuilder } from 'src/app/_models/builders/puppy.builder';
 import { DamBuilder } from 'src/app/_models/builders/dam.builder';
 import { SireBuilder } from 'src/app/_models/builders/sire.builder';
 import { LitterService } from 'src/app/_services/litter.service';
-import { FileUploadService } from 'src/app/_services/file-upload.service';
+import { FileUploadService, Image } from 'src/app/_services/file-upload.service';
 import { HttpEventType } from '@angular/common/http';
 
 
@@ -115,8 +115,8 @@ export class AddDogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setPhotos(event: string[]): void {
-    this.photos.setValue(event);
+  setPhotos(image: Image): void {
+    this.photos.setValue(image.content.imageUrl);
   }
 
   onSubmit(): void{

@@ -21,10 +21,14 @@ export const Generations = [
 ];
 
 export const TaskTypes = [
+    ['Medication', 'med'],
     ['Vaccination', 'vac'],
     ['Worming', 'worm'],
-    ['Heat', 'heat'],
     ['Temperature reading', 'temp'],
+    ['Heat', 'heat'],
+    ['Feeding', 'feeding'],
+    ['Delivery', 'delivery'],
+    ['Stud appointment', 'stud'],
 ];
 
 

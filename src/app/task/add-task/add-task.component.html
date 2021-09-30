@@ -7,10 +7,10 @@
             <mat-form-field>
                 <mat-select [formControl]="dog" placeholder="Dog" #singleSelect>
                     <mat-option>
-                    <ngx-mat-select-search [formControl]="dog" placeholderLabel="Search for dog..." noEntriesFoundLabel="'no matching dogs'"></ngx-mat-select-search>
+                    <ngx-mat-select-search [formControl]="dogFilterCtrl" placeholderLabel="Search for dog..." noEntriesFoundLabel="'no matching dogs'"></ngx-mat-select-search>
                     </mat-option>
-                    <span *ngFor="let dog of (dogs$ | async)">
-                    <mat-option [value]="dog.id">
+                    <span *ngFor="let dog of filteredDogs | async">
+                    <mat-option [value]="dog">
                         {{ dog.name | titlecase }} - {{ dog.type | titlecase }}, {{ dog.breed | titlecase }}
                     </mat-option>
                 </span>
@@ -34,7 +34,7 @@
             <div formGroupName="recur">
                 <mat-form-field>
                     <mat-label>Start date (defaults to today)</mat-label>
-                    <input matInput formControlName="startDate" [matDatepicker]="startDate">
+                    <input matInput (focus)="startDate.open()" formControlName="startDate" [matDatepicker]="startDate">
                     <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
                     <mat-datepicker #startDate></mat-datepicker>
                     <mat-error matErrorMessages fieldLabel='Start date'></mat-error>
@@ -50,7 +50,7 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Next date (defaults based off frequency)</mat-label>
-                    <input matInput formControlName="nextDate" [matDatepicker]="nextDate">
+                    <input (focus)="nextDate.open()" matInput formControlName="nextDate" [matDatepicker]="nextDate">
                     <mat-datepicker-toggle matSuffix [for]="nextDate"></mat-datepicker-toggle>
                     <mat-datepicker #nextDate></mat-datepicker>
                     <mat-error matErrorMessages fieldLabel='Start date'></mat-error>

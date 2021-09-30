@@ -183,7 +183,7 @@ span.mat-button-toggle-focus-overlay{
 
 // Dialog background blur
 .cdk-overlay-dark-backdrop{
-  backdrop-filter: blur(3px);
+  // backdrop-filter: blur(3px); // causes mad performance issues
 }
 
 // Close button on mat-dialog

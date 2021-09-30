@@ -1,3 +1,5 @@
+import { Time } from "@angular/common";
+
 export interface User {
     id: number;
     role: string;
@@ -85,6 +87,12 @@ export interface RecurringDate {
     nextDate: Date;
 }
 
+export interface Medication extends Task {
+    medType: string;
+    date: Date;
+    administeredBy: string;
+}
+
 export interface Vaccination extends Task {
     vacType: string;
     date: Date;
@@ -103,6 +111,24 @@ export interface Worming extends Task {
 export interface TempReading extends Task {
     date: Date;
     temp: number;
+}
+
+export interface Feeding extends Task {
+    litter: number;
+    time: Time;
+}
+
+export interface Delivery extends Task {
+    contact: number; // the id of the associated delivery contact
+    date: Date;
+    time: Time;
+    address: string;
+    miles: number;
+    cost: number; // in cents
+}
+
+export interface DeliveryRoute {
+    deliveries: Delivery[];
 }
 
 export interface StudAppointment extends Task {
@@ -128,5 +154,18 @@ export interface Notification {
 *   Contact related interfaces
 */
 export interface Contact {
+    id: number;
+    handle: string;
+    fullName: string;
+    email: string;
+    phone: string;
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+    outstandingPayments: number;
+}
 
+export interface WaitList {
+    contacts: Contact[];
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { fadeIn } from 'src/app/transition-animations';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -8,7 +8,10 @@ import { Dog, Task, RecurringDate } from 'src/app/_models/interfaces';
 import { DogService } from 'src/app/_services/dog.service';
 import { Frequency, TaskTypes } from 'src/app/options';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { MatSelect } from '@angular/material/select';
+import { take, takeUntil } from 'rxjs/operators';
+import { DogBuilder } from 'src/app/_models/builders/dog.builder';
 
 @Component({
   selector: 'app-add-task',
@@ -16,13 +19,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./add-task.component.scss'],
   animations: [fadeIn]
 })
-export class AddTaskComponent implements OnInit {
+export class AddTaskComponent implements OnInit, AfterViewInit, OnDestroy {
   faPlus = faPlus;
   taskTypes = TaskTypes;
   frequencyOptions = Frequency;
 
   dogs$: Observable<Dog[]>;
   loadingDogs$: Observable<boolean>;
+
+  /*
+   * Select search filter configuration
+   */
+  dogFilterCtrl: FormControl = new FormControl();
+  public filteredDogs: ReplaySubject<Dog[]> = new ReplaySubject<Dog[]>(1);
+  @ViewChild('singleSelect', { static: true }) singleSelect: MatSelect | undefined;
+  protected _onDestroy = new Subject<void>();
+
 
   /*
    * Form configuration
@@ -65,6 +77,74 @@ export class AddTaskComponent implements OnInit {
     this.dogService.getAll();
 
     this.onChanges();
+
+    // load the initial dog list
+    this.dogs$.subscribe(
+      (dogs) => {
+        this.filteredDogs.next(dogs.slice());
+      }
+    );
+
+    // listen for search field value changes
+    this.dogFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterDogs();
+      });
+  }
+
+  ngAfterViewInit(): void {
+    this.setInitialValue();
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+
+  /**
+   * Sets the initial value after the filteredBanks are loaded initially
+   */
+  protected setInitialValue(): void {
+    this.filteredDogs
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        // setting the compareWith property to a comparison function
+        // triggers initializing the selection according to the initial value of
+        // the form control (i.e. _initializeSelection())
+        // this needs to be done after the filteredBanks are loaded initially
+        // and after the mat-option elements are available
+        this.singleSelect!.compareWith = (a: Dog, b: Dog) => a && b && a.id === b.id;
+      });
+  }
+
+  protected filterDogs(): void {
+    if (!this.dogs$) {
+      return;
+    }
+
+    // get the search keyword
+    let search = this.dogFilterCtrl.value;
+
+    if (!search) {
+      this.dogs$.subscribe(
+        (dogs) => {
+          this.filteredDogs.next(dogs.slice());
+        }
+      );
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    // filter the dogs
+    this.dogs$.subscribe(
+      (dogs) => {
+        this.filteredDogs.next(
+         dogs.filter(dog => dog.name.toLowerCase().indexOf(search) > -1)
+        );
+      }
+    );
   }
 
   onChanges(): void {
@@ -103,6 +183,8 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit(): void{
+    const dog = this.dog.value as Dog;
+
     const r: RecurringDate | undefined = {
       dateCreated: this.startDate.value,
       regularity: this.frequency.value,
@@ -112,7 +194,7 @@ export class AddTaskComponent implements OnInit {
     const task: Task = new TaskBuilder()
       .name(this.title.value)
       .type(this.type.value)
-      .refId(this.dog.value)
+      .refId(dog.id)
       .recur(r)
       .notes(this.notes.value)
       .build();

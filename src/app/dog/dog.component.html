@@ -10,6 +10,8 @@
         <p>Dam breed: {{ dam?.breed }}</p>
         <p>Heat length: {{ dam?.heat?.lengthInDays }}</p>
         <h2>Temp readings</h2>
+        <app-chart [data]="multi"></app-chart>
+        <!-- <app-chart [data]="temps"></app-chart> -->
         <p *ngFor="let task of (tasks$ | async)">
             Task name: {{ task?.name }}
         </p>
@@ -23,8 +25,6 @@
         <p>Sex: {{ puppy?.sex }}</p>
     </div>
 </div>
-<h1>Health Charts</h1>
-<app-chart [data]="multi"></app-chart>
 <!-- <button mat-fab color="primary" aria-label="Add litter icon" (click)="addLitter()">
     <mat-icon>add</mat-icon>
 </button>

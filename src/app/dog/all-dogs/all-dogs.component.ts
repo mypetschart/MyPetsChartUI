@@ -50,7 +50,7 @@ export class AllDogsComponent implements OnInit {
     );
   }
 
-  addDogDialog(dogType: string) {
+  addDogDialog(dogType: string): void {
     const dialogRef = this.dialog.open(AddDogComponent, {
       data: {type: dogType}
     });

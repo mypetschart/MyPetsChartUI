@@ -33,6 +33,9 @@ export class DogComponent implements OnInit, OnDestroy {
   // CHART
   multi = multi;
 
+  // Dam charts
+  temps: Task[] = [];
+
   imagePath: SafeResourceUrl = '';
 
   navigationSubscription;
@@ -97,6 +100,12 @@ export class DogComponent implements OnInit, OnDestroy {
     };
 
     this.tasks$ = this.taskService.getWithQuery(queryParams);
+
+    this.tasks$.subscribe(
+      (tasks) => {
+        this.temps = tasks;
+      }
+    );
   }
 
   ngOnDestroy() {
