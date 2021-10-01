@@ -16,7 +16,7 @@ export interface Image {
 export class FileUploadService {
 
   // apiUrl = environment.apiUrl;
-  apiUrl = 'http://localhost:9090';
+  apiUrl = 'http://ec2-3-88-21-48.compute-1.amazonaws.com:9090';
 
   constructor(private http: HttpClient) { }
 
