@@ -34,7 +34,7 @@ export interface Dog {
 
 export interface Dam extends Dog {
     heat: {
-        predicatedDate: Date;
+        predictedDate: Date;
         actualDate: Date;
         estFutureDate: Date;
         lengthInDays: number;

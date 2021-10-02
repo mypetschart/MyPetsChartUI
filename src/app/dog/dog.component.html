@@ -1,33 +1,49 @@
 <div class="dog" @fadeIn>
     <h2 class="headline-2 mt-5">
-        {{ (dog$ | async)?.name }}'s Chart
+        {{ (dog$ | async)?.name | titlecase }}'s Chart'
+        <small>{{ (dog$ | async)?.breed | titlecase }}</small>
+        <button mat-mini-fab class="float-end" color="primary" aria-label="Delete dog icon" (click)="deleteDog()">
+            <mat-icon>delete</mat-icon>
+        </button>
     </h2>
-    <div class="photos">
-        <img [src]="imagePath" *ngIf="imagePath !== ''">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="photos">
+                <img [src]="imagePath" *ngIf="imagePath !== ''">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!-- DAM -->
+            <div class="dam" *ngIf="dogType === 'dam'">
+                <p>Dam breed: {{ dam?.breed }}</p>
+                <p>Heat length: {{ dam?.heat?.lengthInDays }}</p>
+                <h2>Temp readings</h2>
+                <app-chart [data]="multi"></app-chart>
+                <!-- <app-chart [data]="temps"></app-chart> -->
+                <p *ngFor="let task of (tasks$ | async)">
+                    Task name: {{ task?.name }}
+                </p>
+            </div>
+            <!-- SIRE -->
+            <div class="sire" *ngIf="dogType === 'sire'">
+                <p>Sire?</p>
+            </div>
+            <!-- PUPPY -->
+            <div class="puppy" *ngIf="dogType === 'puppy'">
+                <p>Sex: {{ puppy?.sex }}</p>
+            </div>
+        </div>
     </div>
-    <!-- DAM -->
-    <div class="dam" *ngIf="dogType === 'dam'">
-        <p>Dam breed: {{ dam?.breed }}</p>
-        <p>Heat length: {{ dam?.heat?.lengthInDays }}</p>
-        <h2>Temp readings</h2>
-        <app-chart [data]="multi"></app-chart>
-        <!-- <app-chart [data]="temps"></app-chart> -->
-        <p *ngFor="let task of (tasks$ | async)">
-            Task name: {{ task?.name }}
-        </p>
-    </div>
-    <!-- SIRE -->
-    <div class="sire" *ngIf="dogType === 'sire'">
-        <p>This is a sire?</p>
-    </div>
-    <!-- PUPPY -->
-    <div class="puppy" *ngIf="dogType === 'puppy'">
-        <p>Sex: {{ puppy?.sex }}</p>
+    <div class="row" *ngIf="dogType === 'puppy'">
+        <div class="col-md-6">
+            <h2>Litter:</h2>
+            <app-single-litter [litter]="(litter$ | async)!"></app-single-litter>
+        </div>
+        <div class="col-md-6">
+            <h2>Tasks:</h2>
+            <span *ngFor="let task of (tasks$ | async)">
+                <app-single-task [task]="task"></app-single-task>
+            </span>
+        </div>
     </div>
 </div>
-<!-- <button mat-fab color="primary" aria-label="Add litter icon" (click)="addLitter()">
-    <mat-icon>add</mat-icon>
-</button>
-<button mat-fab color="primary" aria-label="Delete litter icon" (click)="deleteLitter()">
-    <mat-icon>delete</mat-icon>
-</button> -->

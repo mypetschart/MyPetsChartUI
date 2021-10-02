@@ -1,5 +1,5 @@
 <div class="row text-center">
-    <div class="col-md-4">
+    <div class="col-lg-4">
       <div class="btn-group">
         <div
           class="btn btn-primary"
@@ -11,7 +11,7 @@
           Previous
         </div>
         <div
-          class="btn btn-outline-secondary"
+          class="btn btn-primary active"
           mwlCalendarToday
           [(viewDate)]="viewDate"
           (viewDateChange)="viewDateChange.next(viewDate)"
@@ -29,10 +29,10 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-lg-4">
       <h3>{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h3>
     </div>
-    <div class="col-md-4">
+    <div class="col-lg-4">
       <div class="btn-group">
         <div
           class="btn btn-primary"

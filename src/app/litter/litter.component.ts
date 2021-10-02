@@ -10,6 +10,8 @@ import { DogService } from '../_services/dog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EntityActionFactory, EntityOp } from '@ngrx/data';
 import { DeleteLitterComponent } from './delete-litter/delete-litter.component';
+import { FileUploadService } from '../_services/file-upload.service';
+import { AddDogComponent } from '../dog/add-dog/add-dog.component';
 
 @Component({
   selector: 'app-litter',
@@ -21,6 +23,7 @@ export class LitterComponent implements OnInit {
   litterId = '';
   damName = '';
   sireName = '';
+  imagePath = '';
 
   litter$: Observable<Litter> = new Observable<Litter>();
   dam$: Observable<Dog> = new Observable<Dog>();
@@ -35,7 +38,8 @@ export class LitterComponent implements OnInit {
     private route: ActivatedRoute,
     private litterService: LitterService,
     private dogService: DogService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private fileService: FileUploadService) {
   }
 
   ngOnInit(): void {
@@ -48,6 +52,13 @@ export class LitterComponent implements OnInit {
     // Get the dam and sire for this litter
     this.litter$.subscribe(
       (litter) => {
+        this.fileService.download(litter.photos[0]).subscribe(
+          (fileName) => {
+            this.imagePath = fileName.content.imageUrl;
+            console.log(this.imagePath);
+          }
+        );
+
         const damId = litter.dam;
         const sireId = litter.sire;
 
@@ -76,6 +87,17 @@ export class LitterComponent implements OnInit {
 
   addLitter(): void {
     const dialogRef = this.dialog.open(AddLitterComponent);
+
+    dialogRef.disableClose = true;
+  }
+
+  addPuppiesToLitter(): void {
+    const dialogRef = this.dialog.open(AddDogComponent, {
+      data: {
+        type: 'puppy',
+        litterId: this.litterId
+      }
+    });
 
     dialogRef.disableClose = true;
   }

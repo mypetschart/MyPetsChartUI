@@ -2,7 +2,7 @@ import { HttpEventType } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { FileUploadService, Image } from '../_services/file-upload.service';
+import { FileUploadService, PostResponseImage } from '../_services/file-upload.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -10,13 +10,13 @@ import { FileUploadService, Image } from '../_services/file-upload.service';
   styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent implements OnInit {
-  @Output() fileUploadEvent = new EventEmitter<Image>();
+  @Output() fileUploadEvent = new EventEmitter<PostResponseImage>();
 
+  formData = new FormData();
   fileNames = [''];
-  files = [''];
-  uploadProgress = 0;
-  uploadSub: Subscription = new Subscription();
+  files = [];
   faUpload = faUpload;
+  uploading = false;
 
   constructor(private fileUploadService: FileUploadService) { }
 
@@ -24,62 +24,28 @@ export class FileUploadComponent implements OnInit {
   }
 
   onFileSelected(event: any): void {
+    this.uploading = true;
+
     for (const file of event.target.files) {
       if (file) {
         this.fileNames.push(file.name);
 
-        // TODO hacky hack hackkkk Until we get the backend hooked up, convert the file to Base64 and shove into json-server photos string
-        // this.getBase64(file)
-        //   .then(
-        //     res => {
-        //       this.files.push(res);
-        //     }
-        //   );
-
         // Upload it via the file uploader service
-        const formData = new FormData();
-        formData.append('image', file);
-
-        this.fileUploadService.upload(formData).subscribe(
-          (resp) => {
-            this.fileUploadEvent.emit(resp);
-          }
-        );
-
-        // this.uploadSub = this.fileUploadService.upload(formData, this.reset()).subscribe(
-        //   (subEvent) => {
-        //     if (subEvent.type === HttpEventType.UploadProgress) {
-        //       this.uploadProgress = Math.round(100 * (subEvent.loaded / subEvent.total!)); // TODO check Content-Length header??
-        //     }
-        //  });
-
+        this.formData.append('images', file);
        }
     }
+
+    this.fileUploadService.upload(this.formData).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.uploading = false;
+        this.fileUploadEvent.emit(resp);
+      }
+    );
   }
 
-  cancelUpload(): void {
-    this.uploadSub.unsubscribe();
-    this.reset();
+  removeFile(fileName: string): void {
+    // this.formData.delete('images', fileName);
   }
-
-  reset(): void {
-    this.uploadProgress = 0;
-    this.uploadSub = new Subscription();
-  }
-
-  // getBase64(file: File): Promise<string> {
-  //   return new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => {
-  //       let encoded = reader.result!.toString().replace(/^data:(.*,)?/, '');
-  //       if ((encoded.length % 4) > 0) {
-  //         encoded += '='.repeat(4 - (encoded.length % 4));
-  //       }
-  //       resolve(encoded);
-  //     };
-  //     reader.onerror = error => reject(error);
-  //   });
-  // }
 
 }

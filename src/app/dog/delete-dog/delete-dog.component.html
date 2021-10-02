@@ -1,0 +1,10 @@
+<div class="delete-litter" @fadeIn>
+    <h3>Are you sure you want to delete {{ data.dogName }}?</h3>
+    <div mat-dialog-actions class="justify-content-end">
+        <button mat-stroked-button (click)="onNoClick()">No</button>
+        <button mat-flat-button color="warn" (click)="onYesClick()">Yes</button>
+    </div>
+    <button class="close-dialog" mat-icon-button aria-label="close dialog" mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+</div>

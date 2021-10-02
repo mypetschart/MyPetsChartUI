@@ -16,7 +16,7 @@ export class CalendarComponent {
     {
       title: 'Editable event',
       // color: colors.yellow,
-      start: new Date(),
+      start: new Date('2021-10-031'),
       actions: [
         {
           label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -29,7 +29,7 @@ export class CalendarComponent {
     {
       title: 'Deletable event',
       // color: colors.blue,
-      start: new Date(),
+      start: new Date('2021-10-031'),
       actions: [
         {
           label: '<i class="fas fa-fw fa-trash-alt"></i>',
@@ -43,7 +43,7 @@ export class CalendarComponent {
     {
       title: 'Non editable and deletable event',
       // color: colors.red,
-      start: new Date(),
+      start: new Date('2021-10-031'),
     },
   ];
 }

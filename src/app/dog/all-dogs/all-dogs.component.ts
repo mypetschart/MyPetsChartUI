@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { fadeIn } from 'src/app/transition-animations';
 import { Dog } from 'src/app/_models/interfaces';
 import { DogService } from 'src/app/_services/dog.service';
+import { LitterService } from 'src/app/_services/litter.service';
 import { AddDogComponent } from '../add-dog/add-dog.component';
 
 @Component({
@@ -23,17 +24,20 @@ export class AllDogsComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private dogService: DogService
-    ) { }
+    private dogService: DogService,
+    private litterService: LitterService
+    ) {
+      this.dogs$ = dogService.entities$;
+    }
 
   ngOnInit(): void {
+    this.litterService.getAll();
     this.dogs$ = this.dogService.getAll();
     this.loadingDogs$ = this.dogService.loading$;
 
     this.dogs$.subscribe(
       (dogs) => {
         dogs.forEach((dog) => {
-          console.log(dog);
           switch (dog.type) {
             case 'puppy':
               this.puppies.push(dog);

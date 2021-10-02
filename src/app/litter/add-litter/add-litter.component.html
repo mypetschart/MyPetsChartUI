@@ -74,8 +74,7 @@
             </mat-form-field>
             <div class="mb-2">
                 <label>Photos</label><br />
-                <button mat-raised-button color="primary" (click)="uploadFile.click()"><fa-icon [icon]="faUpload" class="me-2"></fa-icon> Choose File</button>
-                <input formControlName="photos" #uploadFile (change)="uploadPhotos($event)" type='file' style="display:none" />
+                <app-file-upload (fileUploadEvent)="setPhotos($event)"></app-file-upload>
             </div>
             <div>
                 <button mat-stroked-button color="basic" mat-dialog-close>Cancel</button>

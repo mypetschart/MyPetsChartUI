@@ -96,6 +96,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarHeaderComponent } from './calendar/calendar-header/calendar-header.component';
+import { DeleteDogComponent } from './dog/delete-dog/delete-dog.component';
 
 
 @NgModule({
@@ -143,7 +144,8 @@ import { CalendarHeaderComponent } from './calendar/calendar-header/calendar-hea
     ChartComponent,
     FileUploadComponent,
     CalendarComponent,
-    CalendarHeaderComponent
+    CalendarHeaderComponent,
+    DeleteDogComponent
   ],
   imports: [
     BrowserModule,

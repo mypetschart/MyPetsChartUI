@@ -12,6 +12,10 @@ import { DogBuilder } from '../_models/builders/dog.builder';
 import { multi } from './data';
 import { TaskService } from '../_services/task.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { FileUploadService } from '../_services/file-upload.service';
+import { DeleteDogComponent } from './delete-dog/delete-dog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -23,12 +27,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class DogComponent implements OnInit, OnDestroy {
   dogId = '';
   dogType = '';
+  dogName = '';
 
   dog$: Observable<Dog> = new Observable<Dog>();
   dam: Dam | undefined;
   sire: Sire | undefined;
   puppy: Puppy | undefined;
   tasks$: Observable<Task[]> = new Observable<Task[]>();
+  litter$: Observable<Litter> = new Observable<Litter>();
 
   // CHART
   multi = multi;
@@ -36,7 +42,7 @@ export class DogComponent implements OnInit, OnDestroy {
   // Dam charts
   temps: Task[] = [];
 
-  imagePath: SafeResourceUrl = '';
+  imagePath = '';
 
   navigationSubscription;
 
@@ -45,7 +51,10 @@ export class DogComponent implements OnInit, OnDestroy {
     private router: Router,
     private dogService: DogService,
     private taskService: TaskService,
-    private _sanitizer: DomSanitizer,
+    private fileService: FileUploadService,
+    public deleteDialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private litterService: LitterService
   ) {
     this.route.params.subscribe(params => {
       this.dogId = params['id'];
@@ -56,10 +65,17 @@ export class DogComponent implements OnInit, OnDestroy {
     this.dog$.subscribe(
       dog => {
         this.dogType = dog.type;
-        const imageBase64 = dog.photos[0];
-        this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + imageBase64);
+        this.dogName = dog.name;
 
-        switch(dog.type){
+        // Download the dog photos fro S3
+        this.fileService.download(dog.photos[0]).subscribe(
+          (fileName) => {
+            this.imagePath = fileName.content.imageUrl;
+            console.log(this.imagePath);
+          }
+        );
+
+        switch (dog.type){
           case 'dam':
             this.loadDam(dog);
             break;
@@ -67,7 +83,7 @@ export class DogComponent implements OnInit, OnDestroy {
             this.sire = new SireBuilder(dog).build();
             break;
           case 'puppy':
-            this.puppy = new PuppyBuilder(dog).build();
+            this.loadPuppy(dog);
             break;
         }
       }
@@ -108,9 +124,40 @@ export class DogComponent implements OnInit, OnDestroy {
     );
   }
 
+  loadPuppy(dog: Dog): void {
+    this.puppy = new PuppyBuilder(dog).build();
+
+    this.litter$ = this.litterService.getByKey(this.puppy.litter);
+
+    const taskQuery = {
+      refId: this.dogId
+    };
+
+    this.tasks$ = this.taskService.getWithQuery(taskQuery);
+  }
+
   ngOnDestroy() {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }
+  }
+
+  deleteDog(): void {
+    const dialogRef = this.deleteDialog.open(DeleteDogComponent, {
+      data: {dogName: this.dogName}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'yes'){
+        this.dogService.delete(this.dogId);
+
+        this.snackBar.open(`${this.dogName} has been deleted.`, 'Ok', {
+          duration: 7000
+        });
+
+        // Redirect back to all dogs page
+        this.router.navigate(['/dogs']);
+      }
+    });
   }
 }

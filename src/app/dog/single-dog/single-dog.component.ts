@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { FileUploadService } from 'src/app/_services/file-upload.service';
 import { Dog } from '../../_models/interfaces';
 
 @Component({
@@ -10,11 +11,10 @@ import { Dog } from '../../_models/interfaces';
 export class SingleDogComponent implements OnInit {
   @Input() dog: Dog | undefined;
 
-  imagePath: SafeResourceUrl = '';
-  hasImage = false;
+  imagePath = '';
   female = false;
 
-  constructor(private _sanitizer: DomSanitizer) { }
+  constructor(private _sanitizer: DomSanitizer, private fileService: FileUploadService) { }
 
   ngOnInit(): void {
     if (this.dog?.type === 'dam'){
@@ -22,10 +22,12 @@ export class SingleDogComponent implements OnInit {
     }
 
     if (this.dog!.photos.length > 0){
-      const imageBase64 = this.dog?.photos[0];
-      this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + imageBase64);
-
-      this.hasImage = true;
+      this.fileService.download(this.dog!.photos[0]).subscribe(
+        (fileName) => {
+          this.imagePath = fileName.content.imageUrl;
+          console.log(this.imagePath);
+        }
+      );
     }
   }
 

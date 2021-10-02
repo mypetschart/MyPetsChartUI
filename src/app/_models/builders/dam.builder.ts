@@ -6,7 +6,7 @@ export class DamBuilder {
     constructor(d: Dog) {
       this._dam = d as Dam;
       // this._dam.heat = {
-      //   predicatedDate: new Date(),
+      //   predictedDate: new Date(),
       //   actualDate: new Date(),
       //   estFutureDate: new Date(),
       //   lengthInDays: 0
@@ -14,12 +14,12 @@ export class DamBuilder {
     }
 
     heat(heat: {
-        predicatedDate: Date;
+      predictedDate: Date;
         actualDate: Date;
         estFutureDate: Date;
         lengthInDays: number
     }): DamBuilder {
-      this._dam.heat.predicatedDate = heat.predicatedDate;
+      this._dam.heat.predictedDate = heat.predictedDate;
       this._dam.heat.actualDate = heat.actualDate;
       this._dam.heat.estFutureDate = heat.estFutureDate;
       this._dam.heat.lengthInDays = heat.lengthInDays;

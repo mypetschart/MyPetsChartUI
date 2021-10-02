@@ -1,4 +1,4 @@
-<mat-card *ngIf="hasImage" class="canine dog has-image" [ngClass]="{'female' : female}">
+<mat-card *ngIf="imagePath !== ''" class="canine dog has-image" [ngClass]="{'female' : female}">
     <div class="row">
         <div class="col-7">
             <mat-card-title>
@@ -17,7 +17,7 @@
         </div>
     </div>
 </mat-card>
-<mat-card *ngIf="!hasImage" class="canine dog">
+<mat-card *ngIf="imagePath === ''" class="canine dog">
     <mat-card-title>
         <a routerLink="/dogs/{{ dog?.id }}">{{ dog?.name | titlecase }}</a>
         <small> - {{ dog?.breed | titlecase }}</small>

@@ -17,16 +17,6 @@ export class UserEffects {
     // .businessName(this.token.businessName)
     // .build();
 
-    // loadUser$ = createEffect(() => this.actions$.pipe(
-    //     ofType(loadUser),
-    //     exhaustMap(() => this.userService.get('1').pipe(
-    //             map(user => loadUser(this.user)),
-    //             catchError(() => EMPTY)
-    //             )
-    //         )
-    //     )
-    // );
-
   loadUser$ = createEffect(() => this.actions$.pipe(
     ofType(getUserLoading),
     exhaustMap(() => this.userService.get('1').pipe(

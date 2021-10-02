@@ -204,8 +204,18 @@ button.close-dialog{
   font-style:italic;
 }
 
+h2 > small{
+  font-size:12px;
+  color:rgba(0,0,0,0.75);
+  font-style: italic;
+}
+
 .mat-card-subtitle a{
   color:#0000008a;
+}
+
+.mat-mini-fab{
+  margin-top:-12px !important;
 }
 
 
@@ -224,4 +234,24 @@ button.close-dialog{
 
 .canine.female{
   border:1px solid #FF69B4;
+}
+
+img{
+  width:100%;
+}
+
+.canine img{
+  width:100%;
+  border-radius:4px;
+  border:1px solid rba(0,0,0,0.4);
+}
+
+/*
+* Angular Calendar styles
+*/
+.cal-month-view,
+.cal-week-view,
+.cal-day-view{
+  border-radius:4px;
+  border:1px solid mat.get-color-from-palette($my-palette, 600);
 }

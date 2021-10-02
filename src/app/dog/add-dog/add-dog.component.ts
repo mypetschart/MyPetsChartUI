@@ -13,7 +13,7 @@ import { PuppyBuilder } from 'src/app/_models/builders/puppy.builder';
 import { DamBuilder } from 'src/app/_models/builders/dam.builder';
 import { SireBuilder } from 'src/app/_models/builders/sire.builder';
 import { LitterService } from 'src/app/_services/litter.service';
-import { FileUploadService, Image } from 'src/app/_services/file-upload.service';
+import { FileUploadService, PostResponseImage } from 'src/app/_services/file-upload.service';
 import { HttpEventType } from '@angular/common/http';
 
 
@@ -56,7 +56,7 @@ export class AddDogComponent implements OnInit {
   litter = new FormControl('');
 
   // dam fields
-  lastHeatDate = new FormControl('', Validators.maxLength(12));
+  lastHeatDate = new FormControl('');
   lastHeatLength = new FormControl('');
 
   // sire fields
@@ -87,39 +87,44 @@ export class AddDogComponent implements OnInit {
   /*
    * End form configuration
    */
-
-  // Date chip picker for sireAppointments
-  public CLOSE_ON_SELECTED = false;
-  public init = new Date();
-  public resetModel = new Date(0);
-  public dates = [
-    new Date()
-  ];
-  @ViewChild('picker', { static: true }) _picker: MatDatepicker<Date> | undefined;
-
   constructor(
     public dialogRef: MatDialogRef<AddDogComponent>,
     private dogService: DogService,
     private litterService: LitterService,
     private fileUploadService: FileUploadService,
-    @Inject(MAT_DIALOG_DATA) public data: {type: string}
+    @Inject(MAT_DIALOG_DATA) public data: {type: string, litterId: number}
   ) {
     this.dogs$ = dogService.entities$;
     this.loadingDogs$ = dogService.loading$;
 
     this.litters$ = litterService.entities$;
 
-    this.type.setValue(data.type);
+    if (data.type !== '') {
+      this.type.setValue(data.type);
+    }
+
+    if (data.litterId !== 0) {
+      this.litter.setValue(data.litterId);
+      this.setLitterFields();
+    }
   }
 
   ngOnInit(): void {
   }
 
-  setPhotos(image: Image): void {
-    this.photos.setValue(image.content.imageUrl);
+  setPhotos(image: PostResponseImage): void {
+    const imageFilenames = [];
+    console.log(image.content[0].fileName);
+
+    for (let i = 0; i < image?.content.length; i++) {
+      imageFilenames.push(image.content[i].fileName);
+    }
+
+    this.photos.setValue(imageFilenames);
   }
 
   onSubmit(): void{
+    console.log("submitting form");
     const dog: Dog = new DogBuilder()
       .type(this.type.value)
       .name(this.name.value)
@@ -137,12 +142,12 @@ export class AddDogComponent implements OnInit {
         const date = new Date(this.lastHeatDate.value);
 
         const dam: Dam = new DamBuilder(dog)
-          .heat({
-            predicatedDate: this.lastHeatDate.value,
-            actualDate: new Date(),
-            estFutureDate: new Date(date.setMonth(date.getMonth() + 6)),
-            lengthInDays: this.lastHeatLength.value
-          })
+          // .heat({
+          //   predictedDate: date,
+          //   actualDate: new Date(),
+          //   estFutureDate: new Date(date.setMonth(date.getMonth() + 6)),
+          //   lengthInDays: this.lastHeatLength.value
+          // })
           .build();
         this.dogService.add(dam);
         break;
@@ -178,45 +183,5 @@ export class AddDogComponent implements OnInit {
         this.generation.disable();
       }
     );
-  }
-
-  /*
-  * Date picker with chips
-  */
-  public dateClass = (date: Date) => {
-    if (this._findDate(date) !== -1) {
-      return [ 'selected' ];
-    }
-    return [ ];
-  }
-
-  public dateChanged(event: MatDatepickerInputEvent<Date>): void {
-    if (event.value) {
-      const date = event.value;
-      const index = this._findDate(date);
-      if (index === -1) {
-        this.dates.push(date);
-      } else {
-        this.dates.splice(index, 1);
-      }
-      this.resetModel = new Date(0);
-      if (!this.CLOSE_ON_SELECTED) {
-        // const closeFn = this._picker?.close;
-        // this._picker.close = () => { };
-        // this._picker['_popupComponentRef'].instance._calendar.monthView._createWeekCells();
-        setTimeout(() => {
-          this._picker?.close;
-        });
-      }
-    }
-  }
-
-  public remove(date: Date): void {
-    const index = this._findDate(date);
-    this.dates.splice(index, 1);
-  }
-
-  private _findDate(date: Date): number {
-    return this.dates.map((m) => +m).indexOf(+date);
   }
 }

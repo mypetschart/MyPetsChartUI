@@ -9,6 +9,7 @@ import { LitterBuilder } from 'src/app/_models/builders/litter.builder';
 import { LitterService } from 'src/app/_services/litter.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { PostResponseImage } from 'src/app/_services/file-upload.service';
 
 
 @Component({
@@ -109,8 +110,20 @@ export class AddLitterComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  uploadPhotos(file: any): void {
-    console.log(file);
+  // setPhotos(image: PostResponseImage): void {
+  //   console.log(image.content[0].fileName);
+  //   this.photos.setValue(image.content[0].fileName);
+  // }
+
+  setPhotos(image: PostResponseImage): void {
+    const imageFilenames = [];
+    console.log(image.content[0].fileName);
+
+    for (let i = 0; i < image?.content.length; i++) {
+      imageFilenames.push(image.content[i].fileName);
+    }
+
+    this.photos.setValue(imageFilenames);
   }
 
   // Automatically set the litter name to be 'DamName and SireName' if the litter name is pristine
