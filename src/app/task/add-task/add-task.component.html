@@ -1,0 +1,74 @@
+<mat-dialog-content class="large-dialog">
+    <div class="add-task" @fadeIn>
+        <div class="add-task-form">
+            <h1 class="headline">Add a task</h1>
+            <p>Enter the details of the task you want to add</p>
+            <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <mat-select [formControl]="dog" placeholder="Dog" #singleSelect>
+                    <mat-option>
+                    <ngx-mat-select-search [formControl]="dogFilterCtrl" placeholderLabel="Search for dog..." noEntriesFoundLabel="'no matching dogs'"></ngx-mat-select-search>
+                    </mat-option>
+                    <span *ngFor="let dog of filteredDogs | async">
+                    <mat-option [value]="dog">
+                        {{ dog.name | titlecase }} - {{ dog.type | titlecase }}, {{ dog.breed | titlecase }}
+                    </mat-option>
+                </span>
+                </mat-select>
+                <mat-error matErrorMessages fieldLabel='Dog'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Task type</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let typeValue of taskTypes" [value]="typeValue[1]">
+                    {{ typeValue[0] | titlecase }}
+                    </mat-option>
+                </mat-select>
+                <mat-error matErrorMessages fieldLabel='Breed'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+                <mat-error matErrorMessages fieldLabel='Title'></mat-error>
+            </mat-form-field>
+            <div formGroupName="recur">
+                <mat-form-field>
+                    <mat-label>Start date (defaults to today)</mat-label>
+                    <input matInput (focus)="startDate.open()" formControlName="startDate" [matDatepicker]="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                    <mat-datepicker #startDate></mat-datepicker>
+                    <mat-error matErrorMessages fieldLabel='Start date'></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Frequency</mat-label>
+                    <mat-select formControlName="frequency">
+                        <mat-option *ngFor="let freq of frequencyOptions" [value]="freq">
+                        {{ freq | titlecase }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error matErrorMessages fieldLabel='Frequency'></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Next date (defaults based off frequency)</mat-label>
+                    <input (focus)="nextDate.open()" matInput formControlName="nextDate" [matDatepicker]="nextDate">
+                    <mat-datepicker-toggle matSuffix [for]="nextDate"></mat-datepicker-toggle>
+                    <mat-datepicker #nextDate></mat-datepicker>
+                    <mat-error matErrorMessages fieldLabel='Start date'></mat-error>
+                </mat-form-field>
+            </div>
+            <mat-form-field appearance="fill">
+                <mat-label>Notes</mat-label>
+                <textarea matInput formControlName="notes" rows="4" placeholder="Ex. This temp reading was unusually low..."></textarea>
+                <mat-error matErrorMessages fieldLabel='Notes'></mat-error>
+            </mat-form-field>
+            <div>
+                <button mat-stroked-button color="basic" mat-dialog-close>Cancel</button>
+                <button mat-flat-button color="primary" class="float-end" type="submit" [disabled]="!addTaskForm.valid"><fa-icon [icon]="faPlus" class="me-2"></fa-icon> Add New Task</button>
+            </div>
+            </form>
+        </div>
+        <button class="close-dialog" mat-icon-button aria-label="close dialog" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</mat-dialog-content>

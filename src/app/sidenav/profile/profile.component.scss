@@ -1,0 +1,13 @@
+@use '~@angular/material' as mat;
+
+/*
+ * Color Palettes
+ */
+@import '../../../palette.scss';
+
+img.profile-pic{
+    border: 2px solid mat.get-color-from-palette($my-palette, 700);
+    box-shadow: 0 2px 1px -1px #0003, 0 1px 1px 0 #00000024, 0 1px 3px 0 #0000001f;
+    max-width:160px;
+    margin:12px;
+}

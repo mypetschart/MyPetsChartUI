@@ -1,0 +1,10 @@
+@use '~@angular/material' as mat;
+
+$my-palette: mat.$indigo-palette;
+
+footer{
+    margin-top:10vh;
+    padding:5vh 0;
+    background-color:mat.get-color-from-palette($my-palette, 'darker');
+    background:#eee;
+}

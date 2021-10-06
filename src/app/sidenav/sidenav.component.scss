@@ -1,0 +1,52 @@
+@use '~@angular/material' as mat;
+
+/*
+ * Color Palettes
+ */
+@import '../../palette.scss';
+
+app-sidenav{
+    padding:0;
+}
+
+button.sidenav-expand{
+    position:fixed;
+    top:0;
+    left:12px;
+    box-shadow:none !important;
+    z-index:4;
+}
+
+.mat-drawer-container{
+    background:none;
+    padding:0;
+}
+
+.mat-drawer{
+    margin-top:6vh;
+    background-color: mat.get-color-from-palette($my-palette, 400);
+    min-width:13%;
+    color:mat.get-color-from-palette($my-palette, 50);
+}
+
+a{
+    display:block;
+    color:mat.get-color-from-palette($my-palette, 50);
+    text-decoration:none;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    padding: 1.2rem 16px 1rem 16px;
+}
+
+a .mat-icon{
+    margin-top:-4px;
+    margin-right:8px;
+    height:28px;
+    width:28px;
+    font-size:28px;
+    color:black;
+}
+
+a:hover,
+a.is-active{
+    background-color:mat.get-color-from-palette($my-palette, 500);
+}

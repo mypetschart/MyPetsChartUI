@@ -1,0 +1,7 @@
+<div class="file-upload">
+    <span *ngFor="let fileName of fileNames" class="me-2">{{ fileName || "No photos uploaded yet..." }}</span>
+    <!-- <mat-icon (click)="removeFile(fileName)">delete</mat-icon> -->
+    <button mat-raised-button color="primary" (click)="$event.preventDefault(); fileUpload.click()"><fa-icon [icon]="faUpload" class="me-2"></fa-icon> Choose File</button>
+    <input #fileUpload (change)="onFileSelected($event)" type='file' style="display:none" accept="image/jpeg, image/jpg, image/heic" multiple />
+</div>
+<mat-spinner diameter="50" *ngIf="uploading"></mat-spinner>

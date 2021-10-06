@@ -1,0 +1,29 @@
+@use '~@angular/material' as mat;
+
+/*
+ * Color Palettes
+ */
+@import '../../../palette.scss';
+
+mat-card-title{
+    font-weight:500;
+    color:mat.get-color-from-palette($my-palette, 700);
+}
+
+.notification-drawer{
+    position:absolute;
+    right:20px;
+    min-width:40vw;
+    max-width:500px;
+    margin-left:20px;
+}
+
+.notification-title{
+    font-size:1.3em;
+    margin:12px 0px;
+    text-decoration: underline;
+}
+
+small{
+    font-style:italic;
+}

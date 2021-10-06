@@ -1,0 +1,94 @@
+<div class="dashboard" @fadeIn>
+    <h1 class="mt-5 mat-display-2">Dashboard <mat-icon svgIcon="paw" class="mat-icon-large" aria-hidden="false" aria-label="Cute paw print icon"></mat-icon></h1>
+    <div class="dashboard-widgets">
+        <app-widgets></app-widgets>
+    </div>
+    <div class="row gx-5"><!-- dashboard section for litters -->
+        <div class="col-lg-6 col-12 dashboard-litters">
+            <h2 class="headline-2">
+                Current Litters 
+                <mat-icon svgIcon="dog-house" class="mat-icon-medium" aria-hidden="false" aria-label="Cute dog house icon"></mat-icon>
+                <button mat-mini-fab color="primary" class="float-end" aria-label="Add litter icon" (click)="addLitterDialog()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </h2>
+            <mat-spinner diameter="50" *ngIf="(loadingLitters$ | async) === true"></mat-spinner>
+            <p *ngIf="(litters$ | async)?.length === 0" class="mb-5">No Litters added yet... <a (click)="addLitterDialog()">add one</a></p>
+            <app-single-litter *ngFor="let litter of (litters$ | async) | slice:0:4; let i=index" [litter]="litter"></app-single-litter>
+        </div>
+        <!-- <div class="col-lg-1 col-3">
+            <button mat-fab color="primary" aria-label="Add litter icon" (click)="addLitterDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div> -->
+        <div class="col-lg-6 col-12 dashboard-tasks">
+            <h2 class="headline-2">Tasks 
+                <mat-icon svgIcon="task" class="mat-icon-medium" aria-hidden="false" aria-label="Cute list icon"></mat-icon>
+                <button mat-mini-fab color="primary" class="float-end" aria-label="Add task icon" (click)="addTaskDialog()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </h2>
+            <app-calendar></app-calendar>
+            <!-- <mat-spinner diameter="50" *ngIf="(loadingTasks$ | async) === true"></mat-spinner>
+            <p *ngIf="(tasks$ | async)?.length === 0" class="mb-5">No Tasks added yet... <a (click)="addTaskDialog()">add one</a></p>
+            <span *ngFor="let task of (tasks$ | async) | slice:0:3; let i=index">
+                <app-single-task [task]="task"></app-single-task>
+            </span> -->
+        </div>
+    </div>
+    <div class="row gx-5 mt-5 dashboard-dogs"><!-- dashboard section for dogs -->
+        <!-- dams -->
+        <div class="col-lg-6 col-12">
+            <h2 class="headline-2">
+                Dams
+                <button mat-mini-fab class="float-end" color="primary" aria-label="Add dog icon" (click)="addDogDialog('dam')">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </h2>
+            <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+            <p *ngIf="noDams" class="mb-5">No Dams added yet... <a (click)="addDogDialog('dam')">add one</a></p>
+            <span *ngFor="let dog of (dogs$ | async)">
+                <app-single-dog *ngIf="(dog.type == 'dam')" [dog]="dog"></app-single-dog>
+            </span>
+        </div>
+        <!-- sires -->
+        <div class="col-lg-6 col-12">
+            <h2 class="headline-2">
+                Sires
+                <button mat-mini-fab color="primary" class="float-end" aria-label="Add dog icon" (click)="addDogDialog('sire')">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </h2>
+            <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+            <p *ngIf="noSires" class="mb-5">No Sires added yet... <a (click)="addDogDialog('sire')">add one</a></p>
+            <span *ngFor="let dog of (dogs$ | async)">
+                <app-single-dog *ngIf="(dog.type == 'sire')" [dog]="dog"></app-single-dog>
+            </span>
+        </div>
+        <!-- <div class="col-lg-6 col-9 dashboard-dogs">
+            <h2 class="headline-2">Dams</h2>
+            <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+            <p *ngIf="noDams" class="mb-5">No Dams added yet... <a (click)="addDogDialog()">add one</a></p>
+            <span *ngFor="let dog of (dogs$ | async)">
+                <app-single-dog *ngIf="(dog.type == 'dam')" [dog]="dog"></app-single-dog>
+            </span>
+            <h2 class="headline-2">Sires</h2>
+            <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+            <p *ngIf="noSires" class="mb-5">No Sires added yet... <a (click)="addDogDialog()">add one</a></p>
+            <span *ngFor="let dog of (dogs$ | async)">
+                <app-single-dog *ngIf="(dog.type == 'sire')" [dog]="dog"></app-single-dog>
+            </span>
+            <h2 class="headline-2">Puppies</h2>
+            <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+            <p *ngIf="noPuppies" class="mb-5">No Puppies added yet... <a (click)="addDogDialog()">add one</a></p>
+            <span *ngFor="let dog of (dogs$ | async)">
+                <app-single-dog *ngIf="(dog.type == 'puppy')" [dog]="dog"></app-single-dog>
+            </span>
+        </div>
+        <div class="col-lg-1 col-3">
+            <button mat-fab color="primary" aria-label="Add dog icon" (click)="addDogDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div> -->
+    </div>
+</div>

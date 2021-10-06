@@ -1,0 +1,26 @@
+<div class="row gx-5 mb-5">
+    <div class="col-md-3 col-sm-6" @fadeIn>
+        <mat-card class="canine">
+            <h2 class="headline-3">Number of litters:</h2>
+            <p class="dashboard-widget-number"><a routerLink="/litters">{{ (litters$ | async)?.length }}</a></p>
+        </mat-card>
+    </div>
+    <div class="col-md-3 col-sm-6" @fadeIn300>
+        <mat-card class="canine">
+            <h2 class="headline-3">Number of puppies:</h2>
+            <p class="dashboard-widget-number"><a routerLink="/dogs/puppies">{{ puppyNum }}</a></p>
+        </mat-card>
+    </div>
+    <div class="col-md-3 col-sm-6" @fadeIn450>
+        <mat-card class="canine">
+            <h2 class="headline-3">Dams in heat:</h2>
+            <p class="dashboard-widget-number"><a routerLink="/dogs/dams">{{ damsInHeat }}</a></p>
+        </mat-card>
+    </div>
+    <div class="col-md-3 col-sm-6" @fadeIn600>
+        <mat-card class="canine">
+            <h2 class="headline-3">New contacts:</h2>
+            <p class="dashboard-widget-number"><a routerLink="/contacts">3</a></p>
+        </mat-card>
+    </div>
+</div>

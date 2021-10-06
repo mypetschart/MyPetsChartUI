@@ -1,0 +1,114 @@
+<mat-dialog-content class="large-dialog">
+    <div class="add-dog" @fadeIn>
+        <div class="add-dog-form">
+            <h1 class="headline">Add a new dog</h1>
+            <p>Enter the details of the new dog you want to add</p>
+            <form [formGroup]="addDogForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <mat-label>Dog Type</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let type of types" [value]="type">
+                    {{ type | titlecase }}
+                    </mat-option>
+                </mat-select>
+                <mat-error matErrorMessages fieldLabel='Dog type'></mat-error>
+            </mat-form-field>
+            <mat-form-field cdkFocusInitial>
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error matErrorMessages fieldLabel='Name'></mat-error>
+            </mat-form-field>
+            <div *ngIf="type.value === 'dam'" class="mb-3">
+                <h3>Dam Fields:</h3>
+                <mat-form-field appearance="fill">
+                    <mat-label>Last heat date</mat-label>
+                    <input (focus)="lastHeatDate.open()" matInput formControlName="lastHeatDate" [matDatepicker]="lastHeatDate">
+                    <mat-datepicker-toggle matSuffix [for]="lastHeatDate"></mat-datepicker-toggle>
+                    <mat-datepicker #lastHeatDate></mat-datepicker>
+                    <mat-error matErrorMessages fieldLabel='Last heat date'></mat-error>
+                    <mat-hint>Just guesstimate if you don't know for sure!</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Last heat length in days</mat-label>
+                    <input matInput type="number" formControlName="lastHeatLength">
+                    <mat-error matErrorMessages fieldLabel='Last heat length'></mat-error>
+                </mat-form-field>
+            </div><!-- /dam fields -->
+            <div *ngIf="type.value === 'puppy'" formGroupName="puppyFields" class="mb-3">
+                <h3>Puppy Fields:</h3>
+                <mat-form-field appearance="fill">
+                    <mat-label>Litter</mat-label>
+                    <mat-select [formControl]="litter" (selectionChange)="setLitterFields()">
+                        <span *ngFor="let litter of (litters$ | async)">
+                            <mat-option [value]="litter.id">
+                                {{ litter.name | titlecase }}
+                            </mat-option>
+                          </span>
+                          <mat-error matErrorMessages fieldLabel='Litter'></mat-error>
+                    </mat-select>
+                    <mat-error matErrorMessages fieldLabel='Dog type'></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Sex</mat-label>
+                    <mat-select formControlName="sex">
+                        <mat-option value="male"><fa-icon [icon]="faMars" class="me-2"></fa-icon>Male</mat-option>
+                        <mat-option value="female"><fa-icon [icon]="faVenus" class="me-2"></fa-icon>Female</mat-option>
+                    </mat-select>
+                    <mat-error matErrorMessages fieldLabel='Sex'></mat-error>
+                </mat-form-field>
+            </div><!-- /puppy fields -->
+            <mat-form-field>
+                <mat-label>Breed</mat-label>
+                <mat-select formControlName="breed">
+                    <mat-option *ngFor="let breedValue of breeds" [value]="breedValue">
+                    {{ breedValue | titlecase }}
+                    </mat-option>
+                </mat-select>
+                <mat-error matErrorMessages fieldLabel='Breed'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Generation</mat-label>
+                <mat-select formControlName="generation">
+                    <mat-option *ngFor="let generationValue of generations" [value]="generationValue">
+                    {{ generationValue | titlecase }}
+                    </mat-option>
+                </mat-select>
+                <mat-error matErrorMessages fieldLabel='Generation'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Date of birth</mat-label>
+                <input (focus)="dob.open()" matInput formControlName="dob" [matDatepicker]="dob">
+                <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                <mat-datepicker #dob></mat-datepicker>
+                <mat-error matErrorMessages fieldLabel='Date of birth'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Color</mat-label>
+                <input matInput formControlName="color">
+                <mat-error matErrorMessages fieldLabel='Color'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Weight</mat-label>
+                <input matInput formControlName="weight">
+                <mat-error matErrorMessages fieldLabel='Weight'></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Microchip</mat-label>
+                <input matInput formControlName="microchip">
+                <mat-error matErrorMessages fieldLabel='Microchip'></mat-error>
+            </mat-form-field>
+            <div class="mb-2">
+                <label>Photos</label><br />
+                <app-file-upload (fileUploadEvent)="setPhotos($event)"></app-file-upload>
+            </div>
+            <div>
+                <button mat-stroked-button color="basic" mat-dialog-close>Cancel</button>
+                <button mat-flat-button color="primary" class="float-end" type="submit" [disabled]="!addDogForm.valid"><fa-icon [icon]="faPlus" class="me-2"></fa-icon> Add New {{ type.value }}</button>
+            </div>
+            </form>
+        </div>
+        <button class="close-dialog" mat-icon-button aria-label="close dialog" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</mat-dialog-content>

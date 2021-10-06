@@ -1,0 +1,31 @@
+<mat-card *ngIf="imagePath !== ''" class="canine dog has-image" [ngClass]="{'female' : female}">
+    <div class="row">
+        <div class="col-7">
+            <mat-card-title>
+                <a routerLink="/dogs/{{ dog?.id }}">{{ dog?.name | titlecase }}</a>
+                <small> - {{ dog?.breed | titlecase }}</small>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <p>{{ dog?.type | titlecase }}</p>
+            </mat-card-subtitle>
+            <p>{{ dog?.generation }}</p>
+            <p>{{ dog?.dob }}</p>
+            <p>{{ dog?.color }}</p>
+        </div>
+        <div class="col-5">
+            <img class="dog-image" [src]="imagePath" *ngIf="imagePath !== ''">
+        </div>
+    </div>
+</mat-card>
+<mat-card *ngIf="imagePath === ''" class="canine dog">
+    <mat-card-title>
+        <a routerLink="/dogs/{{ dog?.id }}">{{ dog?.name | titlecase }}</a>
+        <small> - {{ dog?.breed | titlecase }}</small>
+    </mat-card-title>
+    <mat-card-subtitle>
+        <p>{{ dog?.type | titlecase }}</p>
+    </mat-card-subtitle>
+    <p>{{ dog?.generation }}</p>
+    <p>{{ dog?.dob }}</p>
+    <p>{{ dog?.color }}</p>
+</mat-card>

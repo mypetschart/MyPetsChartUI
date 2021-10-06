@@ -1,1 +1,257 @@
-/* You can add global styles to this file, and also import other style files */
+@use '~@angular/material' as mat;
+
+// Calendar module
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+/*
+ * Color Palettes
+ */
+@import 'palette.scss';
+
+$my-primary: mat.define-palette($my-palette, 600);
+$my-accent: mat.define-palette($my-accent-palette, 50);
+
+// Bootstrap variables
+$primary: map-get($my-palette, 600);
+$secondary: map-get($my-accent-palette, 600);
+
+@import '~bootstrap/scss/bootstrap';
+
+/*
+ * Typography
+ */
+$my-custom-typography: mat.define-typography-config(
+  $display-4: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em, $font-family: "Poppins"),
+  $display-3: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em, $font-family: "Poppins"),
+  $display-2: mat.define-typography-level(42px, 48px, 700, $letter-spacing: -0.005em, $font-family: "Poppins"),
+  $display-1: mat.define-typography-level(34px, 40px, 500, $font-family: "Poppins"),
+  $headline:  mat.define-typography-level(24px, 32px, 400, $font-family: "Poppins"),
+  $title:  mat.define-typography-level(20px, 28px, 400, $font-family: "Poppins"),
+  $subheading-2:  mat.define-typography-level(16px, 22px, 400, $font-family: "Poppins"),
+  $subheading-1:  mat.define-typography-level(10px, 12px, 400, $font-family: "Poppins"),
+  $body-1:  mat.define-typography-level(16px, 24px, 400, $font-family: "Poppins"),
+  $body-2:  mat.define-typography-level(12px, 16px, 400, $font-family: "Poppins"),
+  $caption:  mat.define-typography-level(14px, 18px, 300, $font-family: "Poppins"),
+  $button:  mat.define-typography-level(14px, 1, 300, $font-family: "Poppins"),
+  $input:  mat.define-typography-level(14px, 1, 300, $font-family: "Poppins"),
+);
+
+// Define theme
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ ),
+ typography: $my-custom-typography,
+));
+
+@include mat.all-component-themes($my-theme);
+@include mat.core($my-custom-typography);
+
+.mat-button-toggle,
+.mat-stepper-vertical,
+.mat-stepper-horizontal,
+.mat-card{
+  font-family: "Poppins"
+}
+
+h2.headline-2{
+  font-size:1.65rem;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
+}
+
+/*
+ * General CSS
+ */
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: mat.get-color-from-palette($my-palette, 50); // fallback non-gradient
+  background: linear-gradient(84deg, 
+    mat.get-color-from-palette($my-palette, 100) 41%,
+    mat.get-color-from-palette($my-palette, 50) 75%,
+    mat.get-color-from-palette($my-accent-palette, 50) 100%);
+    background-attachment: fixed;
+}
+
+a{
+  cursor: pointer;
+}
+
+div.main{
+  // padding-top:3vh;
+  padding-bottom:3vh;
+}
+
+ // Scroll bar for panels
+.panel{
+  overflow-y: auto;
+  max-height:675px;
+  margin-bottom:45px;
+  padding-right:12px;
+  border-bottom:12px solid rgba(0,0,0,0.1);
+}
+
+.panel::-webkit-scrollbar{
+  width: 6px;
+  border-radius: 3px;
+  overflow-y: scroll;
+  background: rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+}
+
+.panel::-webkit-scrollbar-thumb {
+  background: mat.get-color-from-palette($my-palette, 400);
+  border-radius: 3px;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+}
+
+.mat-drawer-inner-container::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 3px;
+  overflow-y: scroll;
+  background: rgba(255,255,255,0.25);
+  box-shadow: inset 0 0 4px rgba(255,255,255,0.2);
+}
+
+.mat-drawer-inner-container::-webkit-scrollbar-thumb {
+  background: mat.get-color-from-palette($my-palette, 600);
+  border-radius: 3px;
+  box-shadow: inset 0 0 4px rgba(255,255,255,0.2);
+}
+
+.mat-drawer-inner-container{
+  height:auto;
+  padding-top:3.1rem;
+}
+
+.mat-drawer-content{
+  overflow:initial !important;
+}
+
+
+/*
+ * Material Form Styles
+ */
+
+// material form value text font weight increase
+.mat-form-field-appearance-legacy .mat-form-field-infix{
+  font-weight:400;
+}
+
+.mat-form-field{
+    display:block !important;
+}
+
+span.mat-button-toggle-focus-overlay{
+  display:none;
+}
+
+.mat-form-field-wrapper{
+  margin-bottom:1em;
+}
+
+.mat-icon{
+  vertical-align: middle;
+}
+
+.mat-icon-large{
+  transform: scale(2);
+  margin-left: 0.5em;
+  margin-top: -1.6em;
+}
+
+.mat-icon-medium{
+  transform: scale(1.5);
+  margin-left: 0.4em;
+  margin-top: -1em;
+}
+
+.mat-vertical-content-container{
+  margin-top:16px;
+}
+
+// Mat error underline
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple, .mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent{
+  height:1px;
+}
+
+.mat-dialog-container .large-dialog{
+  min-width:60vw;
+}
+
+// Dialog background blur
+.cdk-overlay-dark-backdrop{
+  // backdrop-filter: blur(3px); // causes mad performance issues
+}
+
+// Close button on mat-dialog
+.mat-dialog-content{
+  position:relative
+}
+
+button.close-dialog{
+  position:absolute;
+  right:10px;
+  top:0;
+  color:rgba(0,0,0,0.8);
+}
+
+.mat-card-title small{
+  font-size:13px;
+  color:#0000008a;
+  font-style:italic;
+}
+
+h2 > small{
+  font-size:12px;
+  color:rgba(0,0,0,0.75);
+  font-style: italic;
+}
+
+.mat-card-subtitle a{
+  color:#0000008a;
+}
+
+.mat-mini-fab{
+  margin-top:-12px !important;
+}
+
+
+/*
+ * Canine Styles
+ */
+.canine{
+  box-shadow: none !important;
+  border:1px solid mat.get-color-from-palette($my-palette, 600);
+  margin-bottom:20px;
+}
+
+.canine:hover{
+  box-shadow: 0px 2px 4px 1px rgb(0 0 0 / 10%) !important;
+}
+
+.canine.female{
+  border:1px solid #FF69B4;
+}
+
+img{
+  width:100%;
+}
+
+.canine img{
+  width:100%;
+  border-radius:4px;
+  border:1px solid rba(0,0,0,0.4);
+}
+
+/*
+* Angular Calendar styles
+*/
+.cal-month-view,
+.cal-week-view,
+.cal-day-view{
+  border-radius:4px;
+  border:1px solid mat.get-color-from-palette($my-palette, 600);
+}

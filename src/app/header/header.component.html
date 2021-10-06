@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <button mat-fab class="sidenav-expand mat-elevation-z0" color="primary" aria-label="Expand side navigation icon" (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a class="navbar-brand d-sm-none d-md-block" routerLink="/dashboard">My Pets Chart</a>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active d-none d-lg-block" aria-current="page" href="https://www.tlcpetfood.com/default.asp?" target="_blank" style="color:rgba(255, 255, 255, 0.78);">TLC Pet Food</a>
+      </li>
+    </ul> 
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+    </div>
+    <app-search></app-search>
+    <span class="d-flex">
+      <app-notifications></app-notifications>
+    </span>
+  </div>
+</nav>
+<div class="nav-spacer"></div>

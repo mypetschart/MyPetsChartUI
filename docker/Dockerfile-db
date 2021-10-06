@@ -1,0 +1,17 @@
+FROM public.ecr.aws/debian/debian:latest
+
+ENV tmp_dir /tmp
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends apt-utils \
+  && apt-get install -y curl \
+  && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+  && apt-get install -y -q nodejs
+
+RUN npm install -g json-server
+
+ADD docker/db.json /tmp/
+
+ENTRYPOINT ["json-server", "--port", "5000", "--host", "0.0.0.0"]
+
+CMD ["/tmp/db.json"]

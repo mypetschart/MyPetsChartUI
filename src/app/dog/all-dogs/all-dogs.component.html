@@ -1,0 +1,42 @@
+<div class="all-dogs mt-5" @fadeIn>
+    <h1 class="mat-display-2 mt-5">All dogs <mat-icon svgIcon="dog" class="mat-icon-large" aria-hidden="false" aria-label="Cute drawing of a dog"></mat-icon></h1>
+    <h2 class="headline-2 mt-4">
+        Puppies
+        <button mat-mini-fab class="float-end" color="primary" aria-label="Add puppy icon" (click)="addDogDialog('puppy')">
+            <mat-icon>add</mat-icon>
+        </button>
+    </h2>
+    <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+    <p *ngIf="(dogs$ | async)?.length === 0" class="mb-5">No Puppies added yet... <a>add one</a></p>
+    <div class="row">
+        <div class="col-md-6" *ngFor="let puppy of puppies">
+            <app-single-dog [dog]="puppy"></app-single-dog>
+        </div>
+    </div>
+    <h2 class="headline-2 mt-4">
+        Dams
+        <button mat-mini-fab class="float-end" color="primary" aria-label="Add dam icon" (click)="addDogDialog('dam')">
+            <mat-icon>add</mat-icon>
+        </button>
+    </h2>
+    <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+    <p *ngIf="(dogs$ | async)?.length === 0" class="mb-5">No Dams added yet... <a>add one</a></p>
+    <div class="row">
+        <div class="col-md-6" *ngFor="let dam of dams">
+            <app-single-dog [dog]="dam"></app-single-dog>
+        </div>
+    </div>
+    <h2 class="headline-2 mt-4">
+        Sires
+        <button mat-mini-fab class="float-end" color="primary" aria-label="Add sire icon" (click)="addDogDialog('sire')">
+            <mat-icon>add</mat-icon>
+        </button>
+    </h2>
+    <mat-spinner *ngIf="(dogs$ | async)?.length === 0 && (loadingDogs$ | async) === true"></mat-spinner>
+    <p *ngIf="(dogs$ | async)?.length === 0" class="mb-5">No Sires added yet... <a>add one</a></p>
+    <div class="row">
+        <div class="col-md-6" *ngFor="let sire of sires">
+            <app-single-dog [dog]="sire"></app-single-dog>
+        </div>
+    </div>
+</div>

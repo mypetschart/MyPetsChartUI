@@ -1,0 +1,16 @@
+<div class="task">
+    <span class="task-decorator task-reminder" [style.background-color]="taskReminderColor" [style.border-color]="taskReminderColor"></span>
+    <mat-card class="canine">
+        <mat-card-title>
+            <a routerLink="/tasks/{{ task?.id }}">{{ task?.name | titlecase }}</a>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <!-- <p>{{ task?.type | titlecase }}</p> -->
+        </mat-card-subtitle>
+        <p>Created: {{ task?.recur?.dateCreated }}</p>
+        <p>Next date: {{ task?.recur?.nextDate }}</p>
+        <p>Regularity: {{ task?.recur?.regularity }}</p>
+        <p>Notes: {{ task?.notes }}</p>
+    </mat-card>
+    <!-- <span class="task-decorator task-type" [style.background-color]="taskTypeColor" [style.border-color]="taskTypeColor"></span> -->
+</div>

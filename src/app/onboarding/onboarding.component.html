@@ -1,0 +1,20 @@
+<div class="onboarding" @fadeIn>
+    <h1 class="text-center mat-display-2">Are you a...</h1>
+    <form [formGroup]="onboardingForm" (ngSubmit)="onSubmit(onboardingForm)">
+        <mat-button-toggle-group name="userType" formControlName="userType" aria-label="Pick Your Account Type" class="onboarding-toggle">
+            <mat-button-toggle value="breeder">
+                <mat-icon svgIcon="breeder" aria-hidden="false" aria-label="Breeder icon"></mat-icon>
+                    Breeder
+                </mat-button-toggle>
+            <mat-button-toggle value="owner" aria-pressed="true">
+                <mat-icon svgIcon="owner" aria-hidden="false" aria-label="Owner icon"></mat-icon>
+                Owner
+            </mat-button-toggle>
+            <mat-button-toggle value="vet">
+                <mat-icon svgIcon="vet" aria-hidden="false" aria-label="Vet icon"></mat-icon>
+                Vet
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+        <button mat-flat-button color="primary" type="submit" class="mt-2 float-end">Next <fa-icon [icon]="faAngleDoubleRight"></fa-icon></button>
+    </form>
+</div>

@@ -1,0 +1,262 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "role": "breeder",
+      "handle": "connorpeters",
+      "fullName": "Connor Peters",
+      "businessName": "Peters' Puppies",
+      "email": "design@mainsailstudio.com",
+      "password": "",
+      "phone": "(585) 478-2678",
+      "street": "542 Merchants Rd",
+      "city": "Rochester",
+      "state": "NY",
+      "zip": "27609",
+      "profilePhoto": "assets/users/connorpeters/profile-pic.jpg"
+    }
+  ],
+  "dog": [
+    {
+      "id": 13,
+      "type": "sire",
+      "name": "gegeg",
+      "breed": "bernedoodle",
+      "generation": "F1bb",
+      "dob": "2016-10-11T04:00:00.000Z",
+      "color": "blue",
+      "weight": "2lb",
+      "microchip": "none",
+      "photos": [
+        ""
+      ]
+    },
+    {
+      "id": 22,
+      "type": "dam",
+      "name": "maggie",
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-10-09T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": [
+        "c1d6ff42-a337-411f-b743-b0559452d84c.jpg"
+      ]
+    },
+    {
+      "id": 23,
+      "type": "puppy",
+      "name": "Rooster",
+      "breed": "bernedoodle",
+      "generation": "F1b",
+      "dob": "2021-10-06T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": [
+        "052963a9-f078-4d3f-b23c-83dc2503c3df.jpg"
+      ],
+      "sex": "",
+      "litter": 1
+    },
+    {
+      "id": 24,
+      "type": "sire",
+      "name": "Rockefeller",
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-10-02T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": [
+        "4c5903ef-6261-46a4-9e53-0a1d70be1c25.jpg"
+      ]
+    },
+    {
+      "id": 25,
+      "type": "dam",
+      "name": "Annie",
+      "breed": "sheepadoodle",
+      "generation": "F1bb",
+      "dob": "2021-10-21T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": [
+        "ba3b3939-cc52-4e6d-9aff-156cbe78f8f0.jpg"
+      ]
+    },
+    {
+      "id": 26,
+      "type": "puppy",
+      "name": "Charlotte",
+      "breed": "sheepadoodle",
+      "generation": "F1bb",
+      "dob": "2021-10-13T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": [
+        "9e65d9b1-f460-4fb5-aeca-c6307e6a088a.jpg"
+      ],
+      "sex": "",
+      "litter": 2
+    }
+  ],
+  "litter": [
+    {
+      "id": 1,
+      "name": "maggie and gegeg",
+      "dam": 22,
+      "sire": 13,
+      "breed": "bernedoodle",
+      "generation": "F1b",
+      "dob": "2021-10-06T04:00:00.000Z",
+      "photos": [
+        "1da82a2b-0f89-43a1-82f7-e55f64ad4a39.jpg"
+      ],
+      "identificationMethod": "",
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "name": "Annie and Rockefeller",
+      "dam": 25,
+      "sire": 24,
+      "breed": "sheepadoodle",
+      "generation": "F1bb",
+      "dob": "2021-10-13T04:00:00.000Z",
+      "photos": [
+        "1687023b-3a18-4c04-a97e-c030ee167c40.jpg"
+      ],
+      "identificationMethod": "",
+      "notes": ""
+    }
+  ],
+  "task": [
+    {
+      "id": 1,
+      "name": "Mason Vaccination",
+      "refId": "Mason",
+      "type": "vac",
+      "recur": {
+        "dateCreated": "2021-08-20T04:00:00.000Z",
+        "regularity": "bi-weekly",
+        "nextDate": "2021-08-27T04:00:00.000Z"
+      },
+      "notes": "Vaccination type: Pfizer"
+    },
+    {
+      "id": 2,
+      "name": "Maggie 4th Breeding Heat",
+      "refId": "Maggie",
+      "type": "heat",
+      "recur": {
+        "dateCreated": "2021-08-17T04:00:00.000Z",
+        "regularity": "bi-annually",
+        "nextDate": "2022-02-17T05:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "name": "Jackson Worming",
+      "refId": "Jackson",
+      "type": "worm",
+      "recur": {
+        "dateCreated": "2021-08-12T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-08-13T04:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "name": "Temp Reading",
+      "refId": "Maggie",
+      "type": "temp",
+      "recur": {
+        "dateCreated": "2021-09-17T04:00:00.000Z",
+        "regularity": "bi-weekly",
+        "nextDate": "2021-09-15T04:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "name": "TESTA",
+      "refId": 2,
+      "type": "temp",
+      "recur": {
+        "dateCreated": "2021-09-23T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-09-12T04:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 6,
+      "name": "asd",
+      "refId": 5,
+      "type": "vac",
+      "recur": {
+        "dateCreated": "2021-09-03T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-09-21T04:00:00.000Z"
+      },
+      "notes": "asdasd"
+    },
+    {
+      "id": 7,
+      "name": "asd",
+      "refId": 1,
+      "type": "vac",
+      "recur": {
+        "dateCreated": "2021-09-22T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-09-24T04:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "name": "Test Medication",
+      "refId": 2,
+      "type": "med",
+      "recur": {
+        "dateCreated": "2021-10-01T04:00:00.000Z",
+        "regularity": "monthly",
+        "nextDate": "2021-12-10T05:00:00.000Z"
+      },
+      "notes": "howdy!"
+    },
+    {
+      "id": 9,
+      "name": "HEASASDASD",
+      "refId": 2,
+      "type": "heat",
+      "recur": {
+        "dateCreated": "2021-09-30T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-09-29T04:00:00.000Z"
+      },
+      "notes": "ada"
+    },
+    {
+      "id": 10,
+      "name": "test",
+      "refId": 23,
+      "type": "vac",
+      "recur": {
+        "dateCreated": "2021-10-08T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-10-21T04:00:00.000Z"
+      },
+      "notes": ""
+    }
+  ],
+  "notification": []
+}

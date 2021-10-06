@@ -1,0 +1,21 @@
+.task-decorator {
+    display:block;
+    height:10px;
+    background:black;
+    border:1px solid;
+    border-color: black;
+}
+
+.task .mat-card{
+    border-radius:0px 0px 4px 4px;
+    box-shadow: none;
+    border-top:none;
+}
+
+.task-reminder {
+    border-radius: 4px 4px 0px 0px;
+}
+
+.task-type {
+    border-radius:0px 0px 4px 4px;
+}

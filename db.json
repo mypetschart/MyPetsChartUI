@@ -1,0 +1,366 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "role": "breeder",
+      "handle": "connorpeters",
+      "fullName": "Connor Peters",
+      "businessName": "Peters' Puppies",
+      "email": "design@mainsailstudio.com",
+      "password": "",
+      "phone": "(585) 478-2678",
+      "street": "542 Merchants Rd",
+      "city": "Rochester",
+      "state": "NY",
+      "zip": "27609",
+      "profilePhoto": "assets/users/connorpeters/profile-pic.jpg"
+    }
+  ],
+  "dog": [
+    {
+      "id": 1,
+      "type": "sire",
+      "name": "Rockefeller",
+      "slug": "rockefeller",
+      "breed": "goldendoodle",
+      "generation": "f1",
+      "dob": "2021-07-09T04:00:00.000Z",
+      "color": "white",
+      "weight": 28,
+      "microchip": "hello",
+      "photos": [
+        "photoUrl",
+        "photoUrl2"
+      ],
+      "studAppointments": [
+        "2021-07-09T04:00:00.000Z",
+        "2021-08-09T08:00:00.000Z"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "dam",
+      "name": "Maggie",
+      "slug": "maggie",
+      "breed": "golden retriever",
+      "generation": "f1",
+      "dob": "2021-07-09T04:00:00.000Z",
+      "color": "white",
+      "weight": 28,
+      "microchip": "hello",
+      "photos": [
+        "photoUrl",
+        "photoUrl2"
+      ],
+      "heat": {
+        "predicatedDate": "2021-07-09T04:00:00.000Z",
+        "actualDate": "2021-07-09T04:00:00.000Z",
+        "estFutureDate": "2022-01-09T04:00:00.000Z",
+        "lengthInDays": 8
+      }
+    },
+    {
+      "id": 4,
+      "type": "dam",
+      "name": "Berkley",
+      "slug": "",
+      "breed": "bernedoodle",
+      "generation": "41",
+      "dob": "2021-08-14T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": ""
+    },
+    {
+      "id": 5,
+      "type": "sire",
+      "name": "Jackson",
+      "breed": "bernedoodle",
+      "generation": "F1b",
+      "dob": "2021-08-13T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": "",
+      "studAppointments": ""
+    },
+    {
+      "id": 6,
+      "type": "sire",
+      "name": "Mason",
+      "breed": "sheepadoodle",
+      "generation": "F1bb",
+      "dob": "2021-08-11T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": "",
+      "studAppointments": [
+        "2021-08-19T04:00:00.000Z",
+        "2021-08-21T04:00:00.000Z"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "puppy",
+      "name": "Rogen",
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-08-18T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": "",
+      "sex": "male",
+      "litter": 2
+    },
+    {
+      "id": 8,
+      "type": "dam",
+      "name": "Reida",
+      "breed": "goldendoodle",
+      "generation": "F1bb",
+      "dob": "2021-04-01T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": "",
+      "heat": {
+        "predicatedDate": "2021-05-01T04:00:00.000Z",
+        "actualDate": "2021-08-13T22:46:04.093Z",
+        "estFutureDate": "2021-11-01T04:00:00.000Z",
+        "lengthInDays": 7
+      }
+    },
+    {
+      "id": 9,
+      "type": "puppy",
+      "name": "Test Puppy",
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-08-18T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": "",
+      "identifier": "",
+      "sex": "male",
+      "litter": 2
+    },
+    {
+      "id": 10,
+      "type": "puppy",
+      "name": "Test Image",
+      "breed": "bernedoodle",
+      "generation": "F2b",
+      "dob": "2021-09-10T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": [],
+      "sex": "",
+      "litter": ""
+    },
+    {
+      "id": 11,
+      "type": "puppy",
+      "name": "Test Multiple images",
+      "breed": "bernedoodle",
+      "generation": "F1bb",
+      "dob": "2021-09-23T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": [],
+      "sex": "",
+      "litter": ""
+    },
+    {
+      "id": 12,
+      "type": "sire",
+      "name": "asda",
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-09-30T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": []
+    }
+  ],
+  "litter": [
+    {
+      "id": 2,
+      "name": "Maggie and Rockefeller",
+      "dam": 2,
+      "sire": 1,
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-08-18T04:00:00.000Z",
+      "photos": "",
+      "namingScheme": "",
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "name": "Reida and Rockefeller",
+      "dam": 8,
+      "sire": 1,
+      "breed": "bernedoodle",
+      "generation": "F1b",
+      "dob": "2021-08-09T04:00:00.000Z",
+      "photos": "",
+      "namingScheme": "",
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "name": "Berkley and Jackson",
+      "dam": 4,
+      "sire": 5,
+      "breed": "bernedoodle",
+      "generation": "F1bb",
+      "dob": "2021-08-19T04:00:00.000Z",
+      "photos": "",
+      "identificationMethod": "",
+      "notes": "asdasdasd"
+    },
+    {
+      "id": 5,
+      "name": "Berkley and Jackson",
+      "dam": 4,
+      "sire": 5,
+      "breed": "sheepadoodle",
+      "generation": "F1bb",
+      "dob": "2021-09-24T04:00:00.000Z",
+      "photos": "",
+      "identificationMethod": "",
+      "notes": ""
+    }
+  ],
+  "task": [
+    {
+      "id": 1,
+      "name": "Mason Vaccination",
+      "refId": "Mason",
+      "type": "vac",
+      "recur": {
+        "dateCreated": "2021-08-20T04:00:00.000Z",
+        "regularity": "bi-weekly",
+        "nextDate": "2021-08-27T04:00:00.000Z"
+      },
+      "notes": "Vaccination type: Pfizer"
+    },
+    {
+      "id": 2,
+      "name": "Maggie 4th Breeding Heat",
+      "refId": "Maggie",
+      "type": "heat",
+      "recur": {
+        "dateCreated": "2021-08-17T04:00:00.000Z",
+        "regularity": "bi-annually",
+        "nextDate": "2022-02-17T05:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "name": "Jackson Worming",
+      "refId": "Jackson",
+      "type": "worm",
+      "recur": {
+        "dateCreated": "2021-08-12T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-08-13T04:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "name": "Temp Reading",
+      "refId": "Maggie",
+      "type": "temp",
+      "recur": {
+        "dateCreated": "2021-09-17T04:00:00.000Z",
+        "regularity": "bi-weekly",
+        "nextDate": "2021-09-15T04:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "name": "TESTA",
+      "refId": 2,
+      "type": "temp",
+      "recur": {
+        "dateCreated": "2021-09-23T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-09-12T04:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 6,
+      "name": "asd",
+      "refId": 5,
+      "type": "vac",
+      "recur": {
+        "dateCreated": "2021-09-03T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-09-21T04:00:00.000Z"
+      },
+      "notes": "asdasd"
+    },
+    {
+      "id": 7,
+      "name": "asd",
+      "refId": 1,
+      "type": "vac",
+      "recur": {
+        "dateCreated": "2021-09-22T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-09-24T04:00:00.000Z"
+      },
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "name": "Test Medication",
+      "refId": 2,
+      "type": "med",
+      "recur": {
+        "dateCreated": "2021-10-01T04:00:00.000Z",
+        "regularity": "monthly",
+        "nextDate": "2021-12-10T05:00:00.000Z"
+      },
+      "notes": "howdy!"
+    },
+    {
+      "id": 9,
+      "name": "HEASASDASD",
+      "refId": 2,
+      "type": "heat",
+      "recur": {
+        "dateCreated": "2021-09-30T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-09-29T04:00:00.000Z"
+      },
+      "notes": "ada"
+    }
+  ],
+  "notification": [
+    {
+      "id": 1,
+      "dateCreated": "2021-08-13T04:00:00.000Z",
+      "title": "Test Notification",
+      "body": "Yooooooo"
+    },
+    {
+      "id": 2,
+      "dateCreated": "2021-08-13T04:00:00.000Z",
+      "title": "Notification 22",
+      "body": "Howdy this is telling you that your stuff is overdue"
+    }
+  ]
+}

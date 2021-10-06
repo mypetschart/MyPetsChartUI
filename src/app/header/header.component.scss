@@ -1,0 +1,29 @@
+@use '~@angular/material' as mat;
+
+/*
+ * Color Palettes
+ */
+@import '../../palette.scss';
+
+nav{
+    position:fixed;
+    width:100%;
+    z-index:3;
+    top:0;
+}
+
+.nav-spacer{
+    min-height:72px;
+}
+
+a.mat-flat-button{
+    margin:0 0 0 16px;
+}
+
+.navbar-brand{
+    margin-left:25px;
+}
+
+.navbar{
+    border-bottom:1px solid mat.get-color-from-palette($my-palette, 700);
+}
