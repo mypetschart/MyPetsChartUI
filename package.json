@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:prod": "cross-env NODE_ENV=production ng build --configuration production",
+    "build:prod": "cross-env NODE_ENV=production ng build --configuration production --deploy-url /app/ --base-href /app/",
     "server": "json-server --watch db.json --port 5000"
   },
   "private": true,

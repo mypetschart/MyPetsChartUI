@@ -13,228 +13,125 @@
       "city": "Rochester",
       "state": "NY",
       "zip": "27609",
-      "profilePhoto": "./assets/users/connorpeters/profile-pic.jpg"
+      "profilePhoto": "assets/users/connorpeters/profile-pic.jpg"
     }
   ],
   "dog": [
     {
-      "id": 1,
+      "id": 13,
+      "type": "sire",
+      "name": "gegeg",
+      "breed": "bernedoodle",
+      "generation": "F1bb",
+      "dob": "2016-10-11T04:00:00.000Z",
+      "color": "blue",
+      "weight": "2lb",
+      "microchip": "none",
+      "photos": [
+        ""
+      ]
+    },
+    {
+      "id": 22,
+      "type": "dam",
+      "name": "maggie",
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-10-09T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": [
+        "c1d6ff42-a337-411f-b743-b0559452d84c.jpg"
+      ]
+    },
+    {
+      "id": 23,
+      "type": "puppy",
+      "name": "Rooster",
+      "breed": "bernedoodle",
+      "generation": "F1b",
+      "dob": "2021-10-06T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
+      "photos": [
+        "052963a9-f078-4d3f-b23c-83dc2503c3df.jpg"
+      ],
+      "sex": "",
+      "litter": 1
+    },
+    {
+      "id": 24,
       "type": "sire",
       "name": "Rockefeller",
-      "slug": "rockefeller",
-      "breed": "goldendoodle",
-      "generation": "f1",
-      "dob": "2021-07-09T04:00:00.000Z",
-      "color": "white",
-      "weight": 28,
-      "microchip": "hello",
+      "breed": "sheepadoodle",
+      "generation": "F1b",
+      "dob": "2021-10-02T04:00:00.000Z",
+      "color": "",
+      "weight": "",
+      "microchip": "",
       "photos": [
-        "photoUrl",
-        "photoUrl2"
-      ],
-      "studAppointments": [
-        "2021-07-09T04:00:00.000Z",
-        "2021-08-09T08:00:00.000Z"
+        "4c5903ef-6261-46a4-9e53-0a1d70be1c25.jpg"
       ]
     },
     {
-      "id": 2,
+      "id": 25,
       "type": "dam",
-      "name": "Maggie",
-      "slug": "maggie",
-      "breed": "golden retriever",
-      "generation": "f1",
-      "dob": "2021-07-09T04:00:00.000Z",
-      "color": "white",
-      "weight": 28,
-      "microchip": "hello",
-      "photos": [
-        "photoUrl",
-        "photoUrl2"
-      ],
-      "heat": {
-        "predicatedDate": "2021-07-09T04:00:00.000Z",
-        "actualDate": "2021-07-09T04:00:00.000Z",
-        "estFutureDate": "2022-01-09T04:00:00.000Z",
-        "lengthInDays": 8
-      }
-    },
-    {
-      "id": 4,
-      "type": "dam",
-      "name": "Berkley",
-      "slug": "",
-      "breed": "bernedoodle",
-      "generation": "41",
-      "dob": "2021-08-14T04:00:00.000Z",
-      "color": "",
-      "weight": "",
-      "microchip": "",
-      "photos": ""
-    },
-    {
-      "id": 5,
-      "type": "sire",
-      "name": "Jackson",
-      "breed": "bernedoodle",
-      "generation": "F1b",
-      "dob": "2021-08-13T04:00:00.000Z",
-      "color": "",
-      "weight": "",
-      "microchip": "",
-      "photos": "",
-      "studAppointments": ""
-    },
-    {
-      "id": 6,
-      "type": "sire",
-      "name": "Mason",
+      "name": "Annie",
       "breed": "sheepadoodle",
       "generation": "F1bb",
-      "dob": "2021-08-11T04:00:00.000Z",
+      "dob": "2021-10-21T04:00:00.000Z",
       "color": "",
       "weight": "",
       "microchip": "",
-      "photos": "",
-      "studAppointments": [
-        "2021-08-19T04:00:00.000Z",
-        "2021-08-21T04:00:00.000Z"
+      "photos": [
+        "ba3b3939-cc52-4e6d-9aff-156cbe78f8f0.jpg"
       ]
     },
     {
-      "id": 7,
+      "id": 26,
       "type": "puppy",
-      "name": "Rogen",
+      "name": "Charlotte",
       "breed": "sheepadoodle",
-      "generation": "F1b",
-      "dob": "2021-08-18T04:00:00.000Z",
-      "color": "",
-      "weight": "",
-      "microchip": "",
-      "photos": "",
-      "sex": "male",
-      "litter": 2
-    },
-    {
-      "id": 8,
-      "type": "dam",
-      "name": "Reida",
-      "breed": "goldendoodle",
       "generation": "F1bb",
-      "dob": "2021-04-01T04:00:00.000Z",
+      "dob": "2021-10-13T04:00:00.000Z",
       "color": "",
       "weight": "",
       "microchip": "",
-      "photos": "",
-      "heat": {
-        "predicatedDate": "2021-05-01T04:00:00.000Z",
-        "actualDate": "2021-08-13T22:46:04.093Z",
-        "estFutureDate": "2021-11-01T04:00:00.000Z",
-        "lengthInDays": 7
-      }
-    },
-    {
-      "id": 9,
-      "type": "puppy",
-      "name": "Test Puppy",
-      "breed": "sheepadoodle",
-      "generation": "F1b",
-      "dob": "2021-08-18T04:00:00.000Z",
-      "color": "",
-      "weight": "",
-      "microchip": "",
-      "photos": "",
-      "identifier": "",
-      "sex": "male",
+      "photos": [
+        "9e65d9b1-f460-4fb5-aeca-c6307e6a088a.jpg"
+      ],
+      "sex": "",
       "litter": 2
-    },
-    {
-      "id": 10,
-      "type": "puppy",
-      "name": "Test Image",
-      "breed": "bernedoodle",
-      "generation": "F2b",
-      "dob": "2021-09-10T04:00:00.000Z",
-      "color": "",
-      "weight": "",
-      "microchip": "",
-      "photos": [],
-      "sex": "",
-      "litter": ""
-    },
-    {
-      "id": 11,
-      "type": "puppy",
-      "name": "Test Multiple images",
-      "breed": "bernedoodle",
-      "generation": "F1bb",
-      "dob": "2021-09-23T04:00:00.000Z",
-      "color": "",
-      "weight": "",
-      "microchip": "",
-      "photos": [],
-      "sex": "",
-      "litter": ""
-    },
-    {
-      "id": 12,
-      "type": "sire",
-      "name": "asda",
-      "breed": "sheepadoodle",
-      "generation": "F1b",
-      "dob": "2021-09-30T04:00:00.000Z",
-      "color": "",
-      "weight": "",
-      "microchip": "",
-      "photos": []
     }
   ],
   "litter": [
     {
-      "id": 2,
-      "name": "Maggie and Rockefeller",
-      "dam": 2,
-      "sire": 1,
-      "breed": "sheepadoodle",
-      "generation": "F1b",
-      "dob": "2021-08-18T04:00:00.000Z",
-      "photos": "",
-      "namingScheme": "",
-      "notes": ""
-    },
-    {
-      "id": 3,
-      "name": "Reida and Rockefeller",
-      "dam": 8,
-      "sire": 1,
+      "id": 1,
+      "name": "maggie and gegeg",
+      "dam": 22,
+      "sire": 13,
       "breed": "bernedoodle",
       "generation": "F1b",
-      "dob": "2021-08-09T04:00:00.000Z",
-      "photos": "",
-      "namingScheme": "",
-      "notes": ""
-    },
-    {
-      "id": 4,
-      "name": "Berkley and Jackson",
-      "dam": 4,
-      "sire": 5,
-      "breed": "bernedoodle",
-      "generation": "F1bb",
-      "dob": "2021-08-19T04:00:00.000Z",
-      "photos": "",
+      "dob": "2021-10-06T04:00:00.000Z",
+      "photos": [
+        "1da82a2b-0f89-43a1-82f7-e55f64ad4a39.jpg"
+      ],
       "identificationMethod": "",
-      "notes": "asdasdasd"
+      "notes": ""
     },
     {
-      "id": 5,
-      "name": "Berkley and Jackson",
-      "dam": 4,
-      "sire": 5,
+      "id": 2,
+      "name": "Annie and Rockefeller",
+      "dam": 25,
+      "sire": 24,
       "breed": "sheepadoodle",
       "generation": "F1bb",
-      "dob": "2021-09-24T04:00:00.000Z",
-      "photos": "",
+      "dob": "2021-10-13T04:00:00.000Z",
+      "photos": [
+        "1687023b-3a18-4c04-a97e-c030ee167c40.jpg"
+      ],
       "identificationMethod": "",
       "notes": ""
     }
@@ -347,20 +244,19 @@
         "nextDate": "2021-09-29T04:00:00.000Z"
       },
       "notes": "ada"
-    }
-  ],
-  "notification": [
-    {
-      "id": 1,
-      "dateCreated": "2021-08-13T04:00:00.000Z",
-      "title": "Test Notification",
-      "body": "Yooooooo"
     },
     {
-      "id": 2,
-      "dateCreated": "2021-08-13T04:00:00.000Z",
-      "title": "Notification 22",
-      "body": "Howdy this is telling you that your stuff is overdue"
+      "id": 10,
+      "name": "test",
+      "refId": 23,
+      "type": "vac",
+      "recur": {
+        "dateCreated": "2021-10-08T04:00:00.000Z",
+        "regularity": "daily",
+        "nextDate": "2021-10-21T04:00:00.000Z"
+      },
+      "notes": ""
     }
-  ]
+  ],
+  "notification": []
 }
