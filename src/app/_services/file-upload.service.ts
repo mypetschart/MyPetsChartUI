@@ -28,7 +28,7 @@ export class FileUploadService {
   userId = 1;
   // user$ = this.store.select(state => state.user).subscribe(i => this.userId = i.id);
 
-  apiUrl = 'http://ec2-3-88-21-48.compute-1.amazonaws.com:9090/';
+  apiUrl = '/api';
 
   constructor(
     private http: HttpClient,
@@ -48,7 +48,7 @@ export class FileUploadService {
 
   upload(formData: FormData): Observable<PostResponseImage> {
     return this.http.post<PostResponseImage>(
-      this.apiUrl + 'api/v1/image/' + this.userId, formData
+      this.apiUrl + '/v1/image/' + this.userId, formData
       )
       .pipe(
         // catchError(this.handleError('addHero', hero))
@@ -57,6 +57,6 @@ export class FileUploadService {
 
   download(fileName: string): Observable<GetResponseImage> {
     return this.http.get<GetResponseImage>(
-      this.apiUrl + 'api/v1/image/' + this.userId + '/' + fileName
+      this.apiUrl + '/v1/image/' + this.userId + '/' + fileName
     );
   }}

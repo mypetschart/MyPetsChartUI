@@ -19,7 +19,7 @@ import { AllContactsComponent } from './contact/all-contacts/all-contacts.compon
 
 const routes: Routes = [
   // Top level pages
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'reports', component: ReportComponent },
   { path: 'messages', component: MessageComponent },

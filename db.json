@@ -13,7 +13,7 @@
       "city": "Rochester",
       "state": "NY",
       "zip": "27609",
-      "profilePhoto": "./assets/users/connorpeters/profile-pic.jpg"
+      "profilePhoto": "assets/users/connorpeters/profile-pic.jpg"
     }
   ],
   "dog": [
