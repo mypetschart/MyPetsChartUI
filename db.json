@@ -163,20 +163,6 @@
       "litter": ""
     },
     {
-      "id": 11,
-      "type": "puppy",
-      "name": "Test Multiple images",
-      "breed": "bernedoodle",
-      "generation": "F1bb",
-      "dob": "2021-09-23T04:00:00.000Z",
-      "color": "",
-      "weight": "",
-      "microchip": "",
-      "photos": [],
-      "sex": "",
-      "litter": ""
-    },
-    {
       "id": 12,
       "type": "sire",
       "name": "asda",
