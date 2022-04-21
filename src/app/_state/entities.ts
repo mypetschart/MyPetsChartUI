@@ -64,6 +64,7 @@ export const entityConfig = {
 
 export const defaultDataServiceConfig: DefaultDataServiceConfig = {
   //Due to NGRX being a piece of shit
-  root: "http://ec2-3-86-82-2.compute-1.amazonaws.com"+environment.apiUrl,
+  // root: "http://ec2-3-86-82-2.compute-1.amazonaws.com"+environment.apiUrl,
+  root: environment.apiUrl,
   timeout: 3000, // request timeout
 };
